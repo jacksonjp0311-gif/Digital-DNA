@@ -1,4 +1,4 @@
-import json
+﻿import json
 from datetime import datetime
 
 def append_ledger(path, record):

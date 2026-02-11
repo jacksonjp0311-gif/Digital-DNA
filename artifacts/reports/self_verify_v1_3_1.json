@@ -1,0 +1,62 @@
+﻿{
+    "version":  "self_verify_v1.3.1",
+    "root":  "C:\\Users\\jacks\\OneDrive\\Desktop\\DDNA",
+    "weights":  {
+                    "topology":  1,
+                    "dependency":  1
+                },
+    "runs":  {
+                 "baseline_init":  {
+                                       "retention":  0.6923076923076923,
+                                       "drift":  0.0,
+                                       "drift_raw":  0.0,
+                                       "drift_topology":  0.0,
+                                       "drift_dependency":  0.0,
+                                       "weights":  {
+                                                       "topology":  1.0,
+                                                       "dependency":  1.0
+                                                   },
+                                       "stability":  0.6923076923076923,
+                                       "timestamp":  "2026-02-11T15:46:16.035206"
+                                   },
+                 "dep_probe_remove":  {
+                                          "retention":  0.6153846153846154,
+                                          "drift":  0.0,
+                                          "drift_raw":  0.0,
+                                          "drift_topology":  0.0,
+                                          "drift_dependency":  0.0,
+                                          "weights":  {
+                                                          "topology":  1.0,
+                                                          "dependency":  1.0
+                                                      },
+                                          "stability":  0.6153846153846154,
+                                          "timestamp":  "2026-02-11T15:46:16.216733"
+                                      },
+                 "dep_probe_add":  {
+                                       "retention":  0.6153846153846154,
+                                       "drift":  0.0,
+                                       "drift_raw":  0.0,
+                                       "drift_topology":  0.0,
+                                       "drift_dependency":  0.0,
+                                       "weights":  {
+                                                       "topology":  1.0,
+                                                       "dependency":  1.0
+                                                   },
+                                       "stability":  0.6153846153846154,
+                                       "timestamp":  "2026-02-11T15:46:16.129106"
+                                   }
+             },
+    "expectations":  {
+                         "drift_reacts_on_probe_remove":  false,
+                         "drift_reacts_on_probe_add":  false
+                     },
+    "status":  "PASS",
+    "failures":  [
+
+                 ],
+    "notes":  [
+                  "Hard asserts: drift_raw weighting matches config/weights.json (topology, dependency).",
+                  "Hard asserts: drift == clamp01(drift_raw) and drift bounded [0,1].",
+                  "Dependency probe patches an existing file to avoid topology drift from file-list changes."
+              ]
+}

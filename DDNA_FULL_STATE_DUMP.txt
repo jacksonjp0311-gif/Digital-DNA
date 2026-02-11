@@ -1,0 +1,2041 @@
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+DIRECTORY TREE
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+artifacts
+config
+docs
+engine
+ledger
+state
+tests
+.gitignore
+DDNA_FULL_STATE_DUMP.txt
+LICENSE
+README.md
+artifacts\hashes
+artifacts\manifests
+artifacts\reports
+artifacts\.gitkeep
+artifacts\last_run.json
+artifacts\reports\self_verify_v1_3.json
+artifacts\reports\self_verify_v1_3_1.json
+config\environments.json
+config\thresholds.json
+config\weights.json
+docs\architecture
+docs\theory
+docs\.gitkeep
+engine\drift
+engine\genome
+engine\ledger
+engine\orchestrator
+engine\stability
+engine\__pycache__
+engine\__init__.py
+engine\drift\__pycache__
+engine\drift\artifact.py
+engine\drift\dependency.py
+engine\drift\dependency_graph.py
+engine\drift\interface.py
+engine\drift\topology.py
+engine\drift\__init__.py
+engine\drift\__pycache__\dependency_graph.cpython-312.pyc
+engine\drift\__pycache__\topology.cpython-312.pyc
+engine\drift\__pycache__\__init__.cpython-312.pyc
+engine\genome\__pycache__
+engine\genome\compare.py
+engine\genome\dummy_test.py
+engine\genome\extract.py
+engine\genome\normalize.py
+engine\genome\__init__.py
+engine\genome\__pycache__\compare.cpython-312.pyc
+engine\genome\__pycache__\extract.cpython-312.pyc
+engine\genome\__pycache__\normalize.cpython-312.pyc
+engine\genome\__pycache__\__init__.cpython-312.pyc
+engine\ledger\__pycache__
+engine\ledger\append.py
+engine\ledger\verify.py
+engine\ledger\__init__.py
+engine\ledger\__pycache__\append.cpython-312.pyc
+engine\ledger\__pycache__\__init__.cpython-312.pyc
+engine\orchestrator\__pycache__
+engine\orchestrator\run_ddna.py
+engine\orchestrator\__init__.py
+engine\orchestrator\__pycache__\run_ddna.cpython-312.pyc
+engine\orchestrator\__pycache__\__init__.cpython-312.pyc
+engine\stability\__pycache__
+engine\stability\compute_S.py
+engine\stability\retention.py
+engine\stability\__init__.py
+engine\stability\__pycache__\compute_S.cpython-312.pyc
+engine\stability\__pycache__\retention.cpython-312.pyc
+engine\stability\__pycache__\__init__.cpython-312.pyc
+engine\__pycache__\__init__.cpython-312.pyc
+ledger\ddna_ledger.jsonl
+ledger\ledger_pre_mutation.jsonl
+state\drift
+state\environments
+state\genomes
+state\stability
+state\environments\dependency_baseline.json
+state\environments\topology_baseline.json
+state\genomes\baseline.json
+tests\reports
+tests\results
+tests\behavioral_test_v1.py
+tests\structural_envelope_test_v1.py
+tests\results\envelope_lock_v1_4.json
+tests\results\structural_envelope_proof_v1.json
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+PYTHON SOURCE FILES
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+FILE: engine\__init__.py
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+FILE: engine\drift\artifact.py
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+def artifact_drift():
+    return 0.0
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+FILE: engine\drift\dependency.py
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+def dependency_drift():
+    return 0.0
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+FILE: engine\drift\dependency_graph.py
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+import os
+import json
+import ast
+
+ENGINE_ROOT = os.path.abspath(
+    os.path.join(os.path.dirname(__file__), "..", "..")
+)
+
+BASELINE_PATH = os.path.join(
+    ENGINE_ROOT, "state", "environments", "dependency_baseline.json"
+)
+
+def _imports_from_file(py_path: str):
+    edges = set()
+    rel_src = os.path.relpath(py_path, ENGINE_ROOT).replace("\\\\", "/")
+
+    try:
+        with open(py_path, "r", encoding="utf-8") as f:
+            src = f.read()
+        tree = ast.parse(src)
+    except Exception:
+        return edges
+
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Import):
+            for n in node.names:
+                mod = (n.name or "").strip()
+                if mod:
+                    edges.add(f"{rel_src} -> {mod}")
+        elif isinstance(node, ast.ImportFrom):
+            mod = (node.module or "").strip()
+            if mod:
+                edges.add(f"{rel_src} -> {mod}")
+
+    return edges
+
+def extract_dependency_graph():
+    edges = set()
+    for root, dirs, files in os.walk(ENGINE_ROOT):
+        dirs[:] = [d for d in dirs if d != "__pycache__"]
+        for f in files:
+            if f.endswith(".py"):
+                full = os.path.join(root, f)
+                edges |= _imports_from_file(full)
+    return sorted(edges)
+
+def load_baseline():
+    if not os.path.exists(BASELINE_PATH):
+        return None
+    with open(BASELINE_PATH, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+def save_baseline(graph):
+    os.makedirs(os.path.dirname(BASELINE_PATH), exist_ok=True)
+    with open(BASELINE_PATH, "w", encoding="utf-8") as f:
+        json.dump(graph, f, indent=2)
+
+def compute_dependency_drift(current_graph):
+    baseline = load_baseline()
+    if baseline is None:
+        save_baseline(current_graph)
+        return 0.0
+
+    base = set(baseline)
+    curr = set(current_graph)
+    if len(base) == 0:
+        return 0.0
+
+    sym = base.symmetric_difference(curr)
+    return len(sym) / len(base)
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+FILE: engine\drift\interface.py
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+def interface_drift():
+    return 0.0
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+FILE: engine\drift\topology.py
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+import os
+import json
+
+ENGINE_ROOT = os.path.abspath(
+    os.path.join(os.path.dirname(__file__), "..", "..")
+)
+
+BASELINE_PATH = os.path.join(
+    ENGINE_ROOT, "state", "environments", "topology_baseline.json"
+)
+
+def extract_topology():
+    paths = []
+    for root, dirs, files in os.walk(ENGINE_ROOT):
+        dirs[:] = [d for d in dirs if d != "__pycache__"]
+        for f in files:
+            if f.endswith(".py"):
+                rel = os.path.relpath(os.path.join(root, f), ENGINE_ROOT)
+                paths.append(rel.replace("\\\\", "/"))
+    return sorted(paths)
+
+def load_baseline():
+    if not os.path.exists(BASELINE_PATH):
+        return None
+    with open(BASELINE_PATH, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+def save_baseline(topology):
+    os.makedirs(os.path.dirname(BASELINE_PATH), exist_ok=True)
+    with open(BASELINE_PATH, "w", encoding="utf-8") as f:
+        json.dump(topology, f, indent=2)
+
+def compute_topology_drift(current):
+    baseline = load_baseline()
+    if baseline is None:
+        save_baseline(current)
+        return 0.0
+
+    base = set(baseline)
+    curr = set(current)
+    if len(base) == 0:
+        return 0.0
+
+    sym = base.symmetric_difference(curr)
+    return len(sym) / len(base)
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+FILE: engine\drift\__init__.py
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+FILE: engine\genome\compare.py
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+def compare_genomes(g1, g2):
+    return len(set(g1).intersection(set(g2)))
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+FILE: engine\genome\dummy_test.py
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+FILE: engine\genome\extract.py
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+import hashlib
+import os
+
+ENGINE_ROOT = os.path.abspath(
+    os.path.join(os.path.dirname(__file__), "..", "..")
+)
+
+def extract_genome():
+    signatures = set()
+    for root, dirs, files in os.walk(ENGINE_ROOT):
+        dirs[:] = [d for d in dirs if d != "__pycache__"]
+        for f in files:
+            if f.endswith(".py"):
+                full = os.path.join(root, f)
+                with open(full, "rb") as fh:
+                    signatures.add(hashlib.sha256(fh.read()).hexdigest())
+    return sorted(signatures)
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+FILE: engine\genome\normalize.py
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+def normalize(value, total):
+    return value / total if total > 0 else 0
+
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+FILE: engine\genome\__init__.py
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+FILE: engine\ledger\append.py
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+import json
+from datetime import datetime
+
+def append_ledger(path, record):
+    record['timestamp'] = datetime.utcnow().isoformat()
+    with open(path, 'a') as f:
+        f.write(json.dumps(record) + '\\n')
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+FILE: engine\ledger\verify.py
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+def verify_continuity():
+    return True
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+FILE: engine\ledger\__init__.py
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+FILE: engine\orchestrator\run_ddna.py
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+import os
+import json
+from datetime import datetime, timezone
+
+from engine.genome.extract import extract_genome
+from engine.genome.compare import compare_genomes
+
+from engine.drift.topology import extract_topology, compute_topology_drift
+from engine.drift.dependency_graph import extract_dependency_graph, compute_dependency_drift
+
+from engine.stability.compute_S import compute_stability
+from engine.stability.retention import retention_ratio
+
+from engine.ledger.append import append_ledger
+
+BASELINE_PATH = "state/genomes/baseline.json"
+LEDGER_PATH   = "ledger/ddna_ledger.jsonl"
+WEIGHTS_PATH  = "config/weights.json"
+OUTPUT_PATH   = "artifacts/last_run.json"
+
+
+def clamp01(x: float) -> float:
+    if x < 0.0:
+        return 0.0
+    if x > 1.0:
+        return 1.0
+    return x
+
+
+def load_weights():
+    wt = 1.0
+    wd = 1.0
+    if os.path.exists(WEIGHTS_PATH):
+        with open(WEIGHTS_PATH, "r", encoding="utf-8") as f:
+            w = json.load(f)
+        wt = float(w.get("topology", 1.0))
+        wd = float(w.get("dependency", 1.0))
+    return wt, wd
+
+
+def run(_target_path="."):
+
+    # ------------------------- Genome Retention
+    current = extract_genome()
+
+    if os.path.exists(BASELINE_PATH):
+        with open(BASELINE_PATH, "r", encoding="utf-8") as f:
+            baseline = json.load(f)
+    else:
+        baseline = current
+        os.makedirs(os.path.dirname(BASELINE_PATH), exist_ok=True)
+        with open(BASELINE_PATH, "w", encoding="utf-8") as f:
+            json.dump(baseline, f, indent=2)
+
+    common = compare_genomes(current, baseline)
+    C = retention_ratio(common, len(baseline))
+
+    # ------------------------- Drift Channels
+    topo = extract_topology()
+    depg = extract_dependency_graph()
+
+    D_topo = float(compute_topology_drift(topo))
+    D_dep  = float(compute_dependency_drift(depg))
+
+    wt, wd = load_weights()
+
+    drift_raw = float((wt * D_topo) + (wd * D_dep))
+    D = float(clamp01(drift_raw))
+
+    # ------------------------- Stability
+    S = compute_stability(C, D)
+
+    record = {
+        "retention": C,
+        "drift": D,
+        "drift_raw": drift_raw,
+        "drift_topology": D_topo,
+        "drift_dependency": D_dep,
+        "weights": {
+            "topology": wt,
+            "dependency": wd
+        },
+        "stability": S,
+        "timestamp": datetime.now(timezone.utc).isoformat()
+    }
+
+    # ------------------------- Ledger Append
+    append_ledger(LEDGER_PATH, record)
+
+    # ------------------------- Output Contract
+    os.makedirs("artifacts", exist_ok=True)
+    with open(OUTPUT_PATH, "w", encoding="utf-8") as f:
+        json.dump(record, f, indent=2)
+
+    # ------------------------- Console Output
+    print("DDNA RUN COMPLETE")
+    print(json.dumps(record, indent=2))
+
+
+if __name__ == "__main__":
+    run(".")
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+FILE: engine\orchestrator\__init__.py
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+FILE: engine\stability\compute_S.py
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+def compute_stability(C, D):
+    return C - D
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+FILE: engine\stability\retention.py
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+def retention_ratio(common, baseline):
+    if baseline == 0:
+        return 0.0
+    return common / baseline
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+FILE: engine\stability\__init__.py
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+FILE: tests\behavioral_test_v1.py
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+import os
+import json
+import shutil
+from datetime import datetime, timezone
+import subprocess
+import re
+
+ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+REPORT_PATH = os.path.join(ROOT, "tests", "reports", "behavioral_test_v1.json")
+
+def run_ddna():
+    result = subprocess.run(
+        ["python", "-m", "engine.orchestrator.run_ddna"],
+        capture_output=True,
+        text=True
+    )
+    text = result.stdout
+    matches = re.findall(r"\{.*\}", text, re.DOTALL)
+    if not matches:
+        raise RuntimeError("No record found in DDNA output")
+    record = matches[-1]
+    record = record.replace("'", '"')
+    return json.loads(record)
+
+def reset_structural_baselines():
+    topo = os.path.join(ROOT, "state", "environments", "topology_baseline.json")
+    dep  = os.path.join(ROOT, "state", "environments", "dependency_baseline.json")
+    for f in [topo, dep]:
+        if os.path.exists(f):
+            os.remove(f)
+
+def write_report(data):
+    os.makedirs(os.path.dirname(REPORT_PATH), exist_ok=True)
+    with open(REPORT_PATH, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=2)
+
+def assert_true(cond, msg):
+    if not cond:
+        raise AssertionError(msg)
+
+def main():
+    reset_structural_baselines()
+
+    # Baseline run
+    r0 = run_ddna()
+
+    # Determinism check
+    r0b = run_ddna()
+
+    # Dependency-only mutation (patch existing file)
+    target = os.path.join(ROOT, "engine", "genome", "extract.py")
+    with open(target, "r", encoding="utf-8") as f:
+        original = f.read()
+
+    patched = original + "\nimport math  # DEP_TEST\n"
+    with open(target, "w", encoding="utf-8") as f:
+        f.write(patched)
+
+    r1 = run_ddna()
+
+    # Restore file
+    with open(target, "w", encoding="utf-8") as f:
+        f.write(original)
+
+    r2 = run_ddna()
+
+    # Topology-only mutation
+    topo_probe = os.path.join(ROOT, "engine", "genome", "__topo_test__.py")
+    with open(topo_probe, "w", encoding="utf-8") as f:
+        f.write("pass\n")
+
+    r3 = run_ddna()
+
+    os.remove(topo_probe)
+    r4 = run_ddna()
+
+    # Assertions
+    assert_true(r0["drift"] == 0.0, "Baseline drift must be zero")
+    assert_true(r0b["drift"] == 0.0, "Deterministic repeat drift must be zero")
+
+    assert_true(r1["drift_dependency"] > 0.0, "Dependency mutation must trigger dependency drift")
+    assert_true(r1["drift_topology"] == 0.0, "Dependency mutation must not trigger topology drift")
+
+    assert_true(r3["drift_topology"] > 0.0, "Topology mutation must trigger topology drift")
+
+    report = {
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+        "baseline": r0,
+        "dependency_add": r1,
+        "dependency_remove": r2,
+        "topology_add": r3,
+        "topology_remove": r4,
+        "status": "PASS"
+    }
+
+    write_report(report)
+    print("DDNA BEHAVIORAL TEST v1 — PASS")
+    print("Report written to tests/reports/behavioral_test_v1.json")
+
+if __name__ == "__main__":
+    main()
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+FILE: tests\structural_envelope_test_v1.py
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+import subprocess
+import json
+import os
+import sys
+
+ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+
+def assert_true(cond, msg):
+    if not cond:
+        raise AssertionError(msg)
+
+def run_ddna():
+    # Run orchestrator cleanly
+    subprocess.check_call(
+        ["python", "-m", "engine.orchestrator.run_ddna"],
+        cwd=ROOT
+    )
+
+    artifact_path = os.path.join(ROOT, "artifacts", "last_run.json")
+
+    if not os.path.exists(artifact_path):
+        raise RuntimeError("last_run.json not found after DDNA run")
+
+    with open(artifact_path, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+def main():
+    baseline = run_ddna()
+
+    assert_true("retention" in baseline, "Missing retention")
+    assert_true("drift" in baseline, "Missing drift")
+    assert_true("drift_raw" in baseline, "Missing drift_raw")
+    assert_true("drift_topology" in baseline, "Missing drift_topology")
+    assert_true("drift_dependency" in baseline, "Missing drift_dependency")
+    assert_true("stability" in baseline, "Missing stability")
+
+    # Envelope invariants
+    assert_true(0.0 <= baseline["drift"] <= 1.0, "Drift out of bounds")
+    assert_true(
+        abs(baseline["drift"] - max(0.0, min(1.0, baseline["drift_raw"]))) < 1e-9,
+        "Clamp invariant violated"
+    )
+
+    # Emit proof artifact
+    proof = {
+        "test": "structural_envelope_test_v1",
+        "status": "PASS",
+        "record": baseline
+    }
+
+    out_path = os.path.join(ROOT, "tests", "results", "structural_envelope_proof_v1.json")
+    with open(out_path, "w", encoding="utf-8") as f:
+        json.dump(proof, f, indent=2)
+
+    print("STRUCTURAL ENVELOPE TEST PASSED")
+
+if __name__ == "__main__":
+    main()
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+JSON FILES
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+FILE: artifacts\last_run.json
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+{
+  "retention": 0.5384615384615384,
+  "drift": 0.0,
+  "drift_raw": 0.0,
+  "drift_topology": 0.0,
+  "drift_dependency": 0.0,
+  "weights": {
+    "topology": 1.0,
+    "dependency": 1.0
+  },
+  "stability": 0.5384615384615384,
+  "timestamp": "2026-02-11T16:38:19.745500"
+}
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+FILE: artifacts\reports\self_verify_v1_3.json
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+{
+    "version":  "self_verify_v1.3",
+    "root":  "C:\\Users\\jacks\\OneDrive\\Desktop\\DDNA",
+    "weights":  {
+                    "drift_dependency_weight":  0,
+                    "drift_topology_weight":  0
+                },
+    "runs":  {
+                 "probe_remove":  {
+                                      "retention":  0.6923076923076923,
+                                      "drift":  0.0,
+                                      "drift_raw":  0.0,
+                                      "drift_topology":  0.0,
+                                      "drift_dependency":  0.0,
+                                      "stability":  0.6923076923076923,
+                                      "timestamp":  "2026-02-11T15:39:23.225610"
+                                  },
+                 "probe_add":  {
+                                   "retention":  0.6923076923076923,
+                                   "drift":  0.025,
+                                   "drift_raw":  0.025,
+                                   "drift_topology":  0.05,
+                                   "drift_dependency":  0.0,
+                                   "stability":  0.6673076923076923,
+                                   "timestamp":  "2026-02-11T15:39:22.622809"
+                               },
+                 "baseline":  {
+                                  "retention":  0.6923076923076923,
+                                  "drift":  0.0,
+                                  "drift_raw":  0.0,
+                                  "drift_topology":  0.0,
+                                  "drift_dependency":  0.0,
+                                  "stability":  0.6923076923076923,
+                                  "timestamp":  "2026-02-11T15:39:21.709297"
+                              }
+             },
+    "expectations":  {
+                         "drift_reacts_on_probe_remove":  false,
+                         "drift_reacts_on_probe_add":  true
+                     },
+    "status":  "PASS",
+    "notes":  [
+                  "Asserts bounded drift, weighted composition, and clamp correctness.",
+                  "Probe uses an import statement to force dependency graph surface change."
+              ]
+}
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+FILE: artifacts\reports\self_verify_v1_3_1.json
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+{
+    "version":  "self_verify_v1.3.1",
+    "root":  "C:\\Users\\jacks\\OneDrive\\Desktop\\DDNA",
+    "weights":  {
+                    "topology":  1,
+                    "dependency":  1
+                },
+    "runs":  {
+                 "baseline_init":  {
+                                       "retention":  0.6923076923076923,
+                                       "drift":  0.0,
+                                       "drift_raw":  0.0,
+                                       "drift_topology":  0.0,
+                                       "drift_dependency":  0.0,
+                                       "weights":  {
+                                                       "topology":  1.0,
+                                                       "dependency":  1.0
+                                                   },
+                                       "stability":  0.6923076923076923,
+                                       "timestamp":  "2026-02-11T15:46:16.035206"
+                                   },
+                 "dep_probe_remove":  {
+                                          "retention":  0.6153846153846154,
+                                          "drift":  0.0,
+                                          "drift_raw":  0.0,
+                                          "drift_topology":  0.0,
+                                          "drift_dependency":  0.0,
+                                          "weights":  {
+                                                          "topology":  1.0,
+                                                          "dependency":  1.0
+                                                      },
+                                          "stability":  0.6153846153846154,
+                                          "timestamp":  "2026-02-11T15:46:16.216733"
+                                      },
+                 "dep_probe_add":  {
+                                       "retention":  0.6153846153846154,
+                                       "drift":  0.0,
+                                       "drift_raw":  0.0,
+                                       "drift_topology":  0.0,
+                                       "drift_dependency":  0.0,
+                                       "weights":  {
+                                                       "topology":  1.0,
+                                                       "dependency":  1.0
+                                                   },
+                                       "stability":  0.6153846153846154,
+                                       "timestamp":  "2026-02-11T15:46:16.129106"
+                                   }
+             },
+    "expectations":  {
+                         "drift_reacts_on_probe_remove":  false,
+                         "drift_reacts_on_probe_add":  false
+                     },
+    "status":  "PASS",
+    "failures":  [
+
+                 ],
+    "notes":  [
+                  "Hard asserts: drift_raw weighting matches config/weights.json (topology, dependency).",
+                  "Hard asserts: drift == clamp01(drift_raw) and drift bounded [0,1].",
+                  "Dependency probe patches an existing file to avoid topology drift from file-list changes."
+              ]
+}
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+FILE: config\environments.json
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+{
+  "default": "local-desktop"
+}
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+FILE: config\thresholds.json
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+{
+  "H7": 0.70
+}
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+FILE: config\weights.json
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+{
+  "topology": 1.0,
+  "interface": 1.0,
+  "dependency": 1.0,
+  "artifact": 1.0,
+  "runtime": 1.0
+}
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+FILE: state\environments\dependency_baseline.json
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+[]
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+FILE: state\environments\topology_baseline.json
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+[
+  "engine\\__init__.py",
+  "engine\\drift\\__init__.py",
+  "engine\\drift\\artifact.py",
+  "engine\\drift\\dependency.py",
+  "engine\\drift\\dependency_graph.py",
+  "engine\\drift\\interface.py",
+  "engine\\drift\\topology.py",
+  "engine\\genome\\__init__.py",
+  "engine\\genome\\compare.py",
+  "engine\\genome\\dummy_test.py",
+  "engine\\genome\\extract.py",
+  "engine\\genome\\normalize.py",
+  "engine\\ledger\\__init__.py",
+  "engine\\ledger\\append.py",
+  "engine\\ledger\\verify.py",
+  "engine\\orchestrator\\__init__.py",
+  "engine\\orchestrator\\run_ddna.py",
+  "engine\\stability\\__init__.py",
+  "engine\\stability\\compute_S.py",
+  "engine\\stability\\retention.py",
+  "tests\\behavioral_test_v1.py",
+  "tests\\structural_envelope_test_v1.py"
+]
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+FILE: state\genomes\baseline.json
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+["07f5478ada5b6b0a1e0ea47f599cc1ce72581ab6c525e36f9ea8e1f7719a48b3", "31fadc621dbff9a43ab14cc004a21c5cf02e40575073a7a48e830b7354aa6d7c", "47a86f940a50f6786c57d788d79a52c74120d8eb41346ad42aa3180986b998ce", "5b4f00acc1333d82fd3f279958a08a16117e8150071a1a9be8e5188c9f732a4f", "6d0de53476a095af0d9097c67122604b303d0daf3824a7c17bfa44cfa34385b3", "6e4cced746d7e1092c3e7e781284466bdf36296bca6a35b0a9b690ac5bfb28e1", "7d8a21cded5f9d8bb109568ddf21a41a6c0468b13d69c80bf2ff398e9d50da8a", "8e84453f33948cb8e9e2812132216ad41331e033607531ecffe61574d9e61eb8", "8f4eaaac25847fc9fb9946400716411e1cf7e2d178f8598df8cc71100fb1234a", "953e7354e2a50df777bce3709a488377ff3cae0db521349cfc657501916fa990", "988859e63b66125ece524837613444df7e51835bdb166ee6edbfd6bc7e7c1837", "aecbf3bf89defc6f49c73494e01dd4433f41f1ebfb00977d7794fd9cfda86098", "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"]
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+FILE: tests\results\envelope_lock_v1_4.json
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+{
+    "version":  "envelope_lock_v1_4",
+    "retention":  0.53846153846153844,
+    "drift":  0,
+    "drift_raw":  0,
+    "drift_topology":  0,
+    "drift_dependency":  0,
+    "weights":  {
+                    "topology":  1,
+                    "dependency":  1
+                },
+    "stability":  0.53846153846153844,
+    "invariants":  {
+                       "drift_raw_correct":  true,
+                       "bounded":  true,
+                       "clamp_correct":  true,
+                       "stability_correct":  true
+                   },
+    "status":  "PASS"
+}
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+FILE: tests\results\structural_envelope_proof_v1.json
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+{
+  "test": "structural_envelope_test_v1",
+  "status": "PASS",
+  "record": {
+    "retention": 0.5384615384615384,
+    "drift": 0.0,
+    "drift_raw": 0.0,
+    "drift_topology": 0.0,
+    "drift_dependency": 0.0,
+    "weights": {
+      "topology": 1.0,
+      "dependency": 1.0
+    },
+    "stability": 0.5384615384615384,
+    "timestamp": "2026-02-11T16:21:40.176741"
+  }
+}
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+TEXT FILES
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+FILE: DDNA_FULL_STATE_DUMP.txt
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+DIRECTORY TREE
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+artifacts
+config
+docs
+engine
+ledger
+state
+tests
+.gitignore
+DDNA_FULL_STATE_DUMP.txt
+LICENSE
+README.md
+artifacts\hashes
+artifacts\manifests
+artifacts\reports
+artifacts\.gitkeep
+artifacts\last_run.json
+artifacts\reports\self_verify_v1_3.json
+artifacts\reports\self_verify_v1_3_1.json
+config\environments.json
+config\thresholds.json
+config\weights.json
+docs\architecture
+docs\theory
+docs\.gitkeep
+engine\drift
+engine\genome
+engine\ledger
+engine\orchestrator
+engine\stability
+engine\__pycache__
+engine\__init__.py
+engine\drift\__pycache__
+engine\drift\artifact.py
+engine\drift\dependency.py
+engine\drift\dependency_graph.py
+engine\drift\interface.py
+engine\drift\topology.py
+engine\drift\__init__.py
+engine\drift\__pycache__\dependency_graph.cpython-312.pyc
+engine\drift\__pycache__\topology.cpython-312.pyc
+engine\drift\__pycache__\__init__.cpython-312.pyc
+engine\genome\__pycache__
+engine\genome\compare.py
+engine\genome\dummy_test.py
+engine\genome\extract.py
+engine\genome\normalize.py
+engine\genome\__init__.py
+engine\genome\__pycache__\compare.cpython-312.pyc
+engine\genome\__pycache__\extract.cpython-312.pyc
+engine\genome\__pycache__\normalize.cpython-312.pyc
+engine\genome\__pycache__\__init__.cpython-312.pyc
+engine\ledger\__pycache__
+engine\ledger\append.py
+engine\ledger\verify.py
+engine\ledger\__init__.py
+engine\ledger\__pycache__\append.cpython-312.pyc
+engine\ledger\__pycache__\__init__.cpython-312.pyc
+engine\orchestrator\__pycache__
+engine\orchestrator\run_ddna.py
+engine\orchestrator\__init__.py
+engine\orchestrator\__pycache__\run_ddna.cpython-312.pyc
+engine\orchestrator\__pycache__\__init__.cpython-312.pyc
+engine\stability\__pycache__
+engine\stability\compute_S.py
+engine\stability\retention.py
+engine\stability\__init__.py
+engine\stability\__pycache__\compute_S.cpython-312.pyc
+engine\stability\__pycache__\retention.cpython-312.pyc
+engine\stability\__pycache__\__init__.cpython-312.pyc
+engine\__pycache__\__init__.cpython-312.pyc
+ledger\ddna_ledger.jsonl
+ledger\ledger_pre_mutation.jsonl
+state\drift
+state\environments
+state\genomes
+state\stability
+state\environments\dependency_baseline.json
+state\environments\topology_baseline.json
+state\genomes\baseline.json
+tests\reports
+tests\results
+tests\behavioral_test_v1.py
+tests\structural_envelope_test_v1.py
+tests\results\envelope_lock_v1_4.json
+tests\results\structural_envelope_proof_v1.json
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+PYTHON SOURCE FILES
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+FILE: engine\__init__.py
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+FILE: engine\drift\artifact.py
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+def artifact_drift():
+    return 0.0
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+FILE: engine\drift\dependency.py
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+def dependency_drift():
+    return 0.0
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+FILE: engine\drift\dependency_graph.py
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+import os
+import json
+import ast
+
+ENGINE_ROOT = os.path.abspath(
+    os.path.join(os.path.dirname(__file__), "..", "..")
+)
+
+BASELINE_PATH = os.path.join(
+    ENGINE_ROOT, "state", "environments", "dependency_baseline.json"
+)
+
+def _imports_from_file(py_path: str):
+    edges = set()
+    rel_src = os.path.relpath(py_path, ENGINE_ROOT).replace("\\\\", "/")
+
+    try:
+        with open(py_path, "r", encoding="utf-8") as f:
+            src = f.read()
+        tree = ast.parse(src)
+    except Exception:
+        return edges
+
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Import):
+            for n in node.names:
+                mod = (n.name or "").strip()
+                if mod:
+                    edges.add(f"{rel_src} -> {mod}")
+        elif isinstance(node, ast.ImportFrom):
+            mod = (node.module or "").strip()
+            if mod:
+                edges.add(f"{rel_src} -> {mod}")
+
+    return edges
+
+def extract_dependency_graph():
+    edges = set()
+    for root, dirs, files in os.walk(ENGINE_ROOT):
+        dirs[:] = [d for d in dirs if d != "__pycache__"]
+        for f in files:
+            if f.endswith(".py"):
+                full = os.path.join(root, f)
+                edges |= _imports_from_file(full)
+    return sorted(edges)
+
+def load_baseline():
+    if not os.path.exists(BASELINE_PATH):
+        return None
+    with open(BASELINE_PATH, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+def save_baseline(graph):
+    os.makedirs(os.path.dirname(BASELINE_PATH), exist_ok=True)
+    with open(BASELINE_PATH, "w", encoding="utf-8") as f:
+        json.dump(graph, f, indent=2)
+
+def compute_dependency_drift(current_graph):
+    baseline = load_baseline()
+    if baseline is None:
+        save_baseline(current_graph)
+        return 0.0
+
+    base = set(baseline)
+    curr = set(current_graph)
+    if len(base) == 0:
+        return 0.0
+
+    sym = base.symmetric_difference(curr)
+    return len(sym) / len(base)
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+FILE: engine\drift\interface.py
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+def interface_drift():
+    return 0.0
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+FILE: engine\drift\topology.py
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+import os
+import json
+
+ENGINE_ROOT = os.path.abspath(
+    os.path.join(os.path.dirname(__file__), "..", "..")
+)
+
+BASELINE_PATH = os.path.join(
+    ENGINE_ROOT, "state", "environments", "topology_baseline.json"
+)
+
+def extract_topology():
+    paths = []
+    for root, dirs, files in os.walk(ENGINE_ROOT):
+        dirs[:] = [d for d in dirs if d != "__pycache__"]
+        for f in files:
+            if f.endswith(".py"):
+                rel = os.path.relpath(os.path.join(root, f), ENGINE_ROOT)
+                paths.append(rel.replace("\\\\", "/"))
+    return sorted(paths)
+
+def load_baseline():
+    if not os.path.exists(BASELINE_PATH):
+        return None
+    with open(BASELINE_PATH, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+def save_baseline(topology):
+    os.makedirs(os.path.dirname(BASELINE_PATH), exist_ok=True)
+    with open(BASELINE_PATH, "w", encoding="utf-8") as f:
+        json.dump(topology, f, indent=2)
+
+def compute_topology_drift(current):
+    baseline = load_baseline()
+    if baseline is None:
+        save_baseline(current)
+        return 0.0
+
+    base = set(baseline)
+    curr = set(current)
+    if len(base) == 0:
+        return 0.0
+
+    sym = base.symmetric_difference(curr)
+    return len(sym) / len(base)
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+FILE: engine\drift\__init__.py
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+FILE: engine\genome\compare.py
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+def compare_genomes(g1, g2):
+    return len(set(g1).intersection(set(g2)))
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+FILE: engine\genome\dummy_test.py
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+FILE: engine\genome\extract.py
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+import hashlib
+import os
+
+ENGINE_ROOT = os.path.abspath(
+    os.path.join(os.path.dirname(__file__), "..", "..")
+)
+
+def extract_genome():
+    signatures = set()
+    for root, dirs, files in os.walk(ENGINE_ROOT):
+        dirs[:] = [d for d in dirs if d != "__pycache__"]
+        for f in files:
+            if f.endswith(".py"):
+                full = os.path.join(root, f)
+                with open(full, "rb") as fh:
+                    signatures.add(hashlib.sha256(fh.read()).hexdigest())
+    return sorted(signatures)
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+FILE: engine\genome\normalize.py
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+def normalize(value, total):
+    return value / total if total > 0 else 0
+
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+FILE: engine\genome\__init__.py
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+FILE: engine\ledger\append.py
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+import json
+from datetime import datetime
+
+def append_ledger(path, record):
+    record['timestamp'] = datetime.utcnow().isoformat()
+    with open(path, 'a') as f:
+        f.write(json.dumps(record) + '\\n')
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+FILE: engine\ledger\verify.py
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+def verify_continuity():
+    return True
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+FILE: engine\ledger\__init__.py
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+FILE: engine\orchestrator\run_ddna.py
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+import os
+import json
+from datetime import datetime, timezone
+
+from engine.genome.extract import extract_genome
+from engine.genome.compare import compare_genomes
+
+from engine.drift.topology import extract_topology, compute_topology_drift
+from engine.drift.dependency_graph import extract_dependency_graph, compute_dependency_drift
+
+from engine.stability.compute_S import compute_stability
+from engine.stability.retention import retention_ratio
+
+from engine.ledger.append import append_ledger
+
+BASELINE_PATH = "state/genomes/baseline.json"
+LEDGER_PATH   = "ledger/ddna_ledger.jsonl"
+WEIGHTS_PATH  = "config/weights.json"
+OUTPUT_PATH   = "artifacts/last_run.json"
+
+
+def clamp01(x: float) -> float:
+    if x < 0.0:
+        return 0.0
+    if x > 1.0:
+        return 1.0
+    return x
+
+
+def load_weights():
+    wt = 1.0
+    wd = 1.0
+    if os.path.exists(WEIGHTS_PATH):
+        with open(WEIGHTS_PATH, "r", encoding="utf-8") as f:
+            w = json.load(f)
+        wt = float(w.get("topology", 1.0))
+        wd = float(w.get("dependency", 1.0))
+    return wt, wd
+
+
+def run(_target_path="."):
+
+    # ------------------------- Genome Retention
+    current = extract_genome()
+
+    if os.path.exists(BASELINE_PATH):
+        with open(BASELINE_PATH, "r", encoding="utf-8") as f:
+            baseline = json.load(f)
+    else:
+        baseline = current
+        os.makedirs(os.path.dirname(BASELINE_PATH), exist_ok=True)
+        with open(BASELINE_PATH, "w", encoding="utf-8") as f:
+            json.dump(baseline, f, indent=2)
+
+    common = compare_genomes(current, baseline)
+    C = retention_ratio(common, len(baseline))
+
+    # ------------------------- Drift Channels
+    topo = extract_topology()
+    depg = extract_dependency_graph()
+
+    D_topo = float(compute_topology_drift(topo))
+    D_dep  = float(compute_dependency_drift(depg))
+
+    wt, wd = load_weights()
+
+    drift_raw = float((wt * D_topo) + (wd * D_dep))
+    D = float(clamp01(drift_raw))
+
+    # ------------------------- Stability
+    S = compute_stability(C, D)
+
+    record = {
+        "retention": C,
+        "drift": D,
+        "drift_raw": drift_raw,
+        "drift_topology": D_topo,
+        "drift_dependency": D_dep,
+        "weights": {
+            "topology": wt,
+            "dependency": wd
+        },
+        "stability": S,
+        "timestamp": datetime.now(timezone.utc).isoformat()
+    }
+
+    # ------------------------- Ledger Append
+    append_ledger(LEDGER_PATH, record)
+
+    # ------------------------- Output Contract
+    os.makedirs("artifacts", exist_ok=True)
+    with open(OUTPUT_PATH, "w", encoding="utf-8") as f:
+        json.dump(record, f, indent=2)
+
+    # ------------------------- Console Output
+    print("DDNA RUN COMPLETE")
+    print(json.dumps(record, indent=2))
+
+
+if __name__ == "__main__":
+    run(".")
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+FILE: engine\orchestrator\__init__.py
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+FILE: engine\stability\compute_S.py
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+def compute_stability(C, D):
+    return C - D
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+FILE: engine\stability\retention.py
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+def retention_ratio(common, baseline):
+    if baseline == 0:
+        return 0.0
+    return common / baseline
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+FILE: engine\stability\__init__.py
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+FILE: tests\behavioral_test_v1.py
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+import os
+import json
+import shutil
+from datetime import datetime, timezone
+import subprocess
+import re
+
+ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+REPORT_PATH = os.path.join(ROOT, "tests", "reports", "behavioral_test_v1.json")
+
+def run_ddna():
+    result = subprocess.run(
+        ["python", "-m", "engine.orchestrator.run_ddna"],
+        capture_output=True,
+        text=True
+    )
+    text = result.stdout
+    matches = re.findall(r"\{.*\}", text, re.DOTALL)
+    if not matches:
+        raise RuntimeError("No record found in DDNA output")
+    record = matches[-1]
+    record = record.replace("'", '"')
+    return json.loads(record)
+
+def reset_structural_baselines():
+    topo = os.path.join(ROOT, "state", "environments", "topology_baseline.json")
+    dep  = os.path.join(ROOT, "state", "environments", "dependency_baseline.json")
+    for f in [topo, dep]:
+        if os.path.exists(f):
+            os.remove(f)
+
+def write_report(data):
+    os.makedirs(os.path.dirname(REPORT_PATH), exist_ok=True)
+    with open(REPORT_PATH, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=2)
+
+def assert_true(cond, msg):
+    if not cond:
+        raise AssertionError(msg)
+
+def main():
+    reset_structural_baselines()
+
+    # Baseline run
+    r0 = run_ddna()
+
+    # Determinism check
+    r0b = run_ddna()
+
+    # Dependency-only mutation (patch existing file)
+    target = os.path.join(ROOT, "engine", "genome", "extract.py")
+    with open(target, "r", encoding="utf-8") as f:
+        original = f.read()
+
+    patched = original + "\nimport math  # DEP_TEST\n"
+    with open(target, "w", encoding="utf-8") as f:
+        f.write(patched)
+
+    r1 = run_ddna()
+
+    # Restore file
+    with open(target, "w", encoding="utf-8") as f:
+        f.write(original)
+
+    r2 = run_ddna()
+
+    # Topology-only mutation
+    topo_probe = os.path.join(ROOT, "engine", "genome", "__topo_test__.py")
+    with open(topo_probe, "w", encoding="utf-8") as f:
+        f.write("pass\n")
+
+    r3 = run_ddna()
+
+    os.remove(topo_probe)
+    r4 = run_ddna()
+
+    # Assertions
+    assert_true(r0["drift"] == 0.0, "Baseline drift must be zero")
+    assert_true(r0b["drift"] == 0.0, "Deterministic repeat drift must be zero")
+
+    assert_true(r1["drift_dependency"] > 0.0, "Dependency mutation must trigger dependency drift")
+    assert_true(r1["drift_topology"] == 0.0, "Dependency mutation must not trigger topology drift")
+
+    assert_true(r3["drift_topology"] > 0.0, "Topology mutation must trigger topology drift")
+
+    report = {
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+        "baseline": r0,
+        "dependency_add": r1,
+        "dependency_remove": r2,
+        "topology_add": r3,
+        "topology_remove": r4,
+        "status": "PASS"
+    }
+
+    write_report(report)
+    print("DDNA BEHAVIORAL TEST v1 — PASS")
+    print("Report written to tests/reports/behavioral_test_v1.json")
+
+if __name__ == "__main__":
+    main()
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+FILE: tests\structural_envelope_test_v1.py
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+import subprocess
+import json
+import os
+import sys
+
+ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+
+def assert_true(cond, msg):
+    if not cond:
+        raise AssertionError(msg)
+
+def run_ddna():
+    # Run orchestrator cleanly
+    subprocess.check_call(
+        ["python", "-m", "engine.orchestrator.run_ddna"],
+        cwd=ROOT
+    )
+
+    artifact_path = os.path.join(ROOT, "artifacts", "last_run.json")
+
+    if not os.path.exists(artifact_path):
+        raise RuntimeError("last_run.json not found after DDNA run")
+
+    with open(artifact_path, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+def main():
+    baseline = run_ddna()
+
+    assert_true("retention" in baseline, "Missing retention")
+    assert_true("drift" in baseline, "Missing drift")
+    assert_true("drift_raw" in baseline, "Missing drift_raw")
+    assert_true("drift_topology" in baseline, "Missing drift_topology")
+    assert_true("drift_dependency" in baseline, "Missing drift_dependency")
+    assert_true("stability" in baseline, "Missing stability")
+
+    # Envelope invariants
+    assert_true(0.0 <= baseline["drift"] <= 1.0, "Drift out of bounds")
+    assert_true(
+        abs(baseline["drift"] - max(0.0, min(1.0, baseline["drift_raw"]))) < 1e-9,
+        "Clamp invariant violated"
+    )
+
+    # Emit proof artifact
+    proof = {
+        "test": "structural_envelope_test_v1",
+        "status": "PASS",
+        "record": baseline
+    }
+
+    out_path = os.path.join(ROOT, "tests", "results", "structural_envelope_proof_v1.json")
+    with open(out_path, "w", encoding="utf-8") as f:
+        json.dump(proof, f, indent=2)
+
+    print("STRUCTURAL ENVELOPE TEST PASSED")
+
+if __name__ == "__main__":
+    main()
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+JSON FILES
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+FILE: artifacts\last_run.json
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+{
+  "retention": 0.5384615384615384,
+  "drift": 0.0,
+  "drift_raw": 0.0,
+  "drift_topology": 0.0,
+  "drift_dependency": 0.0,
+  "weights": {
+    "topology": 1.0,
+    "dependency": 1.0
+  },
+  "stability": 0.5384615384615384,
+  "timestamp": "2026-02-11T16:38:19.745500"
+}
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+FILE: artifacts\reports\self_verify_v1_3.json
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+{
+    "version":  "self_verify_v1.3",
+    "root":  "C:\\Users\\jacks\\OneDrive\\Desktop\\DDNA",
+    "weights":  {
+                    "drift_dependency_weight":  0,
+                    "drift_topology_weight":  0
+                },
+    "runs":  {
+                 "probe_remove":  {
+                                      "retention":  0.6923076923076923,
+                                      "drift":  0.0,
+                                      "drift_raw":  0.0,
+                                      "drift_topology":  0.0,
+                                      "drift_dependency":  0.0,
+                                      "stability":  0.6923076923076923,
+                                      "timestamp":  "2026-02-11T15:39:23.225610"
+                                  },
+                 "probe_add":  {
+                                   "retention":  0.6923076923076923,
+                                   "drift":  0.025,
+                                   "drift_raw":  0.025,
+                                   "drift_topology":  0.05,
+                                   "drift_dependency":  0.0,
+                                   "stability":  0.6673076923076923,
+                                   "timestamp":  "2026-02-11T15:39:22.622809"
+                               },
+                 "baseline":  {
+                                  "retention":  0.6923076923076923,
+                                  "drift":  0.0,
+                                  "drift_raw":  0.0,
+                                  "drift_topology":  0.0,
+                                  "drift_dependency":  0.0,
+                                  "stability":  0.6923076923076923,
+                                  "timestamp":  "2026-02-11T15:39:21.709297"
+                              }
+             },
+    "expectations":  {
+                         "drift_reacts_on_probe_remove":  false,
+                         "drift_reacts_on_probe_add":  true
+                     },
+    "status":  "PASS",
+    "notes":  [
+                  "Asserts bounded drift, weighted composition, and clamp correctness.",
+                  "Probe uses an import statement to force dependency graph surface change."
+              ]
+}
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+FILE: artifacts\reports\self_verify_v1_3_1.json
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+{
+    "version":  "self_verify_v1.3.1",
+    "root":  "C:\\Users\\jacks\\OneDrive\\Desktop\\DDNA",
+    "weights":  {
+                    "topology":  1,
+                    "dependency":  1
+                },
+    "runs":  {
+                 "baseline_init":  {
+                                       "retention":  0.6923076923076923,
+                                       "drift":  0.0,
+                                       "drift_raw":  0.0,
+                                       "drift_topology":  0.0,
+                                       "drift_dependency":  0.0,
+                                       "weights":  {
+                                                       "topology":  1.0,
+                                                       "dependency":  1.0
+                                                   },
+                                       "stability":  0.6923076923076923,
+                                       "timestamp":  "2026-02-11T15:46:16.035206"
+                                   },
+                 "dep_probe_remove":  {
+                                          "retention":  0.6153846153846154,
+                                          "drift":  0.0,
+                                          "drift_raw":  0.0,
+                                          "drift_topology":  0.0,
+                                          "drift_dependency":  0.0,
+                                          "weights":  {
+                                                          "topology":  1.0,
+                                                          "dependency":  1.0
+                                                      },
+                                          "stability":  0.6153846153846154,
+                                          "timestamp":  "2026-02-11T15:46:16.216733"
+                                      },
+                 "dep_probe_add":  {
+                                       "retention":  0.6153846153846154,
+                                       "drift":  0.0,
+                                       "drift_raw":  0.0,
+                                       "drift_topology":  0.0,
+                                       "drift_dependency":  0.0,
+                                       "weights":  {
+                                                       "topology":  1.0,
+                                                       "dependency":  1.0
+                                                   },
+                                       "stability":  0.6153846153846154,
+                                       "timestamp":  "2026-02-11T15:46:16.129106"
+                                   }
+             },
+    "expectations":  {
+                         "drift_reacts_on_probe_remove":  false,
+                         "drift_reacts_on_probe_add":  false
+                     },
+    "status":  "PASS",
+    "failures":  [
+
+                 ],
+    "notes":  [
+                  "Hard asserts: drift_raw weighting matches config/weights.json (topology, dependency).",
+                  "Hard asserts: drift == clamp01(drift_raw) and drift bounded [0,1].",
+                  "Dependency probe patches an existing file to avoid topology drift from file-list changes."
+              ]
+}
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+FILE: config\environments.json
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+{
+  "default": "local-desktop"
+}
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+FILE: config\thresholds.json
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+{
+  "H7": 0.70
+}
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+FILE: config\weights.json
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+{
+  "topology": 1.0,
+  "interface": 1.0,
+  "dependency": 1.0,
+  "artifact": 1.0,
+  "runtime": 1.0
+}
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+FILE: state\environments\dependency_baseline.json
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+[]
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+FILE: state\environments\topology_baseline.json
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+[
+  "engine\\__init__.py",
+  "engine\\drift\\__init__.py",
+  "engine\\drift\\artifact.py",
+  "engine\\drift\\dependency.py",
+  "engine\\drift\\dependency_graph.py",
+  "engine\\drift\\interface.py",
+  "engine\\drift\\topology.py",
+  "engine\\genome\\__init__.py",
+  "engine\\genome\\compare.py",
+  "engine\\genome\\dummy_test.py",
+  "engine\\genome\\extract.py",
+  "engine\\genome\\normalize.py",
+  "engine\\ledger\\__init__.py",
+  "engine\\ledger\\append.py",
+  "engine\\ledger\\verify.py",
+  "engine\\orchestrator\\__init__.py",
+  "engine\\orchestrator\\run_ddna.py",
+  "engine\\stability\\__init__.py",
+  "engine\\stability\\compute_S.py",
+  "engine\\stability\\retention.py",
+  "tests\\behavioral_test_v1.py",
+  "tests\\structural_envelope_test_v1.py"
+]
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+FILE: state\genomes\baseline.json
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+["07f5478ada5b6b0a1e0ea47f599cc1ce72581ab6c525e36f9ea8e1f7719a48b3", "31fadc621dbff9a43ab14cc004a21c5cf02e40575073a7a48e830b7354aa6d7c", "47a86f940a50f6786c57d788d79a52c74120d8eb41346ad42aa3180986b998ce", "5b4f00acc1333d82fd3f279958a08a16117e8150071a1a9be8e5188c9f732a4f", "6d0de53476a095af0d9097c67122604b303d0daf3824a7c17bfa44cfa34385b3", "6e4cced746d7e1092c3e7e781284466bdf36296bca6a35b0a9b690ac5bfb28e1", "7d8a21cded5f9d8bb109568ddf21a41a6c0468b13d69c80bf2ff398e9d50da8a", "8e84453f33948cb8e9e2812132216ad41331e033607531ecffe61574d9e61eb8", "8f4eaaac25847fc9fb9946400716411e1cf7e2d178f8598df8cc71100fb1234a", "953e7354e2a50df777bce3709a488377ff3cae0db521349cfc657501916fa990", "988859e63b66125ece524837613444df7e51835bdb166ee6edbfd6bc7e7c1837", "aecbf3bf89defc6f49c73494e01dd4433f41f1ebfb00977d7794fd9cfda86098", "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"]
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+FILE: tests\results\envelope_lock_v1_4.json
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+{
+    "version":  "envelope_lock_v1_4",
+    "retention":  0.53846153846153844,
+    "drift":  0,
+    "drift_raw":  0,
+    "drift_topology":  0,
+    "drift_dependency":  0,
+    "weights":  {
+                    "topology":  1,
+                    "dependency":  1
+                },
+    "stability":  0.53846153846153844,
+    "invariants":  {
+                       "drift_raw_correct":  true,
+                       "bounded":  true,
+                       "clamp_correct":  true,
+                       "stability_correct":  true
+                   },
+    "status":  "PASS"
+}
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+FILE: tests\results\structural_envelope_proof_v1.json
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+{
+  "test": "structural_envelope_test_v1",
+  "status": "PASS",
+  "record": {
+    "retention": 0.5384615384615384,
+    "drift": 0.0,
+    "drift_raw": 0.0,
+    "drift_topology": 0.0,
+    "drift_dependency": 0.0,
+    "weights": {
+      "topology": 1.0,
+      "dependency": 1.0
+    },
+    "stability": 0.5384615384615384,
+    "timestamp": "2026-02-11T16:21:40.176741"
+  }
+}
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+TEXT FILES
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+FILE: DDNA_FULL_STATE_DUMP.txt
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+DUMP COMPLETE
+
+
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+

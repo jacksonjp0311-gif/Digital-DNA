@@ -1,0 +1,46 @@
+﻿{
+    "version":  "self_verify_v1.3",
+    "root":  "C:\\Users\\jacks\\OneDrive\\Desktop\\DDNA",
+    "weights":  {
+                    "drift_dependency_weight":  0,
+                    "drift_topology_weight":  0
+                },
+    "runs":  {
+                 "probe_remove":  {
+                                      "retention":  0.6923076923076923,
+                                      "drift":  0.0,
+                                      "drift_raw":  0.0,
+                                      "drift_topology":  0.0,
+                                      "drift_dependency":  0.0,
+                                      "stability":  0.6923076923076923,
+                                      "timestamp":  "2026-02-11T15:39:23.225610"
+                                  },
+                 "probe_add":  {
+                                   "retention":  0.6923076923076923,
+                                   "drift":  0.025,
+                                   "drift_raw":  0.025,
+                                   "drift_topology":  0.05,
+                                   "drift_dependency":  0.0,
+                                   "stability":  0.6673076923076923,
+                                   "timestamp":  "2026-02-11T15:39:22.622809"
+                               },
+                 "baseline":  {
+                                  "retention":  0.6923076923076923,
+                                  "drift":  0.0,
+                                  "drift_raw":  0.0,
+                                  "drift_topology":  0.0,
+                                  "drift_dependency":  0.0,
+                                  "stability":  0.6923076923076923,
+                                  "timestamp":  "2026-02-11T15:39:21.709297"
+                              }
+             },
+    "expectations":  {
+                         "drift_reacts_on_probe_remove":  false,
+                         "drift_reacts_on_probe_add":  true
+                     },
+    "status":  "PASS",
+    "notes":  [
+                  "Asserts bounded drift, weighted composition, and clamp correctness.",
+                  "Probe uses an import statement to force dependency graph surface change."
+              ]
+}

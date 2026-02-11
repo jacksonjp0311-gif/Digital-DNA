@@ -7,14 +7,11 @@ ENGINE_ROOT = os.path.abspath(
 
 def extract_genome():
     signatures = set()
-
     for root, dirs, files in os.walk(ENGINE_ROOT):
+        dirs[:] = [d for d in dirs if d != "__pycache__"]
         for f in files:
             if f.endswith(".py"):
                 full = os.path.join(root, f)
                 with open(full, "rb") as fh:
-                    signatures.add(
-                        hashlib.sha256(fh.read()).hexdigest()
-                    )
-
+                    signatures.add(hashlib.sha256(fh.read()).hexdigest())
     return sorted(signatures)

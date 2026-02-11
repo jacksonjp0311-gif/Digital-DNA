@@ -1,7 +1,4 @@
 {
   "topology": 1.0,
-  "interface": 1.0,
-  "dependency": 1.0,
-  "artifact": 1.0,
-  "runtime": 1.0
+  "dependency": 1.0
 }

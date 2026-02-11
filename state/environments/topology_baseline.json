@@ -3,10 +3,12 @@
   "engine\\drift\\__init__.py",
   "engine\\drift\\artifact.py",
   "engine\\drift\\dependency.py",
+  "engine\\drift\\dependency_graph.py",
   "engine\\drift\\interface.py",
   "engine\\drift\\topology.py",
   "engine\\genome\\__init__.py",
   "engine\\genome\\compare.py",
+  "engine\\genome\\dummy_test.py",
   "engine\\genome\\extract.py",
   "engine\\genome\\normalize.py",
   "engine\\ledger\\__init__.py",
@@ -16,5 +18,7 @@
   "engine\\orchestrator\\run_ddna.py",
   "engine\\stability\\__init__.py",
   "engine\\stability\\compute_S.py",
-  "engine\\stability\\retention.py"
+  "engine\\stability\\retention.py",
+  "tests\\behavioral_test_v1.py",
+  "tests\\structural_envelope_test_v1.py"
 ]
