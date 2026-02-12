@@ -8,9 +8,9 @@ Digital DNA is a deterministic structural coherence engine that measures and enf
 
 DDNA computes structural stability through weighted drift channels:
 
-drift_raw = (w_topology * drift_topology) + (w_dependency * drift_dependency)  
-drift = clamp(drift_raw, 0, 1)  
-stability = retention - drift  
+drift_raw = (w_topology * drift_topology) + (w_dependency * drift_dependency)
+drift = clamp(drift_raw, 0, 1)
+stability = retention - drift
 
 All invariants are mathematically enforced and test-verified.
 
@@ -41,15 +41,34 @@ tests/
 
 ---
 
+## Theory
+
+DDNA includes canonical theory documents under `theory/` that formalize the structural replication model, drift-bounded stability, and ledger-anchored continuity:
+
+- `theory/digital_dna_software_theory_v1_3.tex` (DDNA v1.3 · Locked Evolution)
+- `theory/codex_digital_dna_theory_memory_architecture_v1_6.tex` (DDNA v1.6 · Locked)
+- `theory/README.md` for the mini directory and interlinking overview
+
+---
+
+## Evaluation and Continuity
+
+- Iteration evaluation and roadmap: `docs/ARCHITECTURE_EVALUATION.md`
+- Codex continuity log for every upgrade/session: `docs/CODEX_UPGRADE_LOG.md`
+- Recursive feedback system for Codex-driven iterations: `docs/RECURSIVE_FEEDBACK_SYSTEM.md`
+- Documentation hub and mini-directory: `docs/README.md`
+
+---
+
 ## Guarantees
 
-✓ Deterministic execution  
-✓ Artifact-based testing (no stdout parsing)  
-✓ Hard invariant enforcement  
-✓ Drift bounded in [0,1]  
-✓ Stability law verified  
-✓ UTF-8 clean configuration  
-✓ Test suite passing  
+✓ Deterministic execution
+✓ Artifact-based testing (no stdout parsing)
+✓ Hard invariant enforcement
+✓ Drift bounded in [0,1]
+✓ Stability law verified
+✓ UTF-8 clean configuration
+✓ Test suite passing
 
 ---
 
@@ -63,6 +82,11 @@ Run tests:
 
     python tests/behavioral_test_v1.py
     python tests/structural_envelope_test_v1.py
+    python tests/hardening_test_v2.py
+
+Optional strict baseline policy (CI-friendly):
+
+    DDNA_BASELINE_LOCK=1 python -m engine.orchestrator.run_ddna
 
 ---
 
@@ -75,5 +99,3 @@ Core Lock v1 — Stable, invariant-verified engine with full test coverage on st
 ## Author
 
 James Paul Jackson
-
-███████████████████████████████████████████████████████████████████████████████

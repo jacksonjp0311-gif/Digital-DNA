@@ -1,7 +1,8 @@
-﻿import json
-from datetime import datetime
+import json
+import os
+
 
 def append_ledger(path, record):
-    record['timestamp'] = datetime.utcnow().isoformat()
-    with open(path, 'a') as f:
-        f.write(json.dumps(record) + '\\n')
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    with open(path, "a", encoding="utf-8") as f:
+        f.write(json.dumps(record) + "\n")
