@@ -1,86 +1,120 @@
-# DDNA Architecture Analysis, Test, and Evaluation
+# DDNA Architecture Evaluation — Next Iteration (v2)
 
-## 1) Current Architecture Assessment
+## 1) Scope
+This evaluation covers the entire repository as of current `main/work` state and reframes the roadmap for the next engineering iteration targeting RLM integration readiness.
 
-### Strengths
-- Deterministic pipeline with explicit baseline comparison strategy.
-- Clear mathematical model (`C`, `D`, and `S`) with simple invariants.
-- Artifact-first testing model avoids brittle stdout assertions.
-- JSON-based state and configuration make automation straightforward.
+## 2) Repository-Wide Analysis
 
-### Risks / Gaps
-- Placeholder drift channels (`artifact.py`, `dependency.py`, `interface.py`) are not integrated.
-- No schema validation for config/state/artifact contracts.
-- UTF-8 BOM appears in several Python files, which may create lint/tooling inconsistency.
-- `append.py` overwrites timestamp from orchestrator and uses naive UTC format.
-- Baseline generation is implicit (first run mutates state), which can surprise CI pipelines.
-- Tests are script-based and not integrated with a test runner (e.g., `pytest`).
+### 2.1 Engine Core (`engine/`)
+**Strengths**
+- Deterministic orchestration flow with explicit retention/drift/stability contract.
+- Drift channels are composable and weighted.
+- Artifact and ledger outputs are produced consistently through the orchestrator.
 
-## 2) Test & Validation Results (Local)
+**Gaps**
+- Drift channels `artifact.py`, `dependency.py`, and `interface.py` remain stubs.
+- Timestamp ownership is split (`run_ddna.py` and `ledger/append.py` both set timestamp).
+- No strict runtime schema checks on generated records.
 
-### Commands Run
-- `python -m engine.orchestrator.run_ddna`
-- `python tests/behavioral_test_v1.py`
-- `python tests/structural_envelope_test_v1.py`
+### 2.2 Configuration (`config/`)
+**Strengths**
+- JSON configuration is straightforward for automation.
 
-### Outcome Summary
-- Orchestrator executed and produced `artifacts/last_run.json`.
-- Behavioral and structural envelope tests passed.
-- Proof artifact generated at `tests/results/structural_envelope_proof_v1.json`.
+**Gaps**
+- No JSON schema validation.
+- No weight normalization or key-allowlist enforcement.
+- `thresholds.json` and `environments.json` are not yet integrated into policy gates.
 
-## 3) Sequence of Events (End-to-End)
-1. Extract source genome hashes.
-2. Load/initialize genome baseline.
-3. Compute retention.
-4. Extract topology and dependency graphs.
-5. Compute channel drifts against baselines.
-6. Apply weights and clamp combined drift.
-7. Compute stability.
-8. Persist output artifact and append ledger.
-9. Tests re-run orchestrator and assert invariants.
+### 2.3 Persistent State (`state/`)
+**Strengths**
+- Baseline snapshots support deterministic multi-run comparison.
 
-## 4) Proposed Advancements
+**Gaps**
+- Baseline auto-initialization in normal runs can hide CI drift regressions.
+- No explicit "lock baseline" mode.
 
-### A) Reliability & Correctness
-1. Add JSON Schema validation for:
-   - `config/*.json`
-   - `artifacts/last_run.json`
-   - `state/**/*.json`
-2. Add strict weight policy checks (non-negative, bounded, expected keys).
-3. Normalize timestamps to RFC3339 UTC with `Z` consistently across pipeline.
-4. Add explicit baseline lock mode (fail if baseline missing in CI mode).
+### 2.4 Evidence Plane (`artifacts/`, `ledger/`, `tests/results/`)
+**Strengths**
+- Durable machine-readable execution and test evidence.
+- Good foundation for governance and audit.
 
-### B) Testing Maturity
-1. Migrate script tests to `pytest` with fixtures and parametrized invariant checks.
-2. Add mutation tests for drift clamping and retention edge cases.
-3. Add golden-file tests for deterministic artifacts.
-4. Add static checks (`ruff`, `mypy`, `bandit`) in CI.
+**Gaps**
+- No cryptographic signing/attestation of records.
+- No formal schema/version marker for long-term compatibility.
 
-### C) RLM Integration Readiness
-1. Expose a stable Python API contract (`run_ddna(run_mode, target, baseline_mode)`).
-2. Emit optional event stream webhooks (or message bus output) for each stage.
-3. Add signed artifact support (hash + signature) for trust in pipeline consumption.
-4. Provide a lightweight REST/gRPC service wrapper for remote orchestration.
+### 2.5 Test Surface (`tests/`)
+**Strengths**
+- Invariant assertions are direct and meaningful.
+- Uses artifact contract instead of stdout parsing.
 
-### D) Drift Engine Expansion
-1. Activate currently stubbed channels behind feature flags.
-2. Add semantic diff channel (AST-level API signature changes).
-3. Add runtime behavior channel (optional trace/profile drift).
-4. Add weighted channel confidence scoring and per-channel thresholds.
+**Gaps**
+- Script-based tests not integrated into a standard runner.
+- Limited negative-path and perturbation coverage.
 
-## 5) Suggested Integration Blueprint
+### 2.6 Theory Alignment (`theory/`)
+**Strengths**
+- Canonical formal theory artifacts are now co-located in repo for traceability.
 
-### Phase 1 (Hardening)
-- Add schema validation and strict config parsing.
-- Unify timestamp and ledger behavior.
-- Add CI baseline lock flag.
+**Gaps**
+- Mathematical terms (integration class, H7 calibration, environment signatures) are not fully mapped to executable implementation fields.
 
-### Phase 2 (Observability)
-- Structured logging with run IDs.
-- Metrics export (Prometheus/OpenTelemetry).
-- Extended report artifacts per stage.
+## 3) Local Validation Performed
 
-### Phase 3 (Platform Integration)
-- Service API wrapper + event publishing.
-- Authenticated artifact registry.
-- Policy engine hooks for automated governance decisions.
+Commands executed successfully:
+1. `python -m engine.orchestrator.run_ddna`
+2. `python tests/behavioral_test_v1.py`
+3. `python tests/structural_envelope_test_v1.py`
+
+Observed outcome:
+- Pipeline runs successfully.
+- Behavioral and structural envelope checks pass.
+- Existing proof artifact workflow remains functional.
+
+## 4) Next-Iteration Engineering Plan
+
+### Phase 1 — Hardening (Priority: Immediate)
+1. Add JSON schema validation for config/state/artifacts.
+2. Introduce strict weights policy:
+   - required keys
+   - bounded numeric values
+   - optional normalization mode.
+3. Add baseline lock mode (`DDNA_BASELINE_LOCK=1`) to fail fast when baseline missing.
+4. Unify timestamp semantics and ownership in orchestrator/ledger path.
+
+### Phase 2 — Verification Expansion
+1. Migrate tests to `pytest` with fixtures.
+2. Add deterministic golden artifact checks.
+3. Add perturbation tests for topology/dependency drift edge cases.
+4. Add static analysis pipeline (`ruff`, `mypy`, `bandit`).
+
+### Phase 3 — RLM Integration Layer
+1. Stable programmatic API (`run_ddna(mode, target, policy)`).
+2. Optional event emitter for stage-level telemetry.
+3. Signed artifact bundles for trust boundaries.
+4. Service wrapper (REST/gRPC) for external orchestration.
+
+## 5) Proposed Evolutions
+
+### 5.1 Drift Engine Evolution
+- Activate currently stubbed drift channels behind feature flags.
+- Introduce AST/API semantic drift channel.
+- Add runtime drift channel for profiling/trace signatures.
+
+### 5.2 Policy Evolution
+- Move from threshold files to executable policy contracts.
+- Add environment-aware policy packs (dev/staging/prod).
+- Add policy outcome class to artifacts and ledger entries.
+
+### 5.3 Observability Evolution
+- Add run IDs and stage timings.
+- Export structured logs and OpenTelemetry metrics.
+- Add trend reports over ledger history.
+
+## 6) Continuity Requirements for Future Codex Upgrades
+For each future Codex upgrade/session, append to `docs/CODEX_UPGRADE_LOG.md` with:
+- change summary,
+- validation commands,
+- risks discovered,
+- explicit next actions.
+
+This provides an unbroken engineering continuity chain across iterations.
