@@ -1,22 +1,20 @@
-﻿import os
 import json
+import os
 from datetime import datetime, timezone
 
-from engine.genome.extract import extract_genome
+from engine.drift.dependency_graph import compute_dependency_drift, extract_dependency_graph
+from engine.drift.topology import compute_topology_drift, extract_topology
 from engine.genome.compare import compare_genomes
-
-from engine.drift.topology import extract_topology, compute_topology_drift
-from engine.drift.dependency_graph import extract_dependency_graph, compute_dependency_drift
-
+from engine.genome.extract import extract_genome
+from engine.ledger.append import append_ledger
+from engine.orchestrator.validation import validate_record, validate_weights
 from engine.stability.compute_S import compute_stability
 from engine.stability.retention import retention_ratio
 
-from engine.ledger.append import append_ledger
-
 BASELINE_PATH = "state/genomes/baseline.json"
-LEDGER_PATH   = "ledger/ddna_ledger.jsonl"
-WEIGHTS_PATH  = "config/weights.json"
-OUTPUT_PATH   = "artifacts/last_run.json"
+LEDGER_PATH = "ledger/ddna_ledger.jsonl"
+WEIGHTS_PATH = "config/weights.json"
+OUTPUT_PATH = "artifacts/last_run.json"
 
 
 def clamp01(x: float) -> float:
@@ -27,72 +25,81 @@ def clamp01(x: float) -> float:
     return x
 
 
-def load_weights():
-    wt = 1.0
-    wd = 1.0
-    if os.path.exists(WEIGHTS_PATH):
-        with open(WEIGHTS_PATH, "r", encoding="utf-8") as f:
-            w = json.load(f)
-        wt = float(w.get("topology", 1.0))
-        wd = float(w.get("dependency", 1.0))
-    return wt, wd
+def utc_now_z() -> str:
+    return datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
+
+
+def baseline_lock_enabled() -> bool:
+    return os.getenv("DDNA_BASELINE_LOCK", "0").strip().lower() in {"1", "true", "yes", "on"}
+
+
+def load_weights() -> tuple[float, float]:
+    if not os.path.exists(WEIGHTS_PATH):
+        return 1.0, 1.0
+
+    with open(WEIGHTS_PATH, "r", encoding="utf-8") as f:
+        weights = json.load(f)
+
+    return validate_weights(weights)
+
+
+def load_or_init_genome_baseline(current):
+    if os.path.exists(BASELINE_PATH):
+        with open(BASELINE_PATH, "r", encoding="utf-8") as f:
+            return json.load(f)
+
+    if baseline_lock_enabled():
+        raise RuntimeError(
+            "Genome baseline missing while DDNA_BASELINE_LOCK is enabled. "
+            "Provision baseline at state/genomes/baseline.json."
+        )
+
+    baseline = current
+    os.makedirs(os.path.dirname(BASELINE_PATH), exist_ok=True)
+    with open(BASELINE_PATH, "w", encoding="utf-8") as f:
+        json.dump(baseline, f, indent=2)
+    return baseline
 
 
 def run(_target_path="."):
-
-    # ───────────────────────── Genome Retention
     current = extract_genome()
-
-    if os.path.exists(BASELINE_PATH):
-        with open(BASELINE_PATH, "r", encoding="utf-8") as f:
-            baseline = json.load(f)
-    else:
-        baseline = current
-        os.makedirs(os.path.dirname(BASELINE_PATH), exist_ok=True)
-        with open(BASELINE_PATH, "w", encoding="utf-8") as f:
-            json.dump(baseline, f, indent=2)
+    baseline = load_or_init_genome_baseline(current)
 
     common = compare_genomes(current, baseline)
-    C = retention_ratio(common, len(baseline))
+    retention = retention_ratio(common, len(baseline))
 
-    # ───────────────────────── Drift Channels
-    topo = extract_topology()
-    depg = extract_dependency_graph()
+    topology = extract_topology()
+    dependency_graph = extract_dependency_graph()
 
-    D_topo = float(compute_topology_drift(topo))
-    D_dep  = float(compute_dependency_drift(depg))
+    drift_topology = float(compute_topology_drift(topology))
+    drift_dependency = float(compute_dependency_drift(dependency_graph))
 
-    wt, wd = load_weights()
+    weight_topology, weight_dependency = load_weights()
 
-    drift_raw = float((wt * D_topo) + (wd * D_dep))
-    D = float(clamp01(drift_raw))
+    drift_raw = float((weight_topology * drift_topology) + (weight_dependency * drift_dependency))
+    drift = float(clamp01(drift_raw))
 
-    # ───────────────────────── Stability
-    S = compute_stability(C, D)
+    stability = compute_stability(retention, drift)
 
     record = {
-        "retention": C,
-        "drift": D,
+        "retention": retention,
+        "drift": drift,
         "drift_raw": drift_raw,
-        "drift_topology": D_topo,
-        "drift_dependency": D_dep,
-        "weights": {
-            "topology": wt,
-            "dependency": wd
-        },
-        "stability": S,
-        "timestamp": datetime.now(timezone.utc).isoformat()
+        "drift_topology": drift_topology,
+        "drift_dependency": drift_dependency,
+        "weights": {"topology": weight_topology, "dependency": weight_dependency},
+        "stability": stability,
+        "timestamp": utc_now_z(),
     }
 
-    # ───────────────────────── Ledger Append
+    validate_record(record)
+
     append_ledger(LEDGER_PATH, record)
 
-    # ───────────────────────── Output Contract
     os.makedirs("artifacts", exist_ok=True)
     with open(OUTPUT_PATH, "w", encoding="utf-8") as f:
         json.dump(record, f, indent=2)
 
-    # ───────────────────────── Console Output
     print("DDNA RUN COMPLETE")
     print(json.dumps(record, indent=2))
 

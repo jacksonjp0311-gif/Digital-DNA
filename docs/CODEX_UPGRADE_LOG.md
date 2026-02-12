@@ -28,3 +28,16 @@ Follow-up:
 Follow-up:
 - Implement Phase 1 hardening tasks (schema validation, strict weights, baseline lock mode, timestamp unification).
 - Add CI workflows for invariant/test/static checks and deterministic artifact gating.
+
+
+## 2026-02-12 — GPT-5.2-Codex — Runtime Hardening + Recursive Feedback System
+- Added strict runtime validators for weight config and output record invariants.
+- Added baseline lock policy support using `DDNA_BASELINE_LOCK` across genome and drift baselines.
+- Unified timestamp ownership to orchestrator and removed ledger-layer timestamp overwrite.
+- Added hardening test script (`tests/hardening_test_v2.py`) for new constraints.
+- Added recursive feedback docs system (`docs/README.md`, `docs/RECURSIVE_FEEDBACK_SYSTEM.md`, `docs/feedback/templates/iteration_template.md`, and a concrete iteration report).
+- Rewrote architecture evaluation to iteration v3 reflecting fixed gaps and next evolution phases.
+
+Follow-up:
+- Add CI workflow for hardening tests and policy gates.
+- Implement schema versioning + integration-class outputs.

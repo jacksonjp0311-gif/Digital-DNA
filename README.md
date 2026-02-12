@@ -55,6 +55,8 @@ DDNA includes canonical theory documents under `theory/` that formalize the stru
 
 - Iteration evaluation and roadmap: `docs/ARCHITECTURE_EVALUATION.md`
 - Codex continuity log for every upgrade/session: `docs/CODEX_UPGRADE_LOG.md`
+- Recursive feedback system for Codex-driven iterations: `docs/RECURSIVE_FEEDBACK_SYSTEM.md`
+- Documentation hub and mini-directory: `docs/README.md`
 
 ---
 
@@ -80,6 +82,11 @@ Run tests:
 
     python tests/behavioral_test_v1.py
     python tests/structural_envelope_test_v1.py
+    python tests/hardening_test_v2.py
+
+Optional strict baseline policy (CI-friendly):
+
+    DDNA_BASELINE_LOCK=1 python -m engine.orchestrator.run_ddna
 
 ---
 
