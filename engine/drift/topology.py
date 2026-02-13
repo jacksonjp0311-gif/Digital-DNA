@@ -1,4 +1,4 @@
-import json
+﻿import json
 import os
 
 ENGINE_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
@@ -40,8 +40,12 @@ def compute_topology_drift(current):
         save_baseline(current)
         return 0.0
 
+    # Allow baseline stored as {fingerprint, files} or as raw list (legacy)
+    if isinstance(baseline, dict):
+        baseline = baseline.get("files", [])
     base = set(baseline)
     curr = set(current)
+
     if not base:
         return 0.0
 
