@@ -1,8 +1,15 @@
 {
-  "retention": 1.0,
-  "drift_total": 0.0,
-  "drift_topology": 0.0,
-  "drift_dependency": 0.0,
-  "stability": 1.0,
-  "timestamp": "2026-02-13T04:34:14.611784+00:00"
+  "retention": 0.0,
+  "drift_total": 16.78787878787879,
+  "drift_topology": 16.5,
+  "drift_dependency": 0.2878787878787879,
+  "stability": -16.78787878787879,
+  "timestamp": "2026-02-13T17:11:00.386725+00:00",
+  "context_hash": "2016c1b630524cc8be536d8f8bee9997034117a5aaa5e24380c2f70f5486db9c",
+  "repo_hash": "f1d2784fbfb7965fe033c2678f14e965ec994556",
+  "boundary_score": 0.2,
+  "boundary_event": false,
+  "boundary_reason": "none",
+  "replay_K": 10,
+  "Bcrit": 0.5
 }
