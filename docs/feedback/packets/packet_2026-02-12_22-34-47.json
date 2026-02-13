@@ -1,0 +1,39 @@
+﻿{
+    "timestamp":  "2026-02-12T22:34:47-05:00",
+    "repo":  "Digital-DNA",
+    "mode":  "LOCAL_TEST",
+    "run_id":  "2026-02-13T03:34:46.522322Z",
+    "observations":  {
+                         "stability":  -0.92307692307692324,
+                         "retention":  0.076923076923076927,
+                         "drift_total":  1,
+                         "artifacts_last_run_present":  true,
+                         "ddna_ledger_present":  true,
+                         "tests_ran":  true
+                     },
+    "baselines":  {
+                      "genome_baseline":  "C:\\Users\\jacks\\OneDrive\\Desktop\\Digital-DNA\\state\\genomes\\baseline.json",
+                      "topology_baseline":  "C:\\Users\\jacks\\OneDrive\\Desktop\\Digital-DNA\\state\\environments\\topology_baseline.json",
+                      "dependency_baseline":  "C:\\Users\\jacks\\OneDrive\\Desktop\\Digital-DNA\\state\\environments\\dependency_baseline.json"
+                  },
+    "invariants_locked":  [
+                              "S = retention - drift_total (unless version bumped with migration note)",
+                              "ledger/* append-only",
+                              "state/** baselines read-only unless explicitly authorized"
+                          ],
+    "allowed_edits":  [
+                          "engine/**",
+                          "docs/codex/**",
+                          "docs/feedback/**"
+                      ],
+    "forbidden_edits":  [
+                            "state/**",
+                            "ledger/**",
+                            "theory/** (unless requested)"
+                        ],
+    "next_actions":  [
+                         "Patch engine/orchestrator/run_ddna.py to aggregate drift channels into drift_total.",
+                         "Upgrade engine/drift/semantic.py from scaffold to baseline comparison.",
+                         "Add stability gating: if S \u003c threshold, block baseline update and emit refusal status."
+                     ]
+}

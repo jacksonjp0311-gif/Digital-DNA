@@ -3,17 +3,14 @@ import json
 import os
 
 ENGINE_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
-
 BASELINE_PATH = os.path.join(ENGINE_ROOT, "state", "environments", "dependency_baseline.json")
-
 
 def baseline_lock_enabled() -> bool:
     return os.getenv("DDNA_BASELINE_LOCK", "0").strip().lower() in {"1", "true", "yes", "on"}
 
-
 def _imports_from_file(py_path: str):
     edges = set()
-    rel_src = os.path.relpath(py_path, ENGINE_ROOT).replace("\\", "/")
+    rel_src = os.path.relpath(py_path, ENGINE_ROOT).replace("\\\\", "/")
 
     try:
         with open(py_path, "r", encoding="utf-8") as f:
@@ -32,9 +29,7 @@ def _imports_from_file(py_path: str):
             mod = (node.module or "").strip()
             if mod:
                 edges.add(f"{rel_src} -> {mod}")
-
     return edges
-
 
 def extract_dependency_graph():
     edges = set()
@@ -46,19 +41,17 @@ def extract_dependency_graph():
                 edges |= _imports_from_file(full)
     return sorted(edges)
 
-
 def load_baseline():
     if not os.path.exists(BASELINE_PATH):
         return None
-    with open(BASELINE_PATH, "r", encoding="utf-8") as f:
+    # tolerate accidental BOM
+    with open(BASELINE_PATH, "r", encoding="utf-8-sig") as f:
         return json.load(f)
-
 
 def save_baseline(graph):
     os.makedirs(os.path.dirname(BASELINE_PATH), exist_ok=True)
     with open(BASELINE_PATH, "w", encoding="utf-8") as f:
         json.dump(graph, f, indent=2)
-
 
 def compute_dependency_drift(current_graph):
     baseline = load_baseline()

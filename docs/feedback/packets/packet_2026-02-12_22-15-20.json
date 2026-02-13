@@ -1,0 +1,36 @@
+{
+    "forbidden_edits":  [
+                            "baseline reference dumps",
+                            "metric definitions without version bump"
+                        ],
+    "retention":  0,
+    "issues_detected":  [
+                            "semantic drift module missing"
+                        ],
+    "timestamp":  "2026-02-12_22-15-20",
+    "drift":  0,
+    "success_criteria":  [
+                             "packet regenerated",
+                             "drift bounded",
+                             "stability increases"
+                         ],
+    "allowed_edits":  [
+                          "engine/*",
+                          "docs/codex/*",
+                          "docs/feedback/*"
+                      ],
+    "stability":  0,
+    "repo":  "Digital-DNA",
+    "invariants_locked":  [
+                              "stability = retention - drift",
+                              "ledger append-only",
+                              "baseline hashing unchanged"
+                          ],
+    "priority_fixes":  [
+                           "implement semantic drift",
+                           "tighten packet recursion",
+                           "improve doc contracts"
+                       ],
+    "mode":  "LOCAL_TEST",
+    "objective":  "recursive codex improvement"
+}

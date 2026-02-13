@@ -1,0 +1,54 @@
+﻿{
+    "timestamp":  "2026-02-12T22:24:12-05:00",
+    "repo":  "Digital-DNA",
+    "mode":  "LOCAL_TEST",
+    "run_id":  "2026-02-11T17:22:39.170283",
+    "source_metrics":  "artifacts/last_run.json",
+    "objective":  "Recursive Codex improvement loop (packet-driven).",
+    "observations":  {
+                         "stability":  0.53846153846153844,
+                         "retention":  0.53846153846153844,
+                         "drift_total":  0,
+                         "artifacts_last_run":  true,
+                         "ddna_ledger_present":  true,
+                         "issues_detected":  [
+
+                                             ]
+                     },
+    "invariants_locked":  [
+                              "S = retention - drift_total (unless version bumped with migration note)",
+                              "ledger/* is append-only",
+                              "state/** baselines are read-only unless explicitly authorized"
+                          ],
+    "baselines":  {
+                      "genome_baseline":  "C:\\Users\\jacks\\OneDrive\\Desktop\\Digital-DNA\\state\\genomes\\baseline.json",
+                      "topology_baseline":  "C:\\Users\\jacks\\OneDrive\\Desktop\\Digital-DNA\\state\\environments\\topology_baseline.json",
+                      "dependency_baseline":  "C:\\Users\\jacks\\OneDrive\\Desktop\\Digital-DNA\\state\\environments\\dependency_baseline.json"
+                  },
+    "allowed_edits":  [
+                          "engine/**",
+                          "docs/codex/**",
+                          "docs/feedback/**"
+                      ],
+    "forbidden_edits":  [
+                            "state/** (baselines)",
+                            "ledger/** (history rewrite)",
+                            "theory/** (unless explicitly requested)"
+                        ],
+    "priority_fixes":  [
+                           "Implement semantic drift baseline + aggregation (engine/drift/semantic.py).",
+                           "Ensure run_ddna writes stability/retention/drift_total into artifacts/last_run.json.",
+                           "Tighten packet schema alignment with run outputs (stable keys)."
+                       ],
+    "tests_to_run":  [
+                         "python engine/orchestrator/run_ddna.py",
+                         "python tests/structural_envelope_test_v1.py",
+                         "python tests/behavioral_test_v1.py"
+                     ],
+    "success_criteria":  [
+                             "artifacts/last_run.json contains stability/retention/drift_total",
+                             "packet_latest.json reports non-null metrics from source",
+                             "semantic drift implemented (no longer stub-only)",
+                             "stability trend improves across packets"
+                         ]
+}

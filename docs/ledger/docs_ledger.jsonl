@@ -1,0 +1,12 @@
+{
+    "time":  "2026-02-12_22-15-20",
+    "retention":  0,
+    "drift":  0,
+    "stability":  0
+}
+{"t":"2026-02-12T22:24:12-05:00","run_id":"2026-02-11T17:22:39.170283","stability":0.53846153846153844,"retention":0.53846153846153844,"drift_total":0,"source":"artifacts/last_run.json","packet":"docs/feedback/packet_latest.json"}
+
+{"t":"2026-02-12T22:34:47-05:00","run_id":"2026-02-13T03:34:46.522322Z","stability":-0.92307692307692324,"retention":0.076923076923076927,"drift_total":1,"packet":"docs/feedback/packet_latest.json","bundle":"docs/feedback/bundles/bundle_2026-02-12_22-34-47.txt"}
+
+{"t":"2026-02-13T04:09:22.352149+00:00","mode":"PY_LOOP","stability":-1.1818181818181817,"retention":1.0,"drift_total":2.1818181818181817,"packet":"docs/feedback/packet_latest.json"}
+{"t":"2026-02-13T04:34:14.631451+00:00","mode":"PY_LOOP","stability":1.0,"retention":1.0,"drift_total":0.0,"packet":"docs/feedback/packet_latest.json"}

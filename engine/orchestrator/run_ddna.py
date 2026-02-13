@@ -1,108 +1,94 @@
+from __future__ import annotations
+
 import json
-import os
+import sys
+from pathlib import Path
 from datetime import datetime, timezone
 
-from engine.drift.dependency_graph import compute_dependency_drift, extract_dependency_graph
-from engine.drift.topology import compute_topology_drift, extract_topology
-from engine.genome.compare import compare_genomes
+# ensure repo root is on path
+ROOT = Path(__file__).resolve().parents[2]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
 from engine.genome.extract import extract_genome
-from engine.ledger.append import append_ledger
-from engine.orchestrator.validation import validate_record, validate_weights
-from engine.stability.compute_S import compute_stability
-from engine.stability.retention import retention_ratio
+from engine.drift.topology import extract_topology, compute_topology_drift
+from engine.drift.dependency_graph import extract_dependency_graph, compute_dependency_drift
+from engine.stability.retention import compute_retention
+from engine.episodic.context import compute_context_hash, compute_repo_hash, read_thresholds
+from engine.episodic.replay import write_replay_summary
+from engine.episodic.boundary import compute_boundary
 
-BASELINE_PATH = "state/genomes/baseline.json"
-LEDGER_PATH = "ledger/ddna_ledger.jsonl"
-WEIGHTS_PATH = "config/weights.json"
-OUTPUT_PATH = "artifacts/last_run.json"
+ART = ROOT / "artifacts"
+HIST = ART / "history"
+LAST = ART / "last_run.json"
+LAST_EP = ART / "last_episode.json"
 
+def _read_json(p: Path):
+    try:
+        return json.loads(p.read_text(encoding="utf-8"))
+    except Exception:
+        return None
 
-def clamp01(x: float) -> float:
-    if x < 0.0:
-        return 0.0
-    if x > 1.0:
-        return 1.0
-    return x
+def _write_json(p: Path, obj):
+    p.parent.mkdir(parents=True, exist_ok=True)
+    p.write_text(json.dumps(obj, indent=2), encoding="utf-8")
 
+def main():
+    thresholds = read_thresholds()
+    Bcrit = float(thresholds.get("Bcrit", 0.5))
+    K = int(thresholds.get("replay_K", 10))
 
-def utc_now_z() -> str:
-    return datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
+    genome = extract_genome(ROOT)
+    topo = extract_topology()
+    depg = extract_dependency_graph()
 
+    drift_topology = float(compute_topology_drift(topo))
+    drift_dependency = float(compute_dependency_drift(depg))
+    drift_total = drift_topology + drift_dependency
 
-def baseline_lock_enabled() -> bool:
-    return os.getenv("DDNA_BASELINE_LOCK", "0").strip().lower() in {"1", "true", "yes", "on"}
+    retention = float(compute_retention(genome))
+    stability = retention - drift_total
 
+    context_hash = compute_context_hash()
+    repo_hash = compute_repo_hash()
 
-def load_weights() -> tuple[float, float]:
-    if not os.path.exists(WEIGHTS_PATH):
-        return 1.0, 1.0
+    prev = _read_json(LAST_EP) or {}
+    prev_context = prev.get("context_hash")
+    prev_repo = prev.get("repo_hash")
 
-    with open(WEIGHTS_PATH, "r", encoding="utf-8") as f:
-        weights = json.load(f)
+    b = compute_boundary(prev_context, context_hash, prev_repo, repo_hash, drift_total, Bcrit)
 
-    return validate_weights(weights)
-
-
-def load_or_init_genome_baseline(current):
-    if os.path.exists(BASELINE_PATH):
-        with open(BASELINE_PATH, "r", encoding="utf-8") as f:
-            return json.load(f)
-
-    if baseline_lock_enabled():
-        raise RuntimeError(
-            "Genome baseline missing while DDNA_BASELINE_LOCK is enabled. "
-            "Provision baseline at state/genomes/baseline.json."
-        )
-
-    baseline = current
-    os.makedirs(os.path.dirname(BASELINE_PATH), exist_ok=True)
-    with open(BASELINE_PATH, "w", encoding="utf-8") as f:
-        json.dump(baseline, f, indent=2)
-    return baseline
-
-
-def run(_target_path="."):
-    current = extract_genome()
-    baseline = load_or_init_genome_baseline(current)
-
-    common = compare_genomes(current, baseline)
-    retention = retention_ratio(common, len(baseline))
-
-    topology = extract_topology()
-    dependency_graph = extract_dependency_graph()
-
-    drift_topology = float(compute_topology_drift(topology))
-    drift_dependency = float(compute_dependency_drift(dependency_graph))
-
-    weight_topology, weight_dependency = load_weights()
-
-    drift_raw = float((weight_topology * drift_topology) + (weight_dependency * drift_dependency))
-    drift = float(clamp01(drift_raw))
-
-    stability = compute_stability(retention, drift)
-
-    record = {
+    # episode record (engine-level)
+    out = {
         "retention": retention,
-        "drift": drift,
-        "drift_raw": drift_raw,
+        "drift_total": drift_total,
         "drift_topology": drift_topology,
         "drift_dependency": drift_dependency,
-        "weights": {"topology": weight_topology, "dependency": weight_dependency},
-        "stability": stability,
-        "timestamp": utc_now_z(),
+        "stability": float(stability),
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+        "context_hash": context_hash,
+        "repo_hash": repo_hash,
+        "boundary_score": b.boundary_score,
+        "boundary_event": b.boundary_event,
+        "boundary_reason": b.reason,
+        "replay_K": K,
+        "Bcrit": Bcrit
     }
 
-    validate_record(record)
+    ART.mkdir(exist_ok=True)
+    HIST.mkdir(parents=True, exist_ok=True)
 
-    append_ledger(LEDGER_PATH, record)
+    _write_json(LAST, out)
+    _write_json(LAST_EP, {"context_hash": context_hash, "repo_hash": repo_hash})
 
-    os.makedirs("artifacts", exist_ok=True)
-    with open(OUTPUT_PATH, "w", encoding="utf-8") as f:
-        json.dump(record, f, indent=2)
+    # replay summary (over history) gets written by loop after snapshot exists,
+    # but we also compute a current replay snapshot for convenience.
+    # If history is empty, replay_k will be count=0.
+    replay = write_replay_summary(K)
+    out["replay_path"] = replay.get("path")
 
     print("DDNA RUN COMPLETE")
-    print(json.dumps(record, indent=2))
-
+    print(json.dumps(out, indent=2))
 
 if __name__ == "__main__":
-    run(".")
+    main()
