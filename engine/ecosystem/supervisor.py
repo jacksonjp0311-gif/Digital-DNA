@@ -1,4 +1,4 @@
-﻿import os, sys, json, time, subprocess, random
+import os, sys, json, time, subprocess, random
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]  # .../engine/ecosystem -> repo root
@@ -60,7 +60,7 @@ def _load_or_migrate_population(pop_size, generations, steps, watchdog):
         pop = _default_population(pop_size, generations, steps, watchdog)
 
     if "config" not in pop:
-        # MIGRATION: old schema → new schema
+        # MIGRATION: old schema ? new schema
         migrated = _default_population(pop_size, generations, steps, watchdog)
         migrated["state"]["history"] = pop.get("history", pop.get("state", {}).get("history", []))
         migrated["state"]["generation"] = pop.get("generation", pop.get("state", {}).get("generation", 0))
@@ -109,13 +109,13 @@ def _drain_process(proc: subprocess.Popen, watchdog_seconds: int, tag: str):
         if proc.poll() is not None:
             break
         if (time.time() - last) > watchdog_seconds:
-            _p(f"[WATCHDOG] {tag} no output for {watchdog_seconds}s — killing")
+            _p(f"[WATCHDOG] {tag} no output for {watchdog_seconds}s � killing")
             try:
                 proc.kill()
             except Exception:
                 pass
             break
-        time.sleep(0.05)
+        time.sleep(0.01)
 
 def _selftest():
     _p("[SELFTEST] probing loop...")
@@ -160,7 +160,7 @@ def _mutate_genome(g):
 
 def _mode_A(pop):
     cfg = pop["config"]
-    _p("DIGITAL-DNA SUPERVISOR (MODE A — SINGLE ORGANISM)")
+    _p("DIGITAL-DNA SUPERVISOR (MODE A � SINGLE ORGANISM)")
     _p(f"ROOT: {ROOT}")
     _p(f"STEPS: {cfg['steps']}")
     _p(f"WATCHDOG: {cfg['watchdog_seconds']}")
@@ -297,3 +297,4 @@ def main(argv=None):
 
 if __name__ == "__main__":
     raise SystemExit(main())
+
