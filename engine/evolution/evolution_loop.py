@@ -1,3 +1,28 @@
+﻿def compute_fitness(result):
+    score = result.get("score",0)
+    steps = result.get("steps",0)
+
+    runtime_penalty = 0
+    crash_penalty = 0
+    stability_bonus = 5
+
+    return score + stability_bonus - runtime_penalty - crash_penalty
+def ensure_genome(workdir, gid):
+    import json, random
+    from pathlib import Path
+    gfile = Path(workdir) / "genome.json"
+
+    if not gfile.exists():
+        genome = {
+            "param_step_delay": random.uniform(0.02,0.08),
+            "param_noise": random.uniform(0.01,0.05),
+            "code_mutation_rate": 0.05,
+            "generation": gid
+        }
+        gfile.write_text(json.dumps(genome,indent=2))
+        return genome
+
+    return json.loads(gfile.read_text())
 import os, sys, time, json, random
 from pathlib import Path
 
