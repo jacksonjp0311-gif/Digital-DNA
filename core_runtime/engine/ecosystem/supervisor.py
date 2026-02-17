@@ -1,3 +1,39 @@
+# ================= SELECTION_ENGINE_V2 =================
+import json, random
+from pathlib import Path
+
+def _load_result(workdir):
+    try:
+        return json.loads((Path(workdir)/"result.json").read_text())
+    except:
+        return {"score":0}
+
+def _select_and_mutate(base_dir,pop_size):
+    results=[]
+    for i in range(pop_size):
+        wd = Path(base_dir)/f"org_{i}"
+        r=_load_result(wd)
+        results.append((i,r.get("score",0)))
+
+    results.sort(key=lambda x:x[1], reverse=True)
+
+    best_id = results[0][0]
+    best_score = results[0][1]
+
+    best_genome_path = Path(base_dir)/f"org_{best_id}"/"genome.json"
+    try:
+        best_genome = json.loads(best_genome_path.read_text())
+    except:
+        best_genome={"param_step_delay":0.05,"mutation_bias":0}
+
+    for i,_ in results[1:]:
+        g = best_genome.copy()
+        g["param_step_delay"] = max(0.005, g["param_step_delay"] + random.uniform(-0.01,0.01))
+        g["mutation_bias"] += random.uniform(-0.5,0.5)
+        (Path(base_dir)/f"org_{i}"/"genome.json").write_text(json.dumps(g,indent=2))
+
+    print(f"[EVOLVE] best={best_id} score={best_score}")
+# =======================================================
 import json, random, subprocess, sys, time
 from pathlib import Path
 
@@ -67,3 +103,4 @@ def main():
 
 if __name__=="__main__":
     main()
+
