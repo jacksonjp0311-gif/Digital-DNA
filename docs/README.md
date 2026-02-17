@@ -1,14 +1,20 @@
-# Documentation Hub
+# Docs Overview
 
-This folder is the control plane for DDNA design continuity, evaluation, and recursive Codex-guided iteration.
+The `docs/` folder is the continuity and design-control surface for DDNA.
 
 ## Mini Directory
-- `ARCHITECTURE_EVALUATION.md` — current full-system technical evaluation and roadmap.
-- `CODEX_UPGRADE_LOG.md` — chronological continuity log for each Codex upgrade/session.
-- `RECURSIVE_FEEDBACK_SYSTEM.md` — operating model for iterative, evidence-driven improvement loops.
-- `feedback/` — templates and iteration artifacts used to run recursive improvement cycles.
+- `ARCHITECTURE_EVALUATION.md` — full-system evaluation and roadmap.
+- `CODEX_UPGRADE_LOG.md` — chronological codex continuity log.
+- `RECURSIVE_FEEDBACK_SYSTEM.md` — recursive improvement operating model.
+- `codex/` — runbook/prompt/contracts for codex execution.
+- `feedback/` — packets, bundles, and iteration documents.
+- `ledger/docs_ledger.jsonl` — documentation continuity ledger.
 
-## Interlinking
-- Root `README.md` links to the evaluation and continuity artifacts.
-- Each Codex session should update `CODEX_UPGRADE_LOG.md` and add an iteration record under `feedback/iterations/`.
-- Engineering changes should map to findings in `ARCHITECTURE_EVALUATION.md`.
+## Sequence of Events
+1. Evaluation identifies gaps and priorities.
+2. Feedback packets/iterations capture applied changes.
+3. Upgrade log and docs ledger record continuity across sessions.
+
+## Interlinking Notes
+- Root `README.md` points here for governance and iteration context.
+- Engineering changes should map back to documented findings/iterations.

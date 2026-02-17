@@ -1,13 +1,15 @@
-# ddna_evo Mini-README
+# DDNA Evo Overview
 
-Contains the evolutionary runner entry point (`run_evo.py`) used for mutation/evolution experiments.
+The `ddna_evo/` folder contains evolutionary runner logic used for mutation/evaluation experimentation.
 
-## Usage
-Run from repository root:
+## Mini Directory
+- `run_evo.py` — entrypoint for iterative evolution experiments.
 
-```bash
-python ddna_evo/run_evo.py
-```
+## Sequence of Events
+1. Evolution runner initializes runtime/genome candidates.
+2. Candidate programs are evaluated and scored.
+3. Logs/state artifacts are emitted into `logs/` and `state/candidates/`.
 
-## Caution
-This path is experimental and may emit logs or candidate programs under `state/` and `logs/`.
+## Interlinking Notes
+- This path is experimental and should not bypass the canonical orchestrator contract.
+- Use from repo root so relative paths resolve deterministically.

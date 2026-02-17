@@ -1,8 +1,14 @@
-# Memory Mini-README
+# Memory Overview
 
-Small runtime flags and continuity markers.
+The `memory/` folder stores tiny runtime continuity markers and flags.
 
-## Current files
-- `phase7_enabled.txt` — marker flag used by evolution/runtime flows.
+## Mini Directory
+- `phase7_enabled.txt` — phase gate/marker used by runtime flows.
 
-Treat this directory as runtime state, not source code.
+## Sequence of Events
+1. Runtime checks marker files for enabled capabilities.
+2. Evolution/boot flows condition behavior on those flags.
+
+## Interlinking Notes
+- Treat as stateful control markers.
+- Keep values simple and deterministic.

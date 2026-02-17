@@ -1,8 +1,15 @@
-# Tools Mini-README
+# Tools Overview
 
-Utilities for running DDNA loops and helper automation.
+The `tools/` folder contains utility scripts for local loop automation.
 
-## Current tool
-- `ddna_loop.py` — local loop helper for repeated DDNA runs.
+## Mini Directory
+- `ddna_loop.py` — local helper for repeated DDNA run cycles.
 
-Prefer running tools from repository root so relative paths resolve consistently.
+## Sequence of Events
+1. Tool initializes loop inputs.
+2. Orchestrator is executed repeatedly.
+3. Outputs are observed through artifacts/logs/ledger.
+
+## Interlinking Notes
+- Run from repo root for deterministic relative-path behavior.
+- Tools should call canonical engine entrypoints instead of duplicating logic.
