@@ -8,11 +8,35 @@ Digital DNA is a deterministic structural coherence engine that measures and enf
 
 DDNA computes structural stability through weighted drift channels:
 
-drift_raw = (w_topology * drift_topology) + (w_dependency * drift_dependency)
-drift = clamp(drift_raw, 0, 1)
-stability = retention - drift
+`drift_raw = (w_topology * drift_topology) + (w_dependency * drift_dependency)`
+`drift = clamp(drift_raw, 0, 1)`
+`stability = retention - drift`
 
 All invariants are mathematically enforced and test-verified.
+
+---
+
+## Folder Mini-README System
+
+Every top-level project folder includes its own local `README.md` (mini README), so each scope can be understood in-place without scanning the entire repository first.
+
+### How to use mini READMEs (Human workflow)
+1. Start in the folder you need to modify (`engine/`, `docs/`, `tools/`, etc.).
+2. Read that folder’s `README.md` first for scope, sequence-of-events, and cross-links.
+3. Follow links/filenames listed in the mini directory to jump directly to relevant files.
+
+### How to use mini READMEs (AI workflow)
+1. Treat each folder `README.md` as the local contract before editing files in that scope.
+2. Use mini-directory and sequence sections to preserve deterministic execution order and truth-surface invariants.
+3. Use interlinking notes to avoid out-of-scope state, bypassing orchestrator contracts, or introducing shadow pipelines.
+
+### Top-level mini README coverage
+- `artifacts/`
+- `docs/`
+- `engine/`
+- `ledger/`
+- `tools/` (script-equivalent utilities)
+- plus runtime/support scopes: `config/`, `state/`, `tests/`, `theory/`, `interface/`, `logs/`, `memory/`, `genome/`, `rcct_kernel/`, `developer/`, `ddna_evo/`, `DDNA_EVOLVE/`, `_mutations/`, `_patch_backups/`.
 
 ---
 
@@ -51,27 +75,6 @@ DDNA includes canonical theory documents under `theory/` that formalize the stru
 
 ---
 
-## Evaluation and Continuity
-
-- Iteration evaluation and roadmap: `docs/ARCHITECTURE_EVALUATION.md`
-- Codex continuity log for every upgrade/session: `docs/CODEX_UPGRADE_LOG.md`
-- Recursive feedback system for Codex-driven iterations: `docs/RECURSIVE_FEEDBACK_SYSTEM.md`
-- Documentation hub and mini-directory: `docs/README.md`
-
----
-
-## Guarantees
-
-✓ Deterministic execution
-✓ Artifact-based testing (no stdout parsing)
-✓ Hard invariant enforcement
-✓ Drift bounded in [0,1]
-✓ Stability law verified
-✓ UTF-8 clean configuration
-✓ Test suite passing
-
----
-
 ## Execution
 
 Run engine:
@@ -87,15 +90,3 @@ Run tests:
 Optional strict baseline policy (CI-friendly):
 
     DDNA_BASELINE_LOCK=1 python -m engine.orchestrator.run_ddna
-
----
-
-## Current Status
-
-Core Lock v1 — Stable, invariant-verified engine with full test coverage on structural envelope and behavioral constraints.
-
----
-
-## Author
-
-James Paul Jackson

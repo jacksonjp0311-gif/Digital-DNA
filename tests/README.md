@@ -1,12 +1,18 @@
-# Test Suite
+# Tests Overview
 
-Executable validation scripts for DDNA invariants and output contracts.
+The `tests/` folder validates DDNA invariants and artifact contracts.
 
 ## Mini Directory
-- `behavioral_test_v1.py` — validates required output keys and `S = C - D`.
-- `structural_envelope_test_v1.py` — validates drift clamp envelope and emits proof.
-- `results/` — persisted proof artifacts from test execution.
+- `behavioral_test_v1.py` — checks required run artifact keys and stability law.
+- `structural_envelope_test_v1.py` — validates drift envelope/clamp invariants.
+- `hardening_test_v2.py` — validates baseline lock and contract hardening behavior.
+- `results/` — emitted proof artifacts.
 
-## Interlinking
-- Tests invoke `engine.orchestrator.run_ddna` as a subprocess.
-- Assertions are made against `artifacts/last_run.json` outputs.
+## Sequence of Events
+1. Tests run orchestrator via module entrypoint.
+2. `artifacts/last_run.json` is read and validated.
+3. Optional proof artifacts are emitted under `tests/results/`.
+
+## Interlinking Notes
+- Tests assume orchestrator contract shape is stable.
+- Avoid changing artifact schema without coordinated test updates.
