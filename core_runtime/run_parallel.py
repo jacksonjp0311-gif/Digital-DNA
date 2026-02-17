@@ -1,28 +1,19 @@
-﻿# ==========================================================
-# DIGITAL-DNA — PARALLEL ENTRYPOINT (NON-DESTRUCTIVE)
-# Purpose: run 4 organisms in parallel without touching run.py
-# ==========================================================
-
-import os, sys, subprocess
-import multiprocessing as mp
+﻿import subprocess
+import sys
+import os
 from pathlib import Path
 
-POP_SIZE = int(os.environ.get("DDNA_POP", "4"))
-STEPS    = int(os.environ.get("DDNA_STEPS", "200"))
+POP_SIZE = 4
+STEPS = 200
 
 BASE = Path("ecosystem/runtime")
 BASE.mkdir(parents=True, exist_ok=True)
 
-def _pump(prefix: str, pipe):
-    # Prefix every output line so parallel logs stay readable.
-    for line in iter(pipe.readline, ""):
-        if not line:
-            break
-        line = line.rstrip("\n")
-        if line:
-            print(f"{prefix} {line}", flush=True)
+procs = []
 
-def run_org(i: int):
+print(f"[PARALLEL] starting POP={POP_SIZE}", flush=True)
+
+for i in range(POP_SIZE):
     wd = BASE / f"org_{i}"
     wd.mkdir(parents=True, exist_ok=True)
 
@@ -38,23 +29,24 @@ def run_org(i: int):
         cmd,
         stdout=subprocess.PIPE,
         stderr=subprocess.STDOUT,
-        text=True,
-        bufsize=1,
-        cwd=str(Path.cwd())
+        text=True
     )
-    _pump(f"[ORG{i}]", p.stdout)
-    return p.wait()
 
-def main():
-    print(f"[PARALLEL] POP_SIZE={POP_SIZE} STEPS={STEPS}", flush=True)
-    procs = []
-    for i in range(POP_SIZE):
-        p = mp.Process(target=run_org, args=(i,))
-        p.start()
-        procs.append(p)
-    for p in procs:
-        p.join()
+    procs.append((i,p))
 
-if __name__ == "__main__":
-    mp.freeze_support()
-    main()
+# non-blocking read
+while procs:
+    for item in list(procs):
+        i,p = item
+        line = p.stdout.readline()
+
+        if line:
+            print(f"[ORG{i}] {line.rstrip()}", flush=True)
+
+        if p.poll() is not None:
+            # flush remaining
+            for l in p.stdout.readlines():
+                print(f"[ORG{i}] {l.rstrip()}", flush=True)
+            procs.remove(item)
+
+print("[PARALLEL COMPLETE]", flush=True)
