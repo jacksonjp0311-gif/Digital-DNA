@@ -1,3 +1,29 @@
+# ================= PARALLEL_EXEC_V1 =================
+import subprocess, sys
+from pathlib import Path
+
+def _run_population_parallel(pop_size, steps, base_dir):
+    procs = []
+
+    for i in range(pop_size):
+        wd = Path(base_dir)/f"org_{i}"
+        wd.mkdir(parents=True, exist_ok=True)
+
+        cmd = [
+            sys.executable,
+            "engine/evolution/evolution_loop.py",
+            "--steps", str(steps),
+            "--workdir", str(wd),
+            "--id", str(i)
+        ]
+
+        p = subprocess.Popen(cmd)
+        procs.append(p)
+
+    for p in procs:
+        p.wait()
+
+# ====================================================
 # ================= AUTONOMOUS_EVOLUTION_V3 =================
 import json, random, threading, time
 from pathlib import Path
@@ -143,5 +169,6 @@ def main():
 
 if __name__=="__main__":
     main()
+
 
 
