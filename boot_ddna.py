@@ -1,20 +1,20 @@
-﻿import os, json, subprocess, time, sys
+from __future__ import annotations
 
-ROOT = r"C:\Users\jacks\OneDrive\Desktop\Digital-DNA"
-LOOP = r"C:\Users\jacks\OneDrive\Desktop\Digital-DNA\engine\evolution\evolution_loop.py"
-GENOME = r"C:\Users\jacks\OneDrive\Desktop\Digital-DNA\engine\mutations\genome.json"
+import subprocess
+import sys
+from pathlib import Path
 
-def ensure_genome():
-    if not os.path.exists(GENOME) or os.path.getsize(GENOME)==0:
-        g={"A":0.5,"B":0.5,"W":1.0,"mode_a":"sin","mode_b":"cos","mode_c":"sin"}
-        with open(GENOME,"w") as f: json.dump(g,f,indent=2)
+ROOT = Path(__file__).resolve().parent
 
-print("DDNA SAFE BOOT ACTIVE")
 
-while True:
-    try:
-        ensure_genome()
-        subprocess.run([sys.executable, LOOP], check=True)
-    except Exception as e:
-        print("LOOP CRASH:", e)
-        time.sleep(2)
+def main() -> None:
+    print("DDNA SAFE BOOT ACTIVE -> delegating to canonical loop entrypoint")
+    subprocess.run(
+        [sys.executable, "-m", "tools.ddna_loop", "--forever", "--sleep-seconds", "2"],
+        cwd=str(ROOT),
+        check=True,
+    )
+
+
+if __name__ == "__main__":
+    main()

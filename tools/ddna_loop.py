@@ -1,22 +1,20 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
+import argparse
+import json
+import subprocess
 import sys
+import time
+from datetime import datetime, timezone
 from pathlib import Path
+from typing import Any
+
 ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-import json
-from pathlib import Path
-from datetime import datetime, timezone
-import subprocess
-import sys
-
-from engine.episodic.replay import write_replay_summary
 from engine.episodic.context import read_thresholds
-
-ROOT = Path(__file__).resolve().parents[1]
-ENGINE = ROOT / "engine" / "orchestrator" / "run_ddna.py"
+from engine.episodic.replay import write_replay_summary
 
 ART = ROOT / "artifacts"
 HIST = ART / "history"
@@ -29,66 +27,69 @@ PACKETS = FEEDBACK / "packets"
 DOCS_LEDGER = DOCS / "ledger" / "docs_ledger.jsonl"
 PACKET_LATEST = FEEDBACK / "packet_latest.json"
 
-def now_iso():
+
+def now_iso() -> str:
     return datetime.now(timezone.utc).isoformat()
 
-def stamp():
+
+def stamp() -> str:
     return datetime.now().strftime("%Y%m%d_%H%M%S")
 
-def ensure_dirs():
+
+def ensure_dirs() -> None:
     for p in [ART, HIST, FEEDBACK, PACKETS, DOCS / "ledger"]:
         p.mkdir(parents=True, exist_ok=True)
 
-def run_engine():
-    if not ENGINE.exists():
-        raise FileNotFoundError(str(ENGINE))
-    subprocess.run([sys.executable, str(ENGINE)], cwd=str(ROOT), check=True)
 
-def read_json(p: Path):
+def run_engine() -> None:
+    subprocess.run(
+        [sys.executable, "-m", "engine.orchestrator.run_ddna"],
+        cwd=str(ROOT),
+        check=True,
+    )
+
+
+def read_json(path: Path) -> dict[str, Any] | list[Any] | None:
     try:
-        return json.loads(p.read_text(encoding="utf-8"))
+        return json.loads(path.read_text(encoding="utf-8"))
     except Exception:
         return None
 
-def append_jsonl(path: Path, obj: dict):
+
+def append_jsonl(path: Path, obj: dict[str, Any]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with open(path, "a", encoding="utf-8") as f:
-        f.write(json.dumps(obj, separators=(",", ":")) + "\\n")
+        f.write(json.dumps(obj, separators=(",", ":")) + "\n")
 
-def main():
+
+def run_once() -> dict[str, Any]:
     ensure_dirs()
     thresholds = read_thresholds()
-    K = int(thresholds.get("replay_K", 10))
+    replay_k = int(thresholds.get("replay_K", 10))
 
-    print("\\nDIGITAL-DNA PY LOOP\\n")
     run_engine()
 
     if not LAST.exists():
         raise RuntimeError("Engine did not produce artifacts/last_run.json")
 
     snap = read_json(LAST) or {}
+
     snap_path = HIST / f"run_{stamp()}.json"
     snap_path.write_text(json.dumps(snap, indent=2), encoding="utf-8")
-    print(f"\\nSnapshot saved: {snap_path}")
 
-    # replay summary (explicit operator)
-    replay = write_replay_summary(K)
-    print(f"Replay summary: {REPLAY} (count={replay.get('count')})")
+    replay = write_replay_summary(replay_k)
 
-    # trend (last delta)
     files = sorted(HIST.glob("run_*.json"))
+    prev_stability = None
+    curr_stability = float((snap or {}).get("stability", 0.0))
+    delta = None
     if len(files) >= 2:
-        a = read_json(files[-2]) or {}
-        b = read_json(files[-1]) or {}
-        da = float(a.get("stability", 0.0))
-        db = float(b.get("stability", 0.0))
-        print(f"\\nPrevious stability: {da}")
-        print(f"Current  stability: {db}")
-        print(f"Delta: {db - da}")
-    else:
-        print("\\nBaseline established.")
+        prev = read_json(files[-2]) or {}
+        prev_stability = float(prev.get("stability", 0.0))
+        delta = curr_stability - prev_stability
 
-    # packet_latest for Codex ingestion
+    drift_value = snap.get("drift")
+
     packet = {
         "timestamp": now_iso(),
         "repo": "Digital-DNA",
@@ -101,14 +102,16 @@ def main():
             "boundary_event": snap.get("boundary_event"),
             "boundary_reason": snap.get("boundary_reason"),
             "Bcrit": snap.get("Bcrit"),
-            "replay_K": snap.get("replay_K"),
+            "replay_K": replay_k,
         },
         "observations": {
             "stability": snap.get("stability"),
             "retention": snap.get("retention"),
-            "drift_total": snap.get("drift_total"),
+            "drift": drift_value,
+            "drift_raw": snap.get("drift_raw"),
             "drift_topology": snap.get("drift_topology"),
             "drift_dependency": snap.get("drift_dependency"),
+            "delta_stability": delta,
         },
         "replay": replay,
         "outputs": {
@@ -119,32 +122,90 @@ def main():
             "docs_ledger": "docs/ledger/docs_ledger.jsonl",
         },
         "invariants_locked": [
-            "stability = retention - drift_total",
+            "stability = retention - drift",
             "artifacts/last_run.json overwritten each run",
             "artifacts/replay_k.json overwritten each run",
             "history snapshots append-only",
-            "docs_ledger append-only"
-        ]
+            "docs_ledger append-only",
+        ],
     }
 
     PACKET_LATEST.write_text(json.dumps(packet, indent=2), encoding="utf-8")
-    PACKETS.joinpath(f"packet_{stamp()}.json").write_text(json.dumps(packet, indent=2), encoding="utf-8")
+    PACKETS.joinpath(f"packet_{stamp()}.json").write_text(
+        json.dumps(packet, indent=2), encoding="utf-8"
+    )
 
-    append_jsonl(DOCS_LEDGER, {
-        "t": packet["timestamp"],
-        "mode": packet["mode"],
-        "stability": packet["observations"]["stability"],
-        "retention": packet["observations"]["retention"],
-        "drift_total": packet["observations"]["drift_total"],
-        "boundary_event": packet["episode"]["boundary_event"],
-        "boundary_score": packet["episode"]["boundary_score"],
-        "packet": "docs/feedback/packet_latest.json",
-        "replay_k": "artifacts/replay_k.json"
-    })
+    append_jsonl(
+        DOCS_LEDGER,
+        {
+            "t": packet["timestamp"],
+            "mode": packet["mode"],
+            "stability": packet["observations"]["stability"],
+            "retention": packet["observations"]["retention"],
+            "drift": packet["observations"]["drift"],
+            "boundary_event": packet["episode"]["boundary_event"],
+            "boundary_score": packet["episode"]["boundary_score"],
+            "packet": "docs/feedback/packet_latest.json",
+            "replay_k": "artifacts/replay_k.json",
+        },
+    )
 
-    print(f"\\nWrote: {PACKET_LATEST}")
-    print("Done.\\n")
+    return {
+        "snapshot_path": str(snap_path),
+        "stability": curr_stability,
+        "previous_stability": prev_stability,
+        "delta": delta,
+        "replay_count": replay.get("count"),
+    }
+
+
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description="Canonical DDNA loop entrypoint")
+    parser.add_argument("--iterations", type=int, default=1, help="number of loop iterations")
+    parser.add_argument(
+        "--sleep-seconds",
+        type=float,
+        default=0.0,
+        help="sleep between iterations",
+    )
+    parser.add_argument(
+        "--forever",
+        action="store_true",
+        help="run indefinitely until interrupted",
+    )
+    return parser.parse_args()
+
+
+def main() -> None:
+    args = parse_args()
+    if args.iterations < 1:
+        raise SystemExit("--iterations must be >= 1")
+
+    print("\nDIGITAL-DNA CANONICAL LOOP\n")
+
+    i = 0
+    while True:
+        i += 1
+        result = run_once()
+        print(f"Iteration {i}: stability={result['stability']}")
+        print(f"Snapshot saved: {result['snapshot_path']}")
+
+        if result["delta"] is None:
+            print("Baseline established.")
+        else:
+            print(
+                f"Previous stability: {result['previous_stability']} | "
+                f"Delta: {result['delta']}"
+            )
+
+        print(f"Replay summary: {REPLAY} (count={result['replay_count']})")
+        print(f"Wrote: {PACKET_LATEST}\n")
+
+        if not args.forever and i >= args.iterations:
+            break
+        if args.sleep_seconds > 0:
+            time.sleep(args.sleep_seconds)
+
 
 if __name__ == "__main__":
     main()
-

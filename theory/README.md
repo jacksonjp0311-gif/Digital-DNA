@@ -1,15 +1,16 @@
-# Digital DNA Theory
+# Theory Overview
 
-This folder contains the canonical theory documents for DDNA formalization.
+The `theory/` folder contains formal DDNA model documents.
 
 ## Mini Directory
-- `digital_dna_software_theory_v1_3.tex` — **DDNA v1.3 · Locked Evolution** formal software theory with extraction framework, fragment equivalence operator, drift inevitability theorem, and replication verification conditions.
-- `codex_digital_dna_theory_memory_architecture_v1_6.tex` — **DDNA v1.6 · Locked** structural replication memory architecture formalization with recursive stability field and cross-context persistence framing.
+- `digital_dna_software_theory_v1_3.tex` — locked evolution and structural law basis.
+- `codex_digital_dna_theory_memory_architecture_v1_6.tex` — codex memory architecture formalization.
 
-## How It Works
-- These are reference theory artifacts, not runtime engine code.
-- They define the conceptual and mathematical basis that the implementation can map to measurable invariants and drift/stability outputs.
+## Sequence of Events
+1. Theory establishes formal invariants.
+2. Engine/docs encode those invariants in executable form.
+3. Evaluation/tests verify implementation against theory constraints.
 
-## Interlinking
-- Referenced by the root `README.md` in the new **Theory** section.
-- Used as source material for architectural evolution and roadmap decisions in `docs/ARCHITECTURE_EVALUATION.md`.
+## Interlinking Notes
+- Theory should align with `engine/` invariants and docs continuity narratives.
+- Update docs/tests when theory-level assumptions are revised.
