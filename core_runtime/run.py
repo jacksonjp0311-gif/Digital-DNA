@@ -1,36 +1,48 @@
-# ================= PARALLEL ENTRY =================
-import multiprocessing as mp
-import subprocess, sys
+import sys
 from pathlib import Path
 
-POP_SIZE = 4
-STEPS = 200
-BASE = Path("ecosystem/runtime")
-BASE.mkdir(parents=True, exist_ok=True)
+ROOT = Path(__file__).resolve().parent
+ENGINE = ROOT / "engine"
 
-def run_org(i):
-    wd = BASE/f"org_{i}"
-    wd.mkdir(parents=True, exist_ok=True)
+sys.path.append(str(ENGINE))
+sys.path.append(str(ENGINE / "ecosystem"))
+sys.path.append(str(ENGINE / "evolution"))
 
-    cmd = [
-        sys.executable,
-        "engine/evolution/evolution_loop.py",
-        "--steps", str(STEPS),
-        "--workdir", str(wd),
-        "--id", str(i)
-    ]
-    subprocess.run(cmd)
+from ecosystem import supervisor
 
-def main():
-    jobs=[]
-    for i in range(POP_SIZE):
-        p=mp.Process(target=run_org,args=(i,))
-        p.start()
-        jobs.append(p)
+if __name__ == "__main__":
+    supervisor.main()
 
-    for j in jobs:
-        j.join()
+# ================= PERSISTENT_LOOP =================
+best_prev=None
 
-if __name__=="__main__":
-    main()
-# ==================================================
+for gen in range(GENERATIONS):
+    print(f"[GEN] {gen+1}/{GENERATIONS}")
+
+    _parallel_run(org_paths,STEPS)
+
+    results=[]
+    for i,p in enumerate(org_paths):
+        try:
+            data=json.loads((Path(p)/"result.json").read_text())
+            results.append((i,data.get("score",0)))
+        except:
+            results.append((i,0))
+
+    results.sort(key=lambda x:x[1],reverse=True)
+    best_id,best_score = results[0]
+
+    best_genome=json.loads((Path(org_paths[best_id])/"genome.json").read_text())
+
+    _record_lineage(best_score,best_genome)
+
+    mut=_adaptive_mutation(best_prev,best_score)
+    best_prev=best_score
+
+    for i,_ in results[1:]:
+        g=best_genome.copy()
+        g["mutation_bias"] += random.uniform(-mut,mut)
+        g["param_step_delay"]=max(0.002,g["param_step_delay"]+random.uniform(-mut,mut))
+        Path(org_paths[i]).joinpath("genome.json").write_text(json.dumps(g,indent=2))
+
+# =====================================================
