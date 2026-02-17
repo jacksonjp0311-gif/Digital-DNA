@@ -73,13 +73,13 @@ def main(argv=None):
         while True:
             i += 1
             print(f"[LOOP] iter {i}")
-            time.sleep(1.0)
+            time.sleep(STEP_DELAY)
         # unreachable
 
     # Finite steps mode (A/B/C)
     for i in range(args.steps):
         print(f"[LOOP] step {i+1}/{args.steps}")
-        time.sleep(0.01)
+        time.sleep(STEP_DELAY)
 
     # Score model (placeholder): stable + tiny id jitter so selection can work deterministically
     score = float(args.steps) + (args.id * 0.001)
@@ -94,3 +94,13 @@ def main(argv=None):
 
 if __name__ == "__main__":
     raise SystemExit(main())
+
+
+runtime = time.time() - start_time
+runtime_score = max(0, 50 - runtime)
+score = steps + runtime_score
+
+try:
+    _write_result(".", {"score":score,"steps":steps,"runtime":runtime})
+except:
+    pass
