@@ -1,3 +1,5 @@
+﻿
+from selection.select import select_next_gen
 import sys
 from pathlib import Path
 
@@ -46,3 +48,6 @@ for gen in range(GENERATIONS):
         Path(org_paths[i]).joinpath("genome.json").write_text(json.dumps(g,indent=2))
 
 # =====================================================
+
+selected = select_next_gen(gen)
+
