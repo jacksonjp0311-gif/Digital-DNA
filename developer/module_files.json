@@ -1,0 +1,57 @@
+[
+  {
+    "module": "drift",
+    "files": [
+      "engine\\drift\\artifact.py",
+      "engine\\drift\\dependency.py",
+      "engine\\drift\\dependency_graph.py",
+      "engine\\drift\\interface.py",
+      "engine\\drift\\semantic.py",
+      "engine\\drift\\topology.py",
+      "engine\\drift\\__init__.py"
+    ]
+  },
+  {
+    "module": "episodic",
+    "files": [
+      "engine\\episodic\\boundary.py",
+      "engine\\episodic\\context.py",
+      "engine\\episodic\\replay.py"
+    ]
+  },
+  {
+    "module": "genome",
+    "files": [
+      "engine\\genome\\compare.py",
+      "engine\\genome\\dummy_test.py",
+      "engine\\genome\\extract.py",
+      "engine\\genome\\fingerprint.py",
+      "engine\\genome\\normalize.py",
+      "engine\\genome\\__init__.py"
+    ]
+  },
+  {
+    "module": "ledger",
+    "files": [
+      "engine\\ledger\\append.py",
+      "engine\\ledger\\verify.py",
+      "engine\\ledger\\__init__.py"
+    ]
+  },
+  {
+    "module": "orchestrator",
+    "files": [
+      "engine\\orchestrator\\run_ddna.py",
+      "engine\\orchestrator\\validation.py",
+      "engine\\orchestrator\\__init__.py"
+    ]
+  },
+  {
+    "module": "stability",
+    "files": [
+      "engine\\stability\\compute_S.py",
+      "engine\\stability\\retention.py",
+      "engine\\stability\\__init__.py"
+    ]
+  }
+]

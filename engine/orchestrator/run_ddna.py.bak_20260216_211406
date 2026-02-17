@@ -1,0 +1,74 @@
+﻿from __future__ import annotations
+import json, sys
+from pathlib import Path
+from datetime import datetime, timezone
+
+ROOT = Path(__file__).resolve().parents[2]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from engine.genome.extract import extract_genome
+from engine.drift.topology import extract_topology, compute_topology_drift
+from engine.drift.dependency_graph import extract_dependency_graph, compute_dependency_drift
+from engine.stability.retention import compute_retention
+from engine.episodic.context import read_thresholds
+
+ART = ROOT / "artifacts"
+LAST = ART / "last_run.json"
+
+def _write_json(p: Path, obj):
+    p.parent.mkdir(parents=True, exist_ok=True)
+    p.write_text(json.dumps(obj, indent=2), encoding="utf-8")
+
+def main():
+
+    thresholds = read_thresholds()
+    Bcrit = float(thresholds.get("Bcrit", 0.5))
+
+    genome = extract_genome(ROOT)
+    topo = extract_topology()
+    depg = extract_dependency_graph()
+
+    drift_topology = float(compute_topology_drift(topo))
+    drift_dependency = float(compute_dependency_drift(depg))
+    drift_total = drift_topology + drift_dependency
+
+    # ===============================
+    # RETENTION FIX
+    # ===============================
+    orig = ROOT
+    prev = ROOT
+
+    retention = compute_retention(orig, prev)
+
+    # ===============================
+    # TRUE FITNESS
+    # ===============================
+    # ================================
+# CANONICAL STABILITY COMPUTE
+# ================================
+import json
+from pathlib import Path
+
+cfg = Path("config")/"thresholds.json"
+B = 0.0
+if cfg.exists():
+    try:
+        B = float(json.loads(cfg.read_text()).get("Bcrit",0))
+    except:
+        pass
+
+stability = (retention - drift_total) + (B * 5.0)
+
+# ================================,
+        "timestamp": datetime.now(timezone.utc).isoformat()
+    }
+
+    _write_json(LAST, out)
+
+    print("stability:", stability)
+
+if __name__ == "__main__":
+    main()
+
+

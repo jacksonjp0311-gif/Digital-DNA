@@ -1,0 +1,10 @@
+{
+  "mode": "C",
+  "target_best_confirmed": 3.0000,
+  "target_plateau_breaks": 3,
+  "max_mutation_scale": 0.1200,
+  "min_mutation_scale": 0.0200,
+  "big_change_threshold": 0.0100,
+  "require_approval_for": ["constants_rewrite", "mutation_scale_jump", "k_jump"],
+  "approval_timeout_iters": 500
+}

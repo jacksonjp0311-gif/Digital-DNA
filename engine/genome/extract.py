@@ -1,32 +1,33 @@
-﻿from pathlib import Path
+﻿from __future__ import annotations
+import os
 
 def extract_genome(root=None):
     """
-    Genome extraction (v2.1):
-    - produces a stable file-list fingerprint basis for retention.
-    - excludes .git and __pycache__.
+    Genome extraction (local-stable):
+    - returns dict: {"files":[...]}
+    - excludes: .git, __pycache__, developer
+    - currently tracks .py only (you can broaden later)
     """
     if root is None:
-        root = Path.cwd()
+        root = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
     else:
-        root = Path(root)
+        root = os.path.abspath(root)
 
-    files = []
-    for p in root.rglob("*"):
-        if not p.is_file():
-            continue
-        s = str(p).replace("\\", "/")
-        if "/.git/" in s or s.endswith("/.git"):
-            continue
-        if "/__pycache__/" in s:
-            continue
-        # keep only code + config-ish artifacts for now
-        if p.suffix.lower() in {".py", ".ps1", ".json", ".jsonl", ".md", ".tex", ".txt"}:
-            files.append(str(p.relative_to(root)).replace("\\", "/"))
+    deny_dirs = {".git", "__pycache__", "developer"}
+    out = []
 
-    genome = {
-        "files": sorted(files),
-        "modules": [],
-        "timestamp": str(root)
-    }
-    return genome
+    for dirpath, dirnames, filenames in os.walk(root):
+        # prune denied dirs (exact dir names)
+        dirnames[:] = [d for d in dirnames if d not in deny_dirs]
+
+        for f in filenames:
+            if not f.endswith(".py"):
+                continue
+            full = os.path.join(dirpath, f)
+            rel = os.path.relpath(full, root).replace("\\", "/")
+            out.append(rel)
+
+    out.sort()
+    return {"files": out}
+
+

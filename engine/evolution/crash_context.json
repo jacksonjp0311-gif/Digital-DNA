@@ -1,0 +1,7 @@
+{
+  "ts": "2026-02-17T02:16:58",
+  "op": "self_tune",
+  "mutation_strength": 0.005,
+  "rewrite_interval": 500,
+  "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\jacks\\OneDrive\\Desktop\\Digital-DNA\\engine\\evolution\\evolution_core.py\", line 208, in step_once\n    main_score = score(genome)\n                 ^^^^^^^^^^^^^\n  File \"C:\\Users\\jacks\\OneDrive\\Desktop\\Digital-DNA\\engine\\evolution\\evolution_core.py\", line 46, in score\n    seed = int((genome.get(\"A\",0)*1e6) ^ (genome.get(\"B\",0)*2e6) ^ (genome.get(\"W\",0)*3e6)) & 0xFFFFFFFF\n               ~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~\nTypeError: unsupported operand type(s) for ^: 'float' and 'float'\n"
+}

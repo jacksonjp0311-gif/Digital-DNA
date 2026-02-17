@@ -1,8 +1,0 @@
-{
-  "retention": 1.0,
-  "drift_total": 1.1363636363636365,
-  "drift_topology": 1.1363636363636365,
-  "drift_dependency": 0.0,
-  "stability": -0.13636363636363646,
-  "timestamp": "2026-02-13T03:48:01.033404"
-}

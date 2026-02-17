@@ -1,0 +1,16 @@
+{
+  "iteration": 89,
+  "best_confirmed": -999999.0,
+  "best_raw": -999999.0,
+  "mutation_strength": 0.005,
+  "rewrite_interval": 500,
+  "rewrite_enabled": true,
+  "stable_streak": 0,
+  "crash_streak": 89,
+  "crash_total": 89,
+  "op_penalties": {
+    "param_jitter": 38,
+    "mode_shift": 28,
+    "self_tune": 23
+  }
+}

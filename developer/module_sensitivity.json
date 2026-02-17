@@ -1,0 +1,26 @@
+[
+  {
+    "module": "drift",
+    "delta": 0.0
+  },
+  {
+    "module": "episodic",
+    "delta": 0.0
+  },
+  {
+    "module": "genome",
+    "delta": 0.0
+  },
+  {
+    "module": "ledger",
+    "delta": 0.0
+  },
+  {
+    "module": "orchestrator",
+    "delta": 0.0
+  },
+  {
+    "module": "stability",
+    "delta": 0.0
+  }
+]

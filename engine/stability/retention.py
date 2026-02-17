@@ -1,31 +1,52 @@
-﻿import json
+﻿import hashlib
 from pathlib import Path
-import hashlib
 
-ROOT = Path(__file__).resolve().parents[2]
+EXCLUDE = {
+    "config",
+    "DDNA_EVO_SANDBOX",
+    "artifacts",
+    "__pycache__",
+    ".git",
+    ".venv",
+    "venv"
+}
 
-def fingerprint_files(files):
+def file_hash(p):
     h = hashlib.sha256()
-    for f in sorted(files):
-        h.update(f.encode())
+    with open(p,'rb') as f:
+        h.update(f.read())
     return h.hexdigest()
 
-def compute_retention(genome):
-    base_path = ROOT / "state" / "environments" / "topology_baseline.json"
-    base = json.loads(base_path.read_text())
+def allowed(p, root):
+    try:
+        rel = p.relative_to(root)
+        return not any(part in EXCLUDE for part in rel.parts)
+    except Exception:
+        return False
 
-    base_files = base.get("files", [])
-    base_fp = base.get("fingerprint", "")
+def compute_retention(orig_dir, new_dir):
+    orig = Path(orig_dir)
+    new  = Path(new_dir)
 
-    cur_files = genome.get("files", [])
-    cur_fp = fingerprint_files(cur_files)
+    orig_files = sorted([p for p in orig.rglob("*") if p.is_file() and allowed(p, orig)])
+    new_files  = sorted([p for p in new.rglob("*")  if p.is_file() and allowed(p, new)])
 
-    if not base_files:
-        return 1.0
+    if not orig_files or not new_files:
+        return 0.0
 
-    overlap = len(set(base_files) & set(cur_files))
-    total = len(set(base_files) | set(cur_files))
+    matches = 0
+    total   = 0
 
-    similarity = overlap / total if total else 1.0
+    for of in orig_files:
+        rel = of.relative_to(orig)
+        nf = new / rel
 
-    return similarity
+        if nf.exists():
+            total += 1
+            if file_hash(of) == file_hash(nf):
+                matches += 1
+
+    if total == 0:
+        return 0.0
+
+    return matches / total
