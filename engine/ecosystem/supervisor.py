@@ -1,4 +1,4 @@
-import os, sys, json, time, subprocess, random
+﻿import os, sys, json, time, subprocess, random
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]  # .../engine/ecosystem -> repo root
@@ -68,6 +68,24 @@ def _load_or_migrate_population(pop_size, generations, steps, watchdog):
         migrated["state"]["best_score"] = pop.get("best_score", pop.get("state", {}).get("best_score"))
         migrated["state"]["best_genome"] = pop.get("best_genome", pop.get("state", {}).get("best_genome"))
         pop = migrated
+        # NORMALIZE: tolerate missing state / mismatched genome_template
+        if "config" not in pop or not isinstance(pop.get("config"), dict):
+            pop["config"] = {}
+        if "state" not in pop or not isinstance(pop.get("state"), dict):
+            pop["state"] = {"generation": 0, "best_id": None, "best_score": None, "best_genome": None, "history": []}
+
+        # fold legacy top-level history into state.history when needed
+        if isinstance(pop.get("history"), list) and not pop["state"].get("history"):
+            pop["state"]["history"] = pop.get("history")
+
+        # ensure genome_template is operator-valid for mutation (alpha/beta/mut_rate)
+        gt = pop.get("config", {}).get("genome_template")
+        if (not isinstance(gt, dict)) or (not all(k in gt for k in ("alpha", "beta", "mut_rate"))):
+            pop["config"]["genome_template"] = {"alpha": 0.50, "beta": 0.50, "mut_rate": 0.05}
+
+        # ensure best_genome exists (needed for Mode C/D)
+        if pop["state"].get("best_genome") is None:
+            pop["state"]["best_genome"] = dict(pop["config"].get("genome_template", {"alpha":0.5,"beta":0.5,"mut_rate":0.05}))
 
     # enforce config override inputs (caller wins)
     pop["config"]["pop_size"] = int(pop_size)

@@ -1,6 +1,7 @@
 {
-  "organism_id": 0,
+  "organism_id": -1,
   "score": 1.0,
   "steps": 1,
-  "ts": 1771350066.5927749
+  "selftest": true,
+  "ts": 1771351364.990227
 }
