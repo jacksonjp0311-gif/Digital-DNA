@@ -1,3 +1,31 @@
+# ================= HARD_PARALLEL_V2 =================
+import multiprocessing as mp
+import subprocess, sys
+from pathlib import Path
+
+def _run_org(i, steps, base_dir):
+    wd = Path(base_dir)/f"org_{i}"
+    wd.mkdir(parents=True, exist_ok=True)
+
+    cmd = [
+        sys.executable,
+        "engine/evolution/evolution_loop.py",
+        "--steps", str(steps),
+        "--workdir", str(wd),
+        "--id", str(i)
+    ]
+    subprocess.run(cmd)
+
+def run_population_parallel(pop_size, steps, base_dir):
+    jobs=[]
+    for i in range(pop_size):
+        p = mp.Process(target=_run_org, args=(i,steps,base_dir))
+        p.start()
+        jobs.append(p)
+
+    for j in jobs:
+        j.join()
+# ====================================================
 # ================= PARALLEL_EXEC_V1 =================
 import subprocess, sys
 from pathlib import Path
@@ -169,6 +197,7 @@ def main():
 
 if __name__=="__main__":
     main()
+
 
 
 
