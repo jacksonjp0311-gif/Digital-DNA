@@ -5,10 +5,10 @@ def _load_genome():
     try:
         return json.loads(Path("genome.json").read_text())
     except:
-        return {"param_step_delay":0.05,"mutation_bias":0}
+        return {"param_step_delay":0.01,"mutation_bias":0}
 
 GENOME=_load_genome()
-STEP_DELAY=float(GENOME.get("param_step_delay",0.05))
+STEP_DELAY=max(0.001,float(GENOME.get("param_step_delay",0.01)))
 BIAS=float(GENOME.get("mutation_bias",0))
 
 def _write_result(workdir,payload):
@@ -46,3 +46,4 @@ if __name__=="__main__":
     })
 
     print("[LOOP] wrote result.json")
+
