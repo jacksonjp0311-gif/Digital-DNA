@@ -17,5 +17,6 @@ The `engine/` package is the execution core for Digital DNA (DDNA).
 4. Record is validated and emitted to artifacts/ledger surfaces.
 
 ## Interlinking Notes
-- `orchestrator/run_ddna.py` is the intended deterministic entrypoint.
+- `orchestrator/run_ddna.py` is the intended deterministic run entrypoint.
+- `tools/ddna_loop.py` is the intended canonical loop entrypoint for repeated runs.
 - Subsystems must preserve stability invariants and artifact contract shape.

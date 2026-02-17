@@ -90,3 +90,11 @@ Run tests:
 Optional strict baseline policy (CI-friendly):
 
     DDNA_BASELINE_LOCK=1 python -m engine.orchestrator.run_ddna
+
+Run canonical loop (single entrypoint):
+
+    python -m tools.ddna_loop --iterations 1
+
+Continuous loop:
+
+    python -m tools.ddna_loop --forever --sleep-seconds 1
