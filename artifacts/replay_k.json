@@ -1,0 +1,11 @@
+{
+  "K": 10,
+  "count": 1,
+  "mean_stability": 0.0,
+  "last_stability": 0.0,
+  "delta": 0.0,
+  "slope": 0.0,
+  "min": 0.0,
+  "max": 0.0,
+  "path": "artifacts/replay_k.json"
+}

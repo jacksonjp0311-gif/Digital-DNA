@@ -1,0 +1,7 @@
+﻿{
+  "version": "D4",
+  "pop_size": 4,
+  "watchdog_seconds": 60,
+  "restart_backoff_seconds": 1,
+  "notes": "Supervisor-owned population config. Edit pop_size to scale."
+}

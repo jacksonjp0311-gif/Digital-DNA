@@ -1,0 +1,6 @@
+{
+  "changed": true,
+  "file": "C:\\Users\\jacks\\OneDrive\\Desktop\\Digital-DNA\\engine\\evolution\\evolution_core.py",
+  "backup": "C:\\Users\\jacks\\OneDrive\\Desktop\\Digital-DNA\\engine\\evolution\\evolution_core.py.bak",
+  "diff_preview": "--- C:\\Users\\jacks\\OneDrive\\Desktop\\Digital-DNA\\engine\\evolution\\evolution_core.py\n+++ C:\\Users\\jacks\\OneDrive\\Desktop\\Digital-DNA\\engine\\evolution\\evolution_core.py\n@@ -272,4 +272,4 @@\n         return _CoreWrapper()\n \n     raise RuntimeError(\"No usable core object found in evolution_core.py\")\n-# [DDNA_MUTATION_MARK]   \n+# [DDNA_MUTATION_MARK]    "
+}

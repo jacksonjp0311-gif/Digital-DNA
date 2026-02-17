@@ -1,203 +1,246 @@
-import os, json, random, math, time, traceback, shutil, sys
-from datetime import datetime
+import json, os, time, random, math, traceback
 
-ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
-EVOL_DIR = os.path.join(ROOT, "engine", "evolution")
-BK_DIR   = os.path.join(EVOL_DIR, "_selfwrite_backups")
-GENOME   = os.path.join(ROOT, "engine", "mutations", "genome.json")
+ROOT   = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+GENOME = os.path.join(ROOT, "engine", "mutations", "genome.json")
+CRASH  = os.path.join(ROOT, "engine", "evolution", "crash_state.json")
+BKDIR  = os.path.join(ROOT, "engine", "evolution", "_selfwrite_backups")
+LASTGOOD = os.path.join(BKDIR, "_last_good.py")
 
-os.makedirs(BK_DIR, exist_ok=True)
+# rewrite contracts
+REWRITE_MIN_ITERS = 120
+REWRITE_MIN_PLATEAU = 35
+REWRITE_MAX_DELTA = 0.0100  # only tiny constant nudges
 
-best_raw = -1e18
-best_conf = -1e18
-promotes = 0
-
-def _read_json_bomsafe(path):
-    # Accept UTF-8 and UTF-8-BOM
+def _read_json(path, default):
+  try:
     with open(path, "r", encoding="utf-8-sig") as f:
-        return json.load(f)
+      return json.load(f)
+  except Exception:
+    return default
+
+def _write_json(path, obj):
+  with open(path, "w", encoding="utf-8") as f:
+    json.dump(obj, f, indent=2)
 
 def load_genome():
-    g = _read_json_bomsafe(GENOME)
-    # defaults (in case file gets mutated externally)
-    g.setdefault("A", 0.5); g.setdefault("B", 0.5); g.setdefault("W", 1.0)
-    g.setdefault("mode_a", "sin"); g.setdefault("mode_b", "cos"); g.setdefault("mode_c", "sin")
-    g.setdefault("rewrite_every", 25)
-    g.setdefault("mutation_strength", 1.0)
-    g.setdefault("confirm_k", 3)
-    return g
+  g = _read_json(GENOME, {})
+  g.setdefault("A", 0.50)
+  g.setdefault("B", 0.50)
+  g.setdefault("W", 1.00)
+  g.setdefault("k", 8)
+  g.setdefault("ck", 5)
+  g.setdefault("mutation_scale", 0.0400)
+  g.setdefault("best_confirmed", -9999.0)
+  g.setdefault("best_raw", -9999.0)
+  g.setdefault("rewrite_count", 0)
+  g.setdefault("phase", 7)
+  g.setdefault("trend_hist", [])
+  return g
 
 def save_genome(g):
-    # Write NO-BOM utf-8
-    with open(GENOME, "w", encoding="utf-8", newline="\n") as f:
-        json.dump(g, f, indent=2, sort_keys=True)
+  # cap trend_hist size
+  th = g.get("trend_hist", [])
+  if isinstance(th, list) and len(th) > 500:
+    g["trend_hist"] = th[-500:]
+  _write_json(GENOME, g)
 
-def _f(mode, x):
-    # small function library
-    if mode == "sin": return math.sin(x)
-    if mode == "cos": return math.cos(x)
-    if mode == "sin_cos": return math.sin(x) + math.cos(0.5*x)
-    if mode == "cos_sin": return math.cos(x) + math.sin(0.5*x)
-    if mode == "sin_rr": return math.sin(x) * (1.0 + 0.1*random.random())
-    if mode == "cos_rr": return math.cos(x) * (1.0 + 0.1*random.random())
-    if mode == "sin_mul_cos": return math.sin(x) * math.cos(x)
-    # default
-    return math.sin(x)
+def load_crash():
+  return _read_json(CRASH, {"crashes":0,"last_error":"","last_iter":0,"last_time":0})
 
-def score(g):
-    # -------- MUTATE_REGION_BEGIN --------
-    # The self-writer mutates ONLY inside this region (still chaotic, but survivable)
-    # It can change constants, operators, mode mixing, etc.
-    r = random.random() * math.pi
-    x = r + g["A"]
-    y = r * g["B"]
-    z = r * g["W"]
+def save_crash(s):
+  _write_json(CRASH, s)
 
-    b = _f(g.get("mode_b","cos"), y)
-    a = _f(g.get("mode_a","sin"), x)
-    c = _f(g.get("mode_c","sin"), z)
+def crash_learn(err_text: str, iters: int):
+  s = load_crash()
+  s["crashes"]   = int(s.get("crashes", 0)) + 1
+  s["last_error"]= (err_text or "")[:1200]
+  s["last_iter"] = int(iters or 0)
+  s["last_time"] = int(time.time())
+  save_crash(s)
 
-    # A chaotic but bounded objective:
-    s = math.fabs(a + b + c) + 0.01*abs(a*b) + 0.01*abs(b*c) + 0.01*abs(c*a)
-    
-# -------- MUTATE_REGION_END --------
-    return float(s)
+def backup_last_good():
+  os.makedirs(BKDIR, exist_ok=True)
+  try:
+    with open(__file__, "r", encoding="utf-8") as f:
+      txt = f.read()
+    with open(LASTGOOD, "w", encoding="utf-8") as f:
+      f.write(txt)
+  except Exception:
+    pass
 
-def mutate_genome(g):
-    g = dict(g)
-    strength = float(g.get("mutation_strength", 1.0))
-    # genome drift
-    g["A"] = float(g.get("A",0.0)) + random.uniform(-0.10, 0.10) * strength
-    g["B"] = float(g.get("B",0.0)) + random.uniform(-0.10, 0.10) * strength
-    g["W"] = float(g.get("W",0.0)) + random.uniform(-0.10, 0.10) * strength
-
-    # random function mode mutation
-    modes = ["sin","cos","sin_cos","cos_sin","sin_rr","cos_rr","sin_mul_cos"]
-    if random.random() < 0.7: g["mode_a"] = random.choice(modes)
-    if random.random() < 0.7: g["mode_b"] = random.choice(modes)
-    if random.random() < 0.7: g["mode_c"] = random.choice(modes)
-
-    # chaos knobs can evolve too
-    if random.random() < 0.3: g["rewrite_every"] = max(5, int(g.get("rewrite_every",25) + random.choice([-5,-3,-1,1,3,5])))
-    if random.random() < 0.3: g["confirm_k"] = max(1, int(g.get("confirm_k",3) + random.choice([-2,-1,1,2])))
-    if random.random() < 0.3: g["mutation_strength"] = max(0.05, float(g.get("mutation_strength",1.0)) + random.uniform(-0.25, 0.25))
-    return g
-
-def _backup_self(tag=""):
-    ts = datetime.utcnow().strftime("%Y%m%d_%H%M%S_%f")
-    base = os.path.join(BK_DIR, f"evolution_core_{ts}{('_'+tag) if tag else ''}.py")
-    shutil.copy2(__file__, base)
-    # keep a pointer to "last good"
-    shutil.copy2(__file__, os.path.join(BK_DIR, "_last_good.py"))
-    return base
-
-def _restore_last_good():
-    lg = os.path.join(BK_DIR, "_last_good.py")
-    if os.path.exists(lg):
-        shutil.copy2(lg, __file__)
-        return True
+def restore_last_good():
+  try:
+    with open(LASTGOOD, "r", encoding="utf-8") as f:
+      txt = f.read()
+    with open(__file__, "w", encoding="utf-8") as f:
+      f.write(txt)
+    return True
+  except Exception:
     return False
 
-def _mutate_region_text(txt, strength=1.0):
-    """
-    Brutal text-level mutation inside MUTATE_REGION.
-    - random operator swaps
-    - random constant perturbations
-    - random line shuffles (small)
-    - random token injections
-    """
-    begin = txt.find("# -------- MUTATE_REGION_BEGIN --------")
-    end   = txt.find("# -------- MUTATE_REGION_END --------")
-    if begin == -1 or end == -1 or end <= begin:
-        return txt
-
-    head = txt[:begin]
-    mid  = txt[begin:end]
-    tail = txt[end:]
-
-    lines = mid.splitlines()
-
-    # small pool of aggressive edits
-    def op_swap(s):
-        swaps = [
-            (" + ", " - "), (" - ", " + "),
-            (" * ", " + "), (" + ", " * "),
-            ("0.01", str(max(0.0001, 0.01 + random.uniform(-0.008, 0.05)*strength))),
-            ("math.pi", "math.tau" if hasattr(math,"tau") else "math.pi*2"),
-            ("abs(", "math.fabs("),
-            ("0.5*x", f"{max(0.05, 0.5 + random.uniform(-0.4,0.9)*strength):.3f}*x"),
-        ]
-        a,b = random.choice(swaps)
-        return s.replace(a,b,1) if a in s else s
-
-    # apply several random edits
-    edits = max(1, int(2 + 6*random.random()*strength))
-    for _ in range(edits):
-        i = random.randrange(len(lines))
-        lines[i] = op_swap(lines[i])
-
-    # occasional line shuffle inside region (limited)
-    if random.random() < 0.25*strength and len(lines) > 6:
-        a = random.randrange(1, len(lines)-1)
-        b = random.randrange(1, len(lines)-1)
-        lines[a], lines[b] = lines[b], lines[a]
-
-    # occasional injection of a new line (dangerous but fun)
-    if random.random() < 0.20*strength:
-        injects = [
-            "    s = s + 0.001*abs(a-b) + 0.001*abs(b-c) + 0.001*abs(c-a)",
-            "    s = s * (1.0 + 0.01*random.random())",
-            "    s = max(s, 0.000001)",
-            "    s = s + 0.0001*(a*a + b*b + c*c)",
-        ]
-        lines.insert(random.randrange(1, len(lines)-1), random.choice(injects))
-
-    new_mid = "\n".join(lines) + "\n"
-    return head + new_mid + tail
-
-def rewrite_self(genome):
-    """
-    Mutate evolution_core.py IN PLACE.
-    If it breaks, the supervisor (loop) will restore last-good.
-    """
-    strength = float(genome.get("mutation_strength", 1.0))
+def restore_last_good_if_needed():
+  try:
     with open(__file__, "r", encoding="utf-8") as f:
-        txt = f.read()
+      txt = f.read()
+    if "def step" not in txt:
+      restore_last_good()
+      return True
+  except Exception:
+    restore_last_good()
+    return True
+  return False
 
-    _backup_self("pre_mut")
-    mutated = _mutate_region_text(txt, strength=strength)
+def score(g):
+  r = random.random() * math.pi
+  return abs(math.sin(r*g["A"]) + math.cos(r*g["B"]) + g["W"])
 
-    with open(__file__, "w", encoding="utf-8", newline="\n") as f:
-        f.write(mutated)
+def mutate(g):
+  mu = float(g.get("mutation_scale", 0.04))
+  gg = dict(g)
+  gg["A"] = float(gg["A"]) + random.uniform(-mu, mu)
+  gg["B"] = float(gg["B"]) + random.uniform(-mu, mu)
+  gg["W"] = float(gg["W"]) + random.uniform(-mu, mu)
+  return gg
+
+def confirm(g, ck):
+  s = 0.0
+  for _ in range(int(ck)):
+    s += score(g)
+  return s / float(ck)
+
+def adapt_controls(g, crash_state):
+  gg = dict(g)
+  c = int(crash_state.get("crashes", 0))
+  crash_bias = min(0.25, 0.01 * float(c))
+
+  mu = float(gg.get("mutation_scale", 0.04))
+  mu = max(0.005, mu * (1.0 - crash_bias))
+  gg["mutation_scale"] = mu
+
+  gg["k"]  = int(max(3, min(12, int(gg.get("k", 8)))))
+  gg["ck"] = int(max(3, min(9,  int(gg.get("ck", 5)))))
+  return gg, crash_bias
+
+def plateau_ok(trend_hist):
+  if not isinstance(trend_hist, list):
+    return False
+  if len(trend_hist) < REWRITE_MIN_PLATEAU:
+    return False
+  w = trend_hist[-REWRITE_MIN_PLATEAU:]
+  mx = max(w)
+  mn = min(w)
+  return (mx - mn) < 0.0200
+
+def safe_rewrite_constants(g):
+  # Mode C: tiny nudges only; always backup+restore path; never remove step()
+  try:
+    # gating
+    iters = int(g.get("_iters", 0))
+    if iters < REWRITE_MIN_ITERS:
+      return False
+
+    th = g.get("trend_hist", [])
+    if not plateau_ok(th):
+      return False
+
+    backup_last_good()
+
+    # read this file
+    with open(__file__, "r", encoding="utf-8") as f:
+      txt = f.read()
+
+    # choose a tiny nudge to mutation_scale floor by adjusting REWRITE_MAX_DELTA
+    # (kept extremely safe and bounded)
+    new_val = REWRITE_MAX_DELTA + random.uniform(-0.0010, 0.0010)
+    new_val = max(0.0060, min(0.0200, new_val))
+
+    # rewrite the constant line
+    import re
+    pat = r"REWRITE_MAX_DELTA\s*=\s*([0-9.]+)"
+    m = re.search(pat, txt)
+    if not m:
+      return False
+
+    old = float(m.group(1))
+    if abs(new_val - old) > REWRITE_MAX_DELTA:
+      return False
+
+    txt2 = re.sub(pat, f"REWRITE_MAX_DELTA = {new_val:.4f}", txt, count=1)
+
+    # sanity: must still contain def step
+    if "def step" not in txt2:
+      return False
+
+    # write and quick self-import check via text scan (runtime import happens next loop)
+    with open(__file__, "w", encoding="utf-8") as f:
+      f.write(txt2)
+
+    g["rewrite_count"] = int(g.get("rewrite_count", 0)) + 1
+    return True
+  except Exception:
+    # restore on any failure
+    restore_last_good()
+    return False
+
+def selftest():
+  g = load_genome()
+  s = load_crash()
+  out = adapt_controls(g, s)
+  ok = (isinstance(out, tuple) and len(out) == 2)
+  if not ok:
+    return False, "adapt_controls must return (g, crash_bias)"
+  return True, "ok"
 
 def step(i):
-    global best_raw, best_conf, promotes
+  g = load_genome()
+  crash_state = load_crash()
+  g, crash_bias = adapt_controls(g, crash_state)
 
-    g = load_genome()
-    cand = mutate_genome(g)
+  k  = int(g.get("k", 8))
+  ck = int(g.get("ck", 5))
 
-    main_score = score(g)
-    cand_score = score(cand)
+  best_conf = float(g.get("best_confirmed", -9999.0))
+  best_raw  = float(g.get("best_raw", -9999.0))
 
-    if cand_score > best_raw:
-        best_raw = cand_score
+  main_score = score(g)
 
-    # confirmation gate (still chaotic, but stops constant thrash)
-    if cand_score > best_conf:
-        k = int(cand.get("confirm_k", 3))
-        k = max(1, min(15, k))
-        conf = sum(score(cand) for _ in range(k)) / float(k)
-        if conf > best_conf:
-            best_conf = conf
-            promotes += 1
-            save_genome(cand)
-            print(f"PROMOTED iter {i} CONFIRMED -> {best_conf:.6f}  promotes={promotes}")
+  # multi-candidate selection
+  cand_best = None
+  cand_best_raw = -9999.0
+  for _ in range(k):
+    cnd = mutate(g)
+    sraw = score(cnd)
+    if sraw > cand_best_raw:
+      cand_best_raw = sraw
+      cand_best = cnd
 
-    # periodic self-rewrite (CHAOS MODE)
-    rw = int(g.get("rewrite_every", 25))
-    rw = max(3, min(500, rw))
-    if i % rw == 0:
-        print(f"SELF-WRITE TRIGGER iter {i} (rewrite_every={rw})")
-        rewrite_self(g)
+  cand_score = cand_best_raw
+  if cand_score > best_raw:
+    best_raw = cand_score
 
-    print(f"iter {i} main={main_score:.6f} cand={cand_score:.6f} | best_raw={best_raw:.6f} best_conf={best_conf:.6f}")
+  # confirm-gate promotion
+  if cand_score > best_conf:
+    cconf = confirm(cand_best, ck)
+    if cconf > best_conf:
+      best_conf = cconf
+      g = dict(cand_best)
+
+  # trend / plateau tracking
+  th = g.get("trend_hist", [])
+  if not isinstance(th, list):
+    th = []
+  th.append(float(main_score))
+  g["trend_hist"] = th
+  g["_iters"] = int(i)
+
+  g["best_confirmed"] = best_conf
+  g["best_raw"] = best_raw
+  g["phase"] = 7
+
+  did = safe_rewrite_constants(g)
+  if did:
+    print(f"[PHASE7] SELF-REWRITE COMPLETE rewrites={g.get('rewrite_count',0)}")
+
+  save_genome(g)
+
+  print(f"iter {i} main={main_score:.4f} cand={cand_score:.4f} best_conf={best_conf:.4f} best_raw={best_raw:.4f} k={k} ck={ck} mu={g['mutation_scale']:.4f} crash_bias={crash_bias:.4f}")

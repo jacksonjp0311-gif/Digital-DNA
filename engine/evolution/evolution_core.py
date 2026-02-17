@@ -1,4 +1,4 @@
-import json, os, time, random, math, traceback
+﻿import json, os, time, random, math, traceback
 
 ROOT   = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 GENOME = os.path.join(ROOT, "engine", "mutations", "genome.json")
@@ -244,3 +244,32 @@ def step(i):
   save_genome(g)
 
   print(f"iter {i} main={main_score:.4f} cand={cand_score:.4f} best_conf={best_conf:.4f} best_raw={best_raw:.4f} k={k} ck={ck} mu={g['mutation_scale']:.4f} crash_bias={crash_bias:.4f}")
+
+
+# ------------------------------------------------------------
+# CANONICAL CORE WRAPPER (AUTO-INJECTED)
+# Contract: evolution_loop expects build_core() OR class with .step()
+# ------------------------------------------------------------
+
+def build_core():
+    # Try common class names
+    for name in ("EvolutionCore", "Core", "Engine"):
+        obj = globals().get(name, None)
+        if obj is not None:
+            try:
+                inst = obj()
+                if hasattr(inst, "step"):
+                    return inst
+            except Exception:
+                pass
+
+    # Try module-level step(i)
+    fn = globals().get("step", None)
+    if callable(fn):
+        class _CoreWrapper:
+            def step(self, i):
+                return fn(i)
+        return _CoreWrapper()
+
+    raise RuntimeError("No usable core object found in evolution_core.py")
+# [DDNA_MUTATION_MARK]      
