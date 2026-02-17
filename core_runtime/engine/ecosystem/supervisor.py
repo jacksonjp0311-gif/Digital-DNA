@@ -1,3 +1,43 @@
+# ================= AUTONOMOUS_EVOLUTION_V3 =================
+import json, random, threading, time
+from pathlib import Path
+
+LINEAGE_FILE = Path("ecosystem/state/lineage.json")
+
+def _load_json(p,default):
+    try: return json.loads(Path(p).read_text())
+    except: return default
+
+def _save_json(p,data):
+    Path(p).write_text(json.dumps(data,indent=2))
+
+def _record_lineage(best_score,best_genome):
+    data=_load_json(LINEAGE_FILE,{"history":[]})
+    data["history"].append({
+        "score":best_score,
+        "genome":best_genome
+    })
+    _save_json(LINEAGE_FILE,data)
+
+def _adaptive_mutation(prev,best):
+    if prev is None:
+        return 0.05
+
+    if best > prev:
+        return max(0.01, 0.05 * 0.9)
+    else:
+        return min(0.5, 0.05 * 1.2)
+
+def _parallel_run(org_paths,steps):
+    threads=[]
+    for p in org_paths:
+        t=threading.Thread(target=_run_org,args=(p,steps))
+        t.start()
+        threads.append(t)
+    for t in threads:
+        t.join()
+
+# ===========================================================
 # ================= SELECTION_ENGINE_V2 =================
 import json, random
 from pathlib import Path
@@ -103,4 +143,5 @@ def main():
 
 if __name__=="__main__":
     main()
+
 
