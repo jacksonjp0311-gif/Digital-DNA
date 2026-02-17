@@ -11,7 +11,7 @@
     }
   },
   "state": {
-    "generation": 28,
+    "generation": 50,
     "best_id": 3,
     "best_score": 200.003,
     "best_genome": {
@@ -292,6 +292,226 @@
       },
       {
         "gen": 28,
+        "best_id": 3,
+        "best_score": 200.003,
+        "best_genome": {
+          "alpha": 0.5,
+          "beta": 0.5,
+          "mut_rate": 0.05
+        }
+      },
+      {
+        "gen": 29,
+        "best_id": 3,
+        "best_score": 200.003,
+        "best_genome": {
+          "alpha": 0.5,
+          "beta": 0.5,
+          "mut_rate": 0.05
+        }
+      },
+      {
+        "gen": 30,
+        "best_id": 3,
+        "best_score": 200.003,
+        "best_genome": {
+          "alpha": 0.5,
+          "beta": 0.5,
+          "mut_rate": 0.05
+        }
+      },
+      {
+        "gen": 31,
+        "best_id": 3,
+        "best_score": 200.003,
+        "best_genome": {
+          "alpha": 0.5,
+          "beta": 0.5,
+          "mut_rate": 0.05
+        }
+      },
+      {
+        "gen": 32,
+        "best_id": 3,
+        "best_score": 200.003,
+        "best_genome": {
+          "alpha": 0.5,
+          "beta": 0.5,
+          "mut_rate": 0.05
+        }
+      },
+      {
+        "gen": 33,
+        "best_id": 3,
+        "best_score": 200.003,
+        "best_genome": {
+          "alpha": 0.5,
+          "beta": 0.5,
+          "mut_rate": 0.05
+        }
+      },
+      {
+        "gen": 34,
+        "best_id": 3,
+        "best_score": 200.003,
+        "best_genome": {
+          "alpha": 0.5,
+          "beta": 0.5,
+          "mut_rate": 0.05
+        }
+      },
+      {
+        "gen": 35,
+        "best_id": 3,
+        "best_score": 200.003,
+        "best_genome": {
+          "alpha": 0.5,
+          "beta": 0.5,
+          "mut_rate": 0.05
+        }
+      },
+      {
+        "gen": 36,
+        "best_id": 3,
+        "best_score": 200.003,
+        "best_genome": {
+          "alpha": 0.5,
+          "beta": 0.5,
+          "mut_rate": 0.05
+        }
+      },
+      {
+        "gen": 37,
+        "best_id": 3,
+        "best_score": 200.003,
+        "best_genome": {
+          "alpha": 0.5,
+          "beta": 0.5,
+          "mut_rate": 0.05
+        }
+      },
+      {
+        "gen": 38,
+        "best_id": 3,
+        "best_score": 200.003,
+        "best_genome": {
+          "alpha": 0.5,
+          "beta": 0.5,
+          "mut_rate": 0.05
+        }
+      },
+      {
+        "gen": 39,
+        "best_id": 3,
+        "best_score": 200.003,
+        "best_genome": {
+          "alpha": 0.5,
+          "beta": 0.5,
+          "mut_rate": 0.05
+        }
+      },
+      {
+        "gen": 40,
+        "best_id": 3,
+        "best_score": 200.003,
+        "best_genome": {
+          "alpha": 0.5,
+          "beta": 0.5,
+          "mut_rate": 0.05
+        }
+      },
+      {
+        "gen": 41,
+        "best_id": 3,
+        "best_score": 200.003,
+        "best_genome": {
+          "alpha": 0.5,
+          "beta": 0.5,
+          "mut_rate": 0.05
+        }
+      },
+      {
+        "gen": 42,
+        "best_id": 3,
+        "best_score": 200.003,
+        "best_genome": {
+          "alpha": 0.5,
+          "beta": 0.5,
+          "mut_rate": 0.05
+        }
+      },
+      {
+        "gen": 43,
+        "best_id": 3,
+        "best_score": 200.003,
+        "best_genome": {
+          "alpha": 0.5,
+          "beta": 0.5,
+          "mut_rate": 0.05
+        }
+      },
+      {
+        "gen": 44,
+        "best_id": 3,
+        "best_score": 200.003,
+        "best_genome": {
+          "alpha": 0.5,
+          "beta": 0.5,
+          "mut_rate": 0.05
+        }
+      },
+      {
+        "gen": 45,
+        "best_id": 3,
+        "best_score": 200.003,
+        "best_genome": {
+          "alpha": 0.5,
+          "beta": 0.5,
+          "mut_rate": 0.05
+        }
+      },
+      {
+        "gen": 46,
+        "best_id": 3,
+        "best_score": 200.003,
+        "best_genome": {
+          "alpha": 0.5,
+          "beta": 0.5,
+          "mut_rate": 0.05
+        }
+      },
+      {
+        "gen": 47,
+        "best_id": 3,
+        "best_score": 200.003,
+        "best_genome": {
+          "alpha": 0.5,
+          "beta": 0.5,
+          "mut_rate": 0.05
+        }
+      },
+      {
+        "gen": 48,
+        "best_id": 3,
+        "best_score": 200.003,
+        "best_genome": {
+          "alpha": 0.5,
+          "beta": 0.5,
+          "mut_rate": 0.05
+        }
+      },
+      {
+        "gen": 49,
+        "best_id": 3,
+        "best_score": 200.003,
+        "best_genome": {
+          "alpha": 0.5,
+          "beta": 0.5,
+          "mut_rate": 0.05
+        }
+      },
+      {
+        "gen": 50,
         "best_id": 3,
         "best_score": 200.003,
         "best_genome": {

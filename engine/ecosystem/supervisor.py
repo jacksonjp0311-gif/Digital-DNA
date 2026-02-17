@@ -1,4 +1,11 @@
-﻿import os, sys, json, time, subprocess, random
+﻿
+import json, random
+
+def _write_genome(workdir, genome):
+    gpath = workdir / "genome.json"
+    gpath.write_text(json.dumps(genome,indent=2))
+
+import os, sys, json, time, subprocess, random
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]  # .../engine/ecosystem -> repo root
@@ -297,5 +304,6 @@ def main(argv=None):
 
 if __name__ == "__main__":
     raise SystemExit(main())
+
 
 
