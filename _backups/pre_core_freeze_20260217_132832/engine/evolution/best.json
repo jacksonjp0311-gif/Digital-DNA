@@ -1,0 +1,13 @@
+{
+  "best_score": 2.0115560622845847,
+  "promotes": 9,
+  "best_genome": {
+    "A": -0.132495,
+    "B": 0.025069,
+    "W": 1.077441,
+    "mode_a": "sin",
+    "mode_b": "sin_rr",
+    "mode_c": "sin_rr",
+    "radius": 0.052369
+  }
+}

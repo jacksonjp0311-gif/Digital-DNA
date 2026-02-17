@@ -1,0 +1,12 @@
+{
+  "k_candidates": 8,
+  "confirm_k": 4,
+  "mutation_scale": 0.07170555411733867,
+  "rewrite_period": 180,
+  "meta_mutation_period": 30,
+  "crash_penalty": 0.0,
+  "recent_crashes": 0,
+  "recent_promotes": 9,
+  "score_mode": "rr_mix",
+  "op_insertion_limit": 12
+}

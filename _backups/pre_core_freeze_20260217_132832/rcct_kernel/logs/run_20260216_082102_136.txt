@@ -1,0 +1,18 @@
+﻿{
+  "ts_unix": 1771248062,
+  "stamp": "20260216_082102_136",
+  "sha256": "ef384da3b455ec2987bbcf187a9b1130775bbc097c16566e4b5311f920aac640",
+  "kappa": 0.95,
+  "bound_radius_est": 0.4953349376139872,
+  "final_x": 0.023822612920571338,
+  "drift_D": 0.47617738707942864,
+  "coherence_C": 0.5238337344034969,
+  "stability_S": 0.04765634732406826,
+  "lambda_c": 0.7,
+  "alpha": 0.25,
+  "rho": 0.1,
+  "Umax": 0.02,
+  "steps": 200,
+  "gamma": 0.1
+}
+STATE_PATH: C:\Users\jacks\OneDrive\Desktop\Digital-DNA\rcct_kernel\state\rcct_state_20260216_082102_136.json

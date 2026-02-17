@@ -1,0 +1,175 @@
+﻿=============================
+DIGITAL-DNA ITERATION BUNDLE
+=============================
+timestamp: 2026-02-12T22:34:47-05:00
+run_id: 2026-02-13T03:34:46.522322Z
+
+----- packet_latest.json -----
+{
+    "timestamp":  "2026-02-12T22:34:47-05:00",
+    "repo":  "Digital-DNA",
+    "mode":  "LOCAL_TEST",
+    "run_id":  "2026-02-13T03:34:46.522322Z",
+    "observations":  {
+                         "stability":  -0.92307692307692324,
+                         "retention":  0.076923076923076927,
+                         "drift_total":  1,
+                         "artifacts_last_run_present":  true,
+                         "ddna_ledger_present":  true,
+                         "tests_ran":  true
+                     },
+    "baselines":  {
+                      "genome_baseline":  "C:\\Users\\jacks\\OneDrive\\Desktop\\Digital-DNA\\state\\genomes\\baseline.json",
+                      "topology_baseline":  "C:\\Users\\jacks\\OneDrive\\Desktop\\Digital-DNA\\state\\environments\\topology_baseline.json",
+                      "dependency_baseline":  "C:\\Users\\jacks\\OneDrive\\Desktop\\Digital-DNA\\state\\environments\\dependency_baseline.json"
+                  },
+    "invariants_locked":  [
+                              "S = retention - drift_total (unless version bumped with migration note)",
+                              "ledger/* append-only",
+                              "state/** baselines read-only unless explicitly authorized"
+                          ],
+    "allowed_edits":  [
+                          "engine/**",
+                          "docs/codex/**",
+                          "docs/feedback/**"
+                      ],
+    "forbidden_edits":  [
+                            "state/**",
+                            "ledger/**",
+                            "theory/** (unless requested)"
+                        ],
+    "next_actions":  [
+                         "Patch engine/orchestrator/run_ddna.py to aggregate drift channels into drift_total.",
+                         "Upgrade engine/drift/semantic.py from scaffold to baseline comparison.",
+                         "Add stability gating: if S \u003c threshold, block baseline update and emit refusal status."
+                     ]
+}
+
+----- codex_prompt_latest.md -----
+# DIGITAL-DNA — CODEX ITERATION BRIEF (AUTO)
+Timestamp: 2026-02-12T22:34:47-05:00
+Run ID: 2026-02-13T03:34:46.522322Z
+
+## Objective
+Advance Digital-DNA toward a recursive invariant runtime:
+- every iteration measured
+- invariants extracted
+- stability drives decisions
+- Codex loop improves structure
+
+## Current metrics
+- stability: -0.923076923076923
+- retention: 0.0769230769230769
+- drift_total: 1
+
+## Locked invariants
+- S = retention - drift_total (unless version bumped with migration note)
+- ledger/* append-only
+- state/** baselines read-only unless explicitly authorized
+
+## Allowed edits
+- engine/**
+- docs/codex/**
+- docs/feedback/**
+
+## Forbidden edits
+- state/**
+- ledger/**
+- theory/** (unless requested)
+
+## Required next patch set
+1) In engine/orchestrator/run_ddna.py:
+   - compute drift_total as weighted sum of drift channels
+   - persist drift_channels breakdown into artifacts/last_run.json
+2) In engine/drift/semantic.py:
+   - implement baseline semantic signatures + comparison
+3) Add stability gating:
+   - derive threshold from config/thresholds.json
+   - if unstable, do NOT mutate baselines; write status + reason in last_run.json
+
+## Verification
+- engine run updates artifacts/last_run.json with stability/retention/drift_total/drift_channels/status
+- tests: structural_envelope_test_v1.py and behavioral_test_v1.py
+
+----- artifacts/last_run.json -----
+{
+  "retention": 0.07692307692307693,
+  "drift": 1.0,
+  "drift_raw": 2.1363636363636362,
+  "drift_topology": 2.1363636363636362,
+  "drift_dependency": 0.0,
+  "weights": {
+    "topology": 1.0,
+    "dependency": 1.0
+  },
+  "stability": -0.9230769230769231,
+  "timestamp": "2026-02-13T03:34:46.522322Z"
+}
+
+----- config/thresholds.json -----
+{
+  "H7": 0.70
+}
+
+----- config/weights.json -----
+{
+  "topology": 1.0,
+  "dependency": 1.0
+}
+
+----- config/environments.json -----
+{
+  "default": "local-desktop"
+}
+
+----- ddna_ledger tail -----
+{"retention": 1.0, "drift": 0.0, "stability": 1.0, "timestamp": "2026-02-11T14:56:29.588443"}\n{"retention": 1.0, "drift": 0.0, "stability": 1.0, "timestamp": "2026-02-11T14:56:29.661418"}\n{"retention": 0.8461538461538461, "drift": 0.0, "stability": 0.8461538461538461, "timestamp": "2026-02-11T14:59:08.918113"}\n{"retention": 0.8461538461538461, "drift": 0.0, "stability": 0.8461538461538461, "timestamp": "2026-02-11T14:59:08.988169"}\n{"retention": 0.8461538461538461, "drift": 0.0, "stability": 0.8461538461538461, "timestamp": "2026-02-11T14:59:11.719412"}\n{"retention": 0.8461538461538461, "drift": 0.0, "stability": 0.8461538461538461, "timestamp": "2026-02-11T14:59:11.786062"}\n{"retention": 0.8461538461538461, "drift": 0.0, "stability": 0.8461538461538461, "timestamp": "2026-02-11T15:00:37.421797"}\n{"retention": 0.8461538461538461, "drift": 0.0, "stability": 0.8461538461538461, "timestamp": "2026-02-11T15:00:47.938256"}\n{"retention": 0.8461538461538461, "drift": 0.0, "stability": 0.8461538461538461, "timestamp": "2026-02-11T15:03:02.574987"}\n{"retention": 0.8461538461538461, "drift": 0.0, "stability": 0.8461538461538461, "timestamp": "2026-02-11T15:03:21.098337"}\n{"retention": 0.8461538461538461, "drift": 0.0, "stability": 0.8461538461538461, "timestamp": "2026-02-11T15:04:29.436411"}\n{"retention": 0.8461538461538461, "drift": 0.05555555555555555, "stability": 0.7905982905982906, "timestamp": "2026-02-11T15:04:42.315231"}\n{"retention": 0.7692307692307693, "drift": 0.0, "drift_topology": 0.0, "drift_dependency": 0.0, "stability": 0.7692307692307693, "timestamp": "2026-02-11T15:23:51.240797"}\n{"retention": 0.7692307692307693, "drift": 0.0, "drift_topology": 0.0, "drift_dependency": 0.0, "stability": 0.7692307692307693, "timestamp": "2026-02-11T15:23:52.696054"}\n{"retention": 0.6923076923076923, "drift": 0.0, "drift_raw": 0.0, "drift_topology": 0.0, "drift_dependency": 0.0, "stability": 0.6923076923076923, "timestamp": "2026-02-11T15:37:31.097465"}\n{"retention": 0.6923076923076923, "drift": 0.0, "drift_raw": 0.0, "drift_topology": 0.0, "drift_dependency": 0.0, "stability": 0.6923076923076923, "timestamp": "2026-02-11T15:37:32.537959"}\n{"retention": 0.6923076923076923, "drift": 0.025, "drift_raw": 0.025, "drift_topology": 0.05, "drift_dependency": 0.0, "stability": 0.6673076923076923, "timestamp": "2026-02-11T15:37:34.742025"}\n{"retention": 0.6923076923076923, "drift": 0.0, "drift_raw": 0.0, "drift_topology": 0.0, "drift_dependency": 0.0, "stability": 0.6923076923076923, "timestamp": "2026-02-11T15:37:35.206887"}\n{"retention": 0.6923076923076923, "drift": 0.0, "drift_raw": 0.0, "drift_topology": 0.0, "drift_dependency": 0.0, "stability": 0.6923076923076923, "timestamp": "2026-02-11T15:39:21.709297"}\n{"retention": 0.6923076923076923, "drift": 0.025, "drift_raw": 0.025, "drift_topology": 0.05, "drift_dependency": 0.0, "stability": 0.6673076923076923, "timestamp": "2026-02-11T15:39:22.622809"}\n{"retention": 0.6923076923076923, "drift": 0.0, "drift_raw": 0.0, "drift_topology": 0.0, "drift_dependency": 0.0, "stability": 0.6923076923076923, "timestamp": "2026-02-11T15:39:23.225610"}\n{"retention": 0.6923076923076923, "drift": 0.0, "drift_raw": 0.0, "drift_topology": 0.0, "drift_dependency": 0.0, "weights": {"topology": 1.0, "dependency": 1.0}, "stability": 0.6923076923076923, "timestamp": "2026-02-11T15:46:16.035206"}\n{"retention": 0.6153846153846154, "drift": 0.0, "drift_raw": 0.0, "drift_topology": 0.0, "drift_dependency": 0.0, "weights": {"topology": 1.0, "dependency": 1.0}, "stability": 0.6153846153846154, "timestamp": "2026-02-11T15:46:16.129106"}\n{"retention": 0.6153846153846154, "drift": 0.0, "drift_raw": 0.0, "drift_topology": 0.0, "drift_dependency": 0.0, "weights": {"topology": 1.0, "dependency": 1.0}, "stability": 0.6153846153846154, "timestamp": "2026-02-11T15:46:16.216733"}\n{"retention": 0.6153846153846154, "drift": 0.0, "drift_raw": 0.0, "drift_topology": 0.0, "drift_dependency": 0.0, "weights": {"topology": 1.0, "dependency": 1.0}, "stability": 0.6153846153846154, "timestamp": "2026-02-11T15:50:06.858792"}\n{"retention": 0.6153846153846154, "drift": 0.0, "drift_raw": 0.0, "drift_topology": 0.0, "drift_dependency": 0.0, "weights": {"topology": 1.0, "dependency": 1.0}, "stability": 0.6153846153846154, "timestamp": "2026-02-11T15:50:06.954610"}\n{"retention": 0.6153846153846154, "drift": 0.0, "drift_raw": 0.0, "drift_topology": 0.0, "drift_dependency": 0.0, "weights": {"topology": 1.0, "dependency": 1.0}, "stability": 0.6153846153846154, "timestamp": "2026-02-11T15:50:07.058787"}\n{"retention": 0.6153846153846154, "drift": 0.0, "drift_raw": 0.0, "drift_topology": 0.0, "drift_dependency": 0.0, "weights": {"topology": 1.0, "dependency": 1.0}, "stability": 0.6153846153846154, "timestamp": "2026-02-11T15:50:07.158341"}\n{"retention": 0.6153846153846154, "drift": 0.047619047619047616, "drift_raw": 0.047619047619047616, "drift_topology": 0.047619047619047616, "drift_dependency": 0.0, "weights": {"topology": 1.0, "dependency": 1.0}, "stability": 0.5677655677655677, "timestamp": "2026-02-11T15:50:07.254777"}\n{"retention": 0.6153846153846154, "drift": 0.0, "drift_raw": 0.0, "drift_topology": 0.0, "drift_dependency": 0.0, "weights": {"topology": 1.0, "dependency": 1.0}, "stability": 0.6153846153846154, "timestamp": "2026-02-11T15:50:07.342800"}\n{"retention": 0.6153846153846154, "drift": 0.0, "drift_raw": 0.0, "drift_topology": 0.0, "drift_dependency": 0.0, "weights": {"topology": 1.0, "dependency": 1.0}, "stability": 0.6153846153846154, "timestamp": "2026-02-11T15:50:42.906030"}\n{"retention": 0.6153846153846154, "drift": 0.0, "drift_raw": 0.0, "drift_topology": 0.0, "drift_dependency": 0.0, "weights": {"topology": 1.0, "dependency": 1.0}, "stability": 0.6153846153846154, "timestamp": "2026-02-11T15:54:58.555175"}\n{"retention": 0.6153846153846154, "drift": 0.0, "drift_raw": 0.0, "drift_topology": 0.0, "drift_dependency": 0.0, "weights": {"topology": 1.0, "dependency": 1.0}, "stability": 0.6153846153846154, "timestamp": "2026-02-11T15:56:12.239278"}\n{"retention": 0.6153846153846154, "drift": 0.0, "drift_raw": 0.0, "drift_topology": 0.0, "drift_dependency": 0.0, "weights": {"topology": 1.0, "dependency": 1.0}, "stability": 0.6153846153846154, "timestamp": "2026-02-11T15:56:12.706418"}\n{"retention": 0.6153846153846154, "drift": 0.0, "drift_raw": 0.0, "drift_topology": 0.0, "drift_dependency": 0.0, "weights": {"topology": 1.0, "dependency": 1.0}, "stability": 0.6153846153846154, "timestamp": "2026-02-11T15:56:13.030788"}\n{"retention": 0.6153846153846154, "drift": 0.0, "drift_raw": 0.0, "drift_topology": 0.0, "drift_dependency": 0.0, "weights": {"topology": 1.0, "dependency": 1.0}, "stability": 0.6153846153846154, "timestamp": "2026-02-11T15:56:55.310843"}\n{"retention": 0.6153846153846154, "drift": 0.0, "drift_raw": 0.0, "drift_topology": 0.0, "drift_dependency": 0.0, "weights": {"topology": 1.0, "dependency": 1.0}, "stability": 0.6153846153846154, "timestamp": "2026-02-11T15:56:56.485720"}\n{"retention": 0.6153846153846154, "drift": 0.0, "drift_raw": 0.0, "drift_topology": 0.0, "drift_dependency": 0.0, "weights": {"topology": 1.0, "dependency": 1.0}, "stability": 0.6153846153846154, "timestamp": "2026-02-11T15:56:57.355760"}\n{"retention": 0.6153846153846154, "drift": 0.0, "drift_raw": 0.0, "drift_topology": 0.0, "drift_dependency": 0.0, "weights": {"topology": 1.0, "dependency": 1.0}, "stability": 0.6153846153846154, "timestamp": "2026-02-11T15:58:50.908982"}\n{"retention": 0.5384615384615384, "drift": 1.0, "drift_raw": 1.0, "drift_topology": 0.0, "drift_dependency": 1.0, "weights": {"topology": 1.0, "dependency": 1.0}, "stability": -0.46153846153846156, "timestamp": "2026-02-11T15:58:51.177981"}\n{"retention": 0.5384615384615384, "drift": 1.0, "drift_raw": 1.0, "drift_topology": 0.0, "drift_dependency": 1.0, "weights": {"topology": 1.0, "dependency": 1.0}, "stability": -0.46153846153846156, "timestamp": "2026-02-11T15:58:51.345870"}\n{"retention": 0.5384615384615384, "drift": 0.0, "drift_raw": 0.0, "drift_topology": 0.0, "drift_dependency": 0.0, "weights": {"topology": 1.0, "dependency": 1.0}, "stability": 0.5384615384615384, "timestamp": "2026-02-11T16:07:10.461059"}\n{"retention": 0.5384615384615384, "drift": 0.0, "drift_raw": 0.0, "drift_topology": 0.0, "drift_dependency": 0.0, "weights": {"topology": 1.0, "dependency": 1.0}, "stability": 0.5384615384615384, "timestamp": "2026-02-11T16:10:23.603652"}\n{"retention": 0.5384615384615384, "drift": 0.0, "drift_raw": 0.0, "drift_topology": 0.0, "drift_dependency": 0.0, "weights": {"topology": 1.0, "dependency": 1.0}, "stability": 0.5384615384615384, "timestamp": "2026-02-11T16:14:41.860355"}\n{"retention": 0.5384615384615384, "drift": 0.0, "drift_raw": 0.0, "drift_topology": 0.0, "drift_dependency": 0.0, "weights": {"topology": 1.0, "dependency": 1.0}, "stability": 0.5384615384615384, "timestamp": "2026-02-11T16:15:44.816918"}\n{"retention": 0.5384615384615384, "drift": 0.0, "drift_raw": 0.0, "drift_topology": 0.0, "drift_dependency": 0.0, "weights": {"topology": 1.0, "dependency": 1.0}, "stability": 0.5384615384615384, "timestamp": "2026-02-11T16:21:40.176741"}\n{"retention": 0.5384615384615384, "drift": 0.0, "drift_raw": 0.0, "drift_topology": 0.0, "drift_dependency": 0.0, "weights": {"topology": 1.0, "dependency": 1.0}, "stability": 0.5384615384615384, "timestamp": "2026-02-11T16:38:19.745500"}\n{"retention": 0.5384615384615384, "drift": 0.0, "drift_raw": 0.0, "drift_topology": 0.0, "drift_dependency": 0.0, "weights": {"topology": 1.0, "dependency": 1.0}, "stability": 0.5384615384615384, "timestamp": "2026-02-11T17:11:49.832807"}\n{"retention": 0.5384615384615384, "drift": 0.0, "drift_raw": 0.0, "drift_topology": 0.0, "drift_dependency": 0.0, "weights": {"topology": 1.0, "dependency": 1.0}, "stability": 0.5384615384615384, "timestamp": "2026-02-11T17:11:50.108496"}\n{"retention": 0.5384615384615384, "drift": 0.0, "drift_raw": 0.0, "drift_topology": 0.0, "drift_dependency": 0.0, "weights": {"topology": 1.0, "dependency": 1.0}, "stability": 0.5384615384615384, "timestamp": "2026-02-11T17:11:50.380155"}\n{"retention": 0.5384615384615384, "drift": 0.0, "drift_raw": 0.0, "drift_topology": 0.0, "drift_dependency": 0.0, "weights": {"topology": 1.0, "dependency": 1.0}, "stability": 0.5384615384615384, "timestamp": "2026-02-11T17:22:38.815750"}\n{"retention": 0.5384615384615384, "drift": 0.0, "drift_raw": 0.0, "drift_topology": 0.0, "drift_dependency": 0.0, "weights": {"topology": 1.0, "dependency": 1.0}, "stability": 0.5384615384615384, "timestamp": "2026-02-11T17:22:38.989677"}\n{"retention": 0.5384615384615384, "drift": 0.0, "drift_raw": 0.0, "drift_topology": 0.0, "drift_dependency": 0.0, "weights": {"topology": 1.0, "dependency": 1.0}, "stability": 0.5384615384615384, "timestamp": "2026-02-11T17:22:39.170283"}\n{"retention": 0.07692307692307693, "drift": 1.0, "drift_raw": 2.1363636363636362, "drift_topology": 2.1363636363636362, "drift_dependency": 0.0, "weights": {"topology": 1.0, "dependency": 1.0}, "stability": -0.9230769230769231, "timestamp": "2026-02-13T03:34:46.366458Z"}
+{"retention": 0.07692307692307693, "drift": 1.0, "drift_raw": 2.1363636363636362, "drift_topology": 2.1363636363636362, "drift_dependency": 0.0, "weights": {"topology": 1.0, "dependency": 1.0}, "stability": -0.9230769230769231, "timestamp": "2026-02-13T03:34:46.522322Z"}
+
+----- docs_ledger tail -----
+{
+    "time":  "2026-02-12_22-15-20",
+    "retention":  0,
+    "drift":  0,
+    "stability":  0
+}
+{"t":"2026-02-12T22:24:12-05:00","run_id":"2026-02-11T17:22:39.170283","stability":0.53846153846153844,"retention":0.53846153846153844,"drift_total":0,"source":"artifacts/last_run.json","packet":"docs/feedback/packet_latest.json"}
+
+----- tests summary -----
+### tests\structural_envelope_test_v1.py
+DDNA RUN COMPLETE
+{
+  "retention": 0.07692307692307693,
+  "drift": 1.0,
+  "drift_raw": 2.1363636363636362,
+  "drift_topology": 2.1363636363636362,
+  "drift_dependency": 0.0,
+  "weights": {
+    "topology": 1.0,
+    "dependency": 1.0
+  },
+  "stability": -0.9230769230769231,
+  "timestamp": "2026-02-13T03:34:46.366458Z"
+}
+STRUCTURAL ENVELOPE TEST PASSED
+
+### tests\behavioral_test_v1.py
+DDNA RUN COMPLETE
+{
+  "retention": 0.07692307692307693,
+  "drift": 1.0,
+  "drift_raw": 2.1363636363636362,
+  "drift_topology": 2.1363636363636362,
+  "drift_dependency": 0.0,
+  "weights": {
+    "topology": 1.0,
+    "dependency": 1.0
+  },
+  "stability": -0.9230769230769231,
+  "timestamp": "2026-02-13T03:34:46.522322Z"
+}
+BEHAVIORAL TEST PASSED
+
+### tests\hardening_test_v2.py
+HARDENING TEST V2 PASSED
+

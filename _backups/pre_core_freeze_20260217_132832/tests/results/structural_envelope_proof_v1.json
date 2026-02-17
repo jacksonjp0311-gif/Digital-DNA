@@ -1,0 +1,17 @@
+{
+  "test": "structural_envelope_test_v1",
+  "status": "PASS",
+  "record": {
+    "retention": 0.07692307692307693,
+    "drift": 1.0,
+    "drift_raw": 2.1363636363636362,
+    "drift_topology": 2.1363636363636362,
+    "drift_dependency": 0.0,
+    "weights": {
+      "topology": 1.0,
+      "dependency": 1.0
+    },
+    "stability": -0.9230769230769231,
+    "timestamp": "2026-02-13T03:34:46.366458Z"
+  }
+}

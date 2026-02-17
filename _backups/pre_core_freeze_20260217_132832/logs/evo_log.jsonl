@@ -1,0 +1,950 @@
+{
+    "engine_sha":  "08eaea77219705e1a591883967e790b60c1c21a0cf6b0bb751c2529d21fbabd1",
+    "params":  {
+                   "d":  0.075693681731677454,
+                   "b":  0.26210114432596654,
+                   "clamp_max":  1000000000,
+                   "c":  0.20545088858597488,
+                   "clamp_min":  -1000000000,
+                   "a":  0.0035367670951116812
+               },
+    "runtime_sha":  "219d4adb3d40e4613e8109e6274d71aaffa9469ebe3aefdfdfd851041948c666",
+    "genome_sha":  "3b74370c8a71fd88eef2a32142384511bed34da0861e1c13bccc2596d5d5136e",
+    "run_dir":  "C:\\Users\\jacks\\OneDrive\\Desktop\\DDNA_EVOLVE\\state\\runs\\20260216_230727_iter001",
+    "best_before":  -1E+99,
+    "score":  0.1489980586427255,
+    "stamp":  "20260216_230727",
+    "family":  "linear_product",
+    "iter":  1
+}
+{
+    "engine_sha":  "08eaea77219705e1a591883967e790b60c1c21a0cf6b0bb751c2529d21fbabd1",
+    "params":  {
+                   "d":  0,
+                   "b":  0.35065482023668232,
+                   "clamp_max":  1000000000,
+                   "c":  0.35919858885891665,
+                   "clamp_min":  -1000000000,
+                   "a":  0
+               },
+    "runtime_sha":  "219d4adb3d40e4613e8109e6274d71aaffa9469ebe3aefdfdfd851041948c666",
+    "genome_sha":  "e118cf9d468a750cfed575aefd28129b3bc2d464df56eea47e4fc528439a1813",
+    "run_dir":  "C:\\Users\\jacks\\OneDrive\\Desktop\\DDNA_EVOLVE\\state\\runs\\20260216_230727_iter002",
+    "best_before":  0.1489980586427255,
+    "score":  0.28906762481158016,
+    "stamp":  "20260216_230727",
+    "family":  "linear_product",
+    "iter":  2
+}
+{
+    "engine_sha":  "08eaea77219705e1a591883967e790b60c1c21a0cf6b0bb751c2529d21fbabd1",
+    "params":  {
+                   "d":  0,
+                   "b":  0.26213116075942811,
+                   "clamp_max":  1000000000,
+                   "c":  0.55112757415097557,
+                   "clamp_min":  -1000000000,
+                   "a":  0.27391569277919625
+               },
+    "runtime_sha":  "219d4adb3d40e4613e8109e6274d71aaffa9469ebe3aefdfdfd851041948c666",
+    "genome_sha":  "0bc5e7f3c7acd0fdbbafa5f961b5e69edee1cdf8db68fb2d973716e325fbdba9",
+    "run_dir":  "C:\\Users\\jacks\\OneDrive\\Desktop\\DDNA_EVOLVE\\state\\runs\\20260216_230727_iter003",
+    "best_before":  0.28906762481158016,
+    "score":  0.77261703477828614,
+    "stamp":  "20260216_230727",
+    "family":  "linear_product",
+    "iter":  3
+}
+{
+    "engine_sha":  "08eaea77219705e1a591883967e790b60c1c21a0cf6b0bb751c2529d21fbabd1",
+    "params":  {
+                   "d":  0.25998512895777132,
+                   "b":  0,
+                   "clamp_max":  1000000000,
+                   "c":  0.7812378444621515,
+                   "clamp_min":  -1000000000,
+                   "a":  0.296641417637766
+               },
+    "runtime_sha":  "219d4adb3d40e4613e8109e6274d71aaffa9469ebe3aefdfdfd851041948c666",
+    "genome_sha":  "ceb335b7c39814f3d799ed7f2052fa492abc1ba1032f7aa86bb1625f180b89a3",
+    "run_dir":  "C:\\Users\\jacks\\OneDrive\\Desktop\\DDNA_EVOLVE\\state\\runs\\20260216_230727_iter004",
+    "best_before":  0.77261703477828614,
+    "score":  1.0518807492041404,
+    "stamp":  "20260216_230727",
+    "family":  "linear_product",
+    "iter":  4
+}
+{
+    "engine_sha":  "08eaea77219705e1a591883967e790b60c1c21a0cf6b0bb751c2529d21fbabd1",
+    "params":  {
+                   "d":  0.049502878938570138,
+                   "b":  0.047036956132872461,
+                   "clamp_max":  1000000000,
+                   "c":  0.8004772661721693,
+                   "clamp_min":  -1000000000,
+                   "a":  0.25135844571113508
+               },
+    "runtime_sha":  "219d4adb3d40e4613e8109e6274d71aaffa9469ebe3aefdfdfd851041948c666",
+    "genome_sha":  "2ed4a2b08ef453c55d553236f489ce85a4e0d20fe75a5a1cadaa47a5ea666565",
+    "run_dir":  "C:\\Users\\jacks\\OneDrive\\Desktop\\DDNA_EVOLVE\\state\\runs\\20260216_230727_iter005",
+    "best_before":  1.0518807492041404,
+    "score":  1.037478032762873,
+    "stamp":  "20260216_230727",
+    "family":  "linear_product",
+    "iter":  5
+}
+{
+    "engine_sha":  "08eaea77219705e1a591883967e790b60c1c21a0cf6b0bb751c2529d21fbabd1",
+    "params":  {
+                   "d":  0.313298601709911,
+                   "b":  0,
+                   "clamp_max":  1000000000,
+                   "c":  0.83865855119128641,
+                   "clamp_min":  -1000000000,
+                   "a":  0.00016847779050860323
+               },
+    "runtime_sha":  "219d4adb3d40e4613e8109e6274d71aaffa9469ebe3aefdfdfd851041948c666",
+    "genome_sha":  "b65dc378ac33b3287a4335cc26e1e5d5975a3600f93445401a50c47d6d93b66e",
+    "run_dir":  "C:\\Users\\jacks\\OneDrive\\Desktop\\DDNA_EVOLVE\\state\\runs\\20260216_230727_iter006",
+    "best_before":  1.0518807492041404,
+    "score":  0.80749716881080391,
+    "stamp":  "20260216_230727",
+    "family":  "linear_product",
+    "iter":  6
+}
+{
+    "engine_sha":  "08eaea77219705e1a591883967e790b60c1c21a0cf6b0bb751c2529d21fbabd1",
+    "params":  {
+                   "d":  0.44283122273293851,
+                   "b":  0.18259757341937982,
+                   "clamp_max":  1000000000,
+                   "c":  0.62778770259012817,
+                   "clamp_min":  -1000000000,
+                   "a":  0.53215978100530792
+               },
+    "runtime_sha":  "219d4adb3d40e4613e8109e6274d71aaffa9469ebe3aefdfdfd851041948c666",
+    "genome_sha":  "e8fed72be2afe50b13c9cd62d55acf1209f648d73aa313cbb6ab1f6a1d6ccfc0",
+    "run_dir":  "C:\\Users\\jacks\\OneDrive\\Desktop\\DDNA_EVOLVE\\state\\runs\\20260216_230727_iter007",
+    "best_before":  1.0518807492041404,
+    "score":  1.0791448466382663,
+    "stamp":  "20260216_230727",
+    "family":  "linear_product",
+    "iter":  7
+}
+{
+    "engine_sha":  "08eaea77219705e1a591883967e790b60c1c21a0cf6b0bb751c2529d21fbabd1",
+    "params":  {
+                   "d":  0.28947303927944656,
+                   "b":  0.18811780977440895,
+                   "clamp_max":  1000000000,
+                   "c":  0.512518845737222,
+                   "clamp_min":  -1000000000,
+                   "a":  0.51648817645222334
+               },
+    "runtime_sha":  "219d4adb3d40e4613e8109e6274d71aaffa9469ebe3aefdfdfd851041948c666",
+    "genome_sha":  "c8e7ae87e5e041fa8976f8145c5313f9271991edd3a5a223e9b78e7da48e524a",
+    "run_dir":  "C:\\Users\\jacks\\OneDrive\\Desktop\\DDNA_EVOLVE\\state\\runs\\20260216_230727_iter008",
+    "best_before":  1.0791448466382663,
+    "score":  0.96243615630661883,
+    "stamp":  "20260216_230727",
+    "family":  "linear_product",
+    "iter":  8
+}
+{
+    "engine_sha":  "08eaea77219705e1a591883967e790b60c1c21a0cf6b0bb751c2529d21fbabd1",
+    "params":  {
+                   "d":  0.28237731819151779,
+                   "b":  0.19164767842350888,
+                   "clamp_max":  1000000000,
+                   "c":  0.42263437240507185,
+                   "clamp_min":  -1000000000,
+                   "a":  0.68924703797756093
+               },
+    "runtime_sha":  "219d4adb3d40e4613e8109e6274d71aaffa9469ebe3aefdfdfd851041948c666",
+    "genome_sha":  "b03708d0c67ae0952620586706cd260ddaa542621a570d88dabd1b8e4ba5166b",
+    "run_dir":  "C:\\Users\\jacks\\OneDrive\\Desktop\\DDNA_EVOLVE\\state\\runs\\20260216_230727_iter009",
+    "best_before":  1.0791448466382663,
+    "score":  1.0453141428787793,
+    "stamp":  "20260216_230727",
+    "family":  "linear_product",
+    "iter":  9
+}
+{
+    "engine_sha":  "08eaea77219705e1a591883967e790b60c1c21a0cf6b0bb751c2529d21fbabd1",
+    "params":  {
+                   "d":  0.63517376973068984,
+                   "b":  0.015625528253440574,
+                   "clamp_max":  1000000000,
+                   "c":  0.73112952082004834,
+                   "clamp_min":  -1000000000,
+                   "a":  0.36413254894508629
+               },
+    "runtime_sha":  "219d4adb3d40e4613e8109e6274d71aaffa9469ebe3aefdfdfd851041948c666",
+    "genome_sha":  "b7f4259899e0dd318059ca7a6a66199a2cde481c301df442886fb74c018ea2cb",
+    "run_dir":  "C:\\Users\\jacks\\OneDrive\\Desktop\\DDNA_EVOLVE\\state\\runs\\20260216_230727_iter010",
+    "best_before":  1.0791448466382663,
+    "score":  1.0306102852491803,
+    "stamp":  "20260216_230727",
+    "family":  "ratio_gain",
+    "iter":  10
+}
+{
+    "engine_sha":  "08eaea77219705e1a591883967e790b60c1c21a0cf6b0bb751c2529d21fbabd1",
+    "params":  {
+                   "d":  0.72301006662799516,
+                   "b":  0.053806813272557624,
+                   "clamp_max":  1000000000,
+                   "c":  0.3949252435913892,
+                   "clamp_min":  -1000000000,
+                   "a":  0.78705521355711627
+               },
+    "runtime_sha":  "219d4adb3d40e4613e8109e6274d71aaffa9469ebe3aefdfdfd851041948c666",
+    "genome_sha":  "6045125f3dd7a388020929e38ec5a168ba57513bd60838f179a565c5e2b953b4",
+    "run_dir":  "C:\\Users\\jacks\\OneDrive\\Desktop\\DDNA_EVOLVE\\state\\runs\\20260216_230727_iter011",
+    "best_before":  1.0791448466382663,
+    "score":  0.31186287427407816,
+    "stamp":  "20260216_230727",
+    "family":  "bounded_hinge",
+    "iter":  11
+}
+{
+    "engine_sha":  "08eaea77219705e1a591883967e790b60c1c21a0cf6b0bb751c2529d21fbabd1",
+    "params":  {
+                   "d":  0.339501384757227,
+                   "b":  0.15013095864566556,
+                   "clamp_max":  1000000000,
+                   "c":  0.8881260938421478,
+                   "clamp_min":  -1000000000,
+                   "a":  0.71885840535110712
+               },
+    "runtime_sha":  "219d4adb3d40e4613e8109e6274d71aaffa9469ebe3aefdfdfd851041948c666",
+    "genome_sha":  "2571aaf7ccf7c6488d303df1257965509b8a2f1a8920d2f830690819b0d3ec1d",
+    "run_dir":  "C:\\Users\\jacks\\OneDrive\\Desktop\\DDNA_EVOLVE\\state\\runs\\20260216_230727_iter012",
+    "best_before":  1.0791448466382663,
+    "score":  1.5430081689883992,
+    "stamp":  "20260216_230727",
+    "family":  "linear_product",
+    "iter":  12
+}
+{
+    "engine_sha":  "08eaea77219705e1a591883967e790b60c1c21a0cf6b0bb751c2529d21fbabd1",
+    "params":  {
+                   "d":  0.49996726955285642,
+                   "b":  0,
+                   "clamp_max":  1000000000,
+                   "c":  1.1866457701132844,
+                   "clamp_min":  -1000000000,
+                   "a":  0.6543670617762799
+               },
+    "runtime_sha":  "219d4adb3d40e4613e8109e6274d71aaffa9469ebe3aefdfdfd851041948c666",
+    "genome_sha":  "93c7abfd0644f1794610b8791466df2180fa3a2539c7ca51407edb9d5c751ce9",
+    "run_dir":  "C:\\Users\\jacks\\OneDrive\\Desktop\\DDNA_EVOLVE\\state\\runs\\20260216_230727_iter013",
+    "best_before":  1.5430081689883992,
+    "score":  1.7910161049342788,
+    "stamp":  "20260216_230727",
+    "family":  "linear_product",
+    "iter":  13
+}
+{
+    "engine_sha":  "08eaea77219705e1a591883967e790b60c1c21a0cf6b0bb751c2529d21fbabd1",
+    "params":  {
+                   "d":  0.78996577537151325,
+                   "b":  0.10309400251279303,
+                   "clamp_max":  1000000000,
+                   "c":  1.2742945977832629,
+                   "clamp_min":  -1000000000,
+                   "a":  0.521867021416252
+               },
+    "runtime_sha":  "219d4adb3d40e4613e8109e6274d71aaffa9469ebe3aefdfdfd851041948c666",
+    "genome_sha":  "e49719e2e3e20ffb9800ff314ff5099c67ac0abcb9461a334125e27a619930e7",
+    "run_dir":  "C:\\Users\\jacks\\OneDrive\\Desktop\\DDNA_EVOLVE\\state\\runs\\20260216_230727_iter014",
+    "best_before":  1.7910161049342788,
+    "score":  1.6965462411598049,
+    "stamp":  "20260216_230727",
+    "family":  "linear_product",
+    "iter":  14
+}
+{
+    "engine_sha":  "08eaea77219705e1a591883967e790b60c1c21a0cf6b0bb751c2529d21fbabd1",
+    "params":  {
+                   "d":  0.31949839639454081,
+                   "b":  0,
+                   "clamp_max":  1000000000,
+                   "c":  1.0634237491821048,
+                   "clamp_min":  -1000000000,
+                   "a":  0.45385832463105125
+               },
+    "runtime_sha":  "219d4adb3d40e4613e8109e6274d71aaffa9469ebe3aefdfdfd851041948c666",
+    "genome_sha":  "6e8d204c13f857a8293a0c93e1957b1f562b849110bf15b66c6ae21a292f6767",
+    "run_dir":  "C:\\Users\\jacks\\OneDrive\\Desktop\\DDNA_EVOLVE\\state\\runs\\20260216_230727_iter015",
+    "best_before":  1.7910161049342788,
+    "score":  1.4853322341737019,
+    "stamp":  "20260216_230727",
+    "family":  "linear_product",
+    "iter":  15
+}
+{
+    "engine_sha":  "08eaea77219705e1a591883967e790b60c1c21a0cf6b0bb751c2529d21fbabd1",
+    "params":  {
+                   "d":  0.44903101741756835,
+                   "b":  0.12836991121450902,
+                   "clamp_max":  1000000000,
+                   "c":  1.4525529005809465,
+                   "clamp_min":  -1000000000,
+                   "a":  0.38584962784585053
+               },
+    "runtime_sha":  "219d4adb3d40e4613e8109e6274d71aaffa9469ebe3aefdfdfd851041948c666",
+    "genome_sha":  "69a8a1e093483e8490369d8fcc9655c00a88ce313c524e2730c0033b7d3b2a94",
+    "run_dir":  "C:\\Users\\jacks\\OneDrive\\Desktop\\DDNA_EVOLVE\\state\\runs\\20260216_230727_iter016",
+    "best_before":  1.7910161049342788,
+    "score":  1.7678254444421384,
+    "stamp":  "20260216_230727",
+    "family":  "linear_product",
+    "iter":  16
+}
+{
+    "engine_sha":  "08eaea77219705e1a591883967e790b60c1c21a0cf6b0bb751c2529d21fbabd1",
+    "params":  {
+                   "d":  0.57856363844059577,
+                   "b":  0,
+                   "clamp_max":  1000000000,
+                   "c":  1.2416820519797884,
+                   "clamp_min":  -1000000000,
+                   "a":  0.9178409310606499
+               },
+    "runtime_sha":  "219d4adb3d40e4613e8109e6274d71aaffa9469ebe3aefdfdfd851041948c666",
+    "genome_sha":  "cdd5bdc6cfcd31fb5865412dab665bb3cdf1e3efc9abf83ea2409329eb3d17cb",
+    "run_dir":  "C:\\Users\\jacks\\OneDrive\\Desktop\\DDNA_EVOLVE\\state\\runs\\20260216_230727_iter017",
+    "best_before":  1.7910161049342788,
+    "score":  2.1016666191963789,
+    "stamp":  "20260216_230727",
+    "family":  "linear_product",
+    "iter":  17
+}
+{
+    "engine_sha":  "08eaea77219705e1a591883967e790b60c1c21a0cf6b0bb751c2529d21fbabd1",
+    "params":  {
+                   "d":  0.32650183985312559,
+                   "b":  0.093217566885621078,
+                   "clamp_max":  1000000000,
+                   "c":  0.98407414363886869,
+                   "clamp_min":  -1000000000,
+                   "a":  1.1817714595616662
+               },
+    "runtime_sha":  "219d4adb3d40e4613e8109e6274d71aaffa9469ebe3aefdfdfd851041948c666",
+    "genome_sha":  "9c23a1bc8bef503b3ec3cb175db9db15e8c8daa51678185a5322d8affe899ca3",
+    "run_dir":  "C:\\Users\\jacks\\OneDrive\\Desktop\\DDNA_EVOLVE\\state\\runs\\20260216_230727_iter018",
+    "best_before":  2.1016666191963789,
+    "score":  2.1345156943440164,
+    "stamp":  "20260216_230727",
+    "family":  "cusp_like",
+    "iter":  18
+}
+{
+    "engine_sha":  "08eaea77219705e1a591883967e790b60c1c21a0cf6b0bb751c2529d21fbabd1",
+    "params":  {
+                   "d":  0.19842655253523339,
+                   "b":  0.0697860497374954,
+                   "clamp_max":  1000000000,
+                   "c":  0.86642086192333156,
+                   "clamp_min":  -1000000000,
+                   "a":  1.1260466641402089
+               },
+    "runtime_sha":  "219d4adb3d40e4613e8109e6274d71aaffa9469ebe3aefdfdfd851041948c666",
+    "genome_sha":  "c352e89905aef533622cddb63f38b0e96f070a2be6a2fd3949db5062da4f6bb4",
+    "run_dir":  "C:\\Users\\jacks\\OneDrive\\Desktop\\DDNA_EVOLVE\\state\\runs\\20260216_230727_iter019",
+    "best_before":  2.1345156943440164,
+    "score":  1.9716876319965539,
+    "stamp":  "20260216_230727",
+    "family":  "cusp_like",
+    "iter":  19
+}
+{
+    "engine_sha":  "08eaea77219705e1a591883967e790b60c1c21a0cf6b0bb751c2529d21fbabd1",
+    "params":  {
+                   "d":  0.32795917355826093,
+                   "b":  0.38242400408835342,
+                   "clamp_max":  1000000000,
+                   "c":  1.2555500133221735,
+                   "clamp_min":  -1000000000,
+                   "a":  1.0580379673550082
+               },
+    "runtime_sha":  "219d4adb3d40e4613e8109e6274d71aaffa9469ebe3aefdfdfd851041948c666",
+    "genome_sha":  "6030ffea8f67633eae930ceb36b743ee1a07979ebd1b7fc802f1a709ddb099d4",
+    "run_dir":  "C:\\Users\\jacks\\OneDrive\\Desktop\\DDNA_EVOLVE\\state\\runs\\20260216_230727_iter020",
+    "best_before":  2.1345156943440164,
+    "score":  2.2208456858423822,
+    "stamp":  "20260216_230727",
+    "family":  "cusp_like",
+    "iter":  20
+}
+{
+    "engine_sha":  "08eaea77219705e1a591883967e790b60c1c21a0cf6b0bb751c2529d21fbabd1",
+    "params":  {
+                   "d":  0.45894912828642376,
+                   "b":  0.38426839564194365,
+                   "clamp_max":  1000000000,
+                   "c":  1.31615503440432,
+                   "clamp_min":  -1000000000,
+                   "a":  0.86629577836314953
+               },
+    "runtime_sha":  "219d4adb3d40e4613e8109e6274d71aaffa9469ebe3aefdfdfd851041948c666",
+    "genome_sha":  "8ac97038e11260da48ae82eab872332333914fae581953b6e82537d3fa1acf8f",
+    "run_dir":  "C:\\Users\\jacks\\OneDrive\\Desktop\\DDNA_EVOLVE\\state\\runs\\20260216_230727_iter021",
+    "best_before":  2.2208456858423822,
+    "score":  2.0818707731091988,
+    "stamp":  "20260216_230727",
+    "family":  "cusp_like",
+    "iter":  21
+}
+{
+    "engine_sha":  "08eaea77219705e1a591883967e790b60c1c21a0cf6b0bb751c2529d21fbabd1",
+    "params":  {
+                   "d":  0.12274485105776461,
+                   "b":  0.20719105857759304,
+                   "clamp_max":  1000000000,
+                   "c":  1.3543363194234372,
+                   "clamp_min":  -1000000000,
+                   "a":  1.215105810442523
+               },
+    "runtime_sha":  "219d4adb3d40e4613e8109e6274d71aaffa9469ebe3aefdfdfd851041948c666",
+    "genome_sha":  "bef995de5f77e0511ca5a91176401ca800ad3047fc92541039546550e1a9f158",
+    "run_dir":  "C:\\Users\\jacks\\OneDrive\\Desktop\\DDNA_EVOLVE\\state\\runs\\20260216_230727_iter022",
+    "best_before":  2.2208456858423822,
+    "score":  2.5213868939838822,
+    "stamp":  "20260216_230727",
+    "family":  "cusp_like",
+    "iter":  22
+}
+{
+    "engine_sha":  "08eaea77219705e1a591883967e790b60c1c21a0cf6b0bb751c2529d21fbabd1",
+    "params":  {
+                   "d":  0.35218876034588964,
+                   "b":  0.09510651607769853,
+                   "clamp_max":  1000000000,
+                   "c":  1.2786546179459684,
+                   "clamp_min":  -1000000000,
+                   "a":  1.3525108209590013
+               },
+    "runtime_sha":  "219d4adb3d40e4613e8109e6274d71aaffa9469ebe3aefdfdfd851041948c666",
+    "genome_sha":  "41b6e0a65d42db6457ea1bff89d96fe2945e6f1079d243cb598bb7cecbda5e28",
+    "run_dir":  "C:\\Users\\jacks\\OneDrive\\Desktop\\DDNA_EVOLVE\\state\\runs\\20260216_230727_iter023",
+    "best_before":  2.5213868939838822,
+    "score":  2.594381259708114,
+    "stamp":  "20260216_230727",
+    "family":  "cusp_like",
+    "iter":  23
+}
+{
+    "engine_sha":  "08eaea77219705e1a591883967e790b60c1c21a0cf6b0bb751c2529d21fbabd1",
+    "params":  {
+                   "d":  0.40603967989144835,
+                   "b":  0,
+                   "clamp_max":  1000000000,
+                   "c":  1.5556992268449157,
+                   "clamp_min":  -1000000000,
+                   "a":  1.3735612704761146
+               },
+    "runtime_sha":  "219d4adb3d40e4613e8109e6274d71aaffa9469ebe3aefdfdfd851041948c666",
+    "genome_sha":  "f51ec61c390c0b399ae5c19559d75d564fc4553e4a6a77e71b6836420f380a3d",
+    "run_dir":  "C:\\Users\\jacks\\OneDrive\\Desktop\\DDNA_EVOLVE\\state\\runs\\20260216_230727_iter024",
+    "best_before":  2.594381259708114,
+    "score":  2.9043972906176476,
+    "stamp":  "20260216_230727",
+    "family":  "cusp_like",
+    "iter":  24
+}
+{
+    "engine_sha":  "08eaea77219705e1a591883967e790b60c1c21a0cf6b0bb751c2529d21fbabd1",
+    "params":  {
+                   "d":  0.26031466431930417,
+                   "b":  0,
+                   "clamp_max":  1000000000,
+                   "c":  1.7499387454939721,
+                   "clamp_min":  -1000000000,
+                   "a":  1.5026541937620632
+               },
+    "runtime_sha":  "219d4adb3d40e4613e8109e6274d71aaffa9469ebe3aefdfdfd851041948c666",
+    "genome_sha":  "e819deabd54a18c99f54f1fe8931dee832671cade47d8bf8387fdb39bdaf2883",
+    "run_dir":  "C:\\Users\\jacks\\OneDrive\\Desktop\\DDNA_EVOLVE\\state\\runs\\20260216_230727_iter025",
+    "best_before":  2.9043972906176476,
+    "score":  3.2345593271191264,
+    "stamp":  "20260216_230727",
+    "family":  "cusp_like",
+    "iter":  25
+}
+{
+    "engine_sha":  "08eaea77219705e1a591883967e790b60c1c21a0cf6b0bb751c2529d21fbabd1",
+    "params":  {
+                   "d":  0.2441222697701875,
+                   "b":  0.29471166617922095,
+                   "clamp_max":  1000000000,
+                   "c":  1.7333074155418702,
+                   "clamp_min":  -1000000000,
+                   "a":  1.5637384202628111
+               },
+    "runtime_sha":  "219d4adb3d40e4613e8109e6274d71aaffa9469ebe3aefdfdfd851041948c666",
+    "genome_sha":  "c3db9b6988e93ecc5333d553cadb9916c9751fd0a01c6689d2c4ab8b7309767d",
+    "run_dir":  "C:\\Users\\jacks\\OneDrive\\Desktop\\DDNA_EVOLVE\\state\\runs\\20260216_230727_iter026",
+    "best_before":  3.2345593271191264,
+    "score":  3.2213416228738438,
+    "stamp":  "20260216_230727",
+    "family":  "cusp_like",
+    "iter":  26
+}
+{
+    "engine_sha":  "08eaea77219705e1a591883967e790b60c1c21a0cf6b0bb751c2529d21fbabd1",
+    "params":  {
+                   "d":  0.373654890793215,
+                   "b":  0.0073496205300789706,
+                   "clamp_max":  1000000000,
+                   "c":  1.5224365669407121,
+                   "clamp_min":  -1000000000,
+                   "a":  1.4957297234776104
+               },
+    "runtime_sha":  "219d4adb3d40e4613e8109e6274d71aaffa9469ebe3aefdfdfd851041948c666",
+    "genome_sha":  "deaf95a13a76951200d6996a78e11a9b8e9d64b43247d195cb45f20f51b34e22",
+    "run_dir":  "C:\\Users\\jacks\\OneDrive\\Desktop\\DDNA_EVOLVE\\state\\runs\\20260216_230727_iter027",
+    "best_before":  3.2345593271191264,
+    "score":  2.9942768184935868,
+    "stamp":  "20260216_230727",
+    "family":  "cusp_like",
+    "iter":  27
+}
+{
+    "engine_sha":  "08eaea77219705e1a591883967e790b60c1c21a0cf6b0bb751c2529d21fbabd1",
+    "params":  {
+                   "d":  0.03745061356455584,
+                   "b":  0,
+                   "clamp_max":  1000000000,
+                   "c":  1.560617851959829,
+                   "clamp_min":  -1000000000,
+                   "a":  1.2445397555569837
+               },
+    "runtime_sha":  "219d4adb3d40e4613e8109e6274d71aaffa9469ebe3aefdfdfd851041948c666",
+    "genome_sha":  "887fa00ae543b1c11d24fe6c9897ddc85d967ff79300611eb81d2f8469770186",
+    "run_dir":  "C:\\Users\\jacks\\OneDrive\\Desktop\\DDNA_EVOLVE\\state\\runs\\20260216_230727_iter028",
+    "best_before":  3.2345593271191264,
+    "score":  2.8028232605819845,
+    "stamp":  "20260216_230727",
+    "family":  "cusp_like",
+    "iter":  28
+}
+{
+    "engine_sha":  "08eaea77219705e1a591883967e790b60c1c21a0cf6b0bb751c2529d21fbabd1",
+    "params":  {
+                   "d":  0.16698323458758338,
+                   "b":  0.14291023781658627,
+                   "clamp_max":  1000000000,
+                   "c":  1.949747003358671,
+                   "clamp_min":  -1000000000,
+                   "a":  1.7765310587717831
+               },
+    "runtime_sha":  "219d4adb3d40e4613e8109e6274d71aaffa9469ebe3aefdfdfd851041948c666",
+    "genome_sha":  "3c7b9be024e4b41ca6ec40bcb98980fb37b142f6422c23f0aa7eef0ac1a1d654",
+    "run_dir":  "C:\\Users\\jacks\\OneDrive\\Desktop\\DDNA_EVOLVE\\state\\runs\\20260216_230727_iter029",
+    "best_before":  3.2345593271191264,
+    "score":  3.684759419894128,
+    "stamp":  "20260216_230727",
+    "family":  "cusp_like",
+    "iter":  29
+}
+{
+    "engine_sha":  "08eaea77219705e1a591883967e790b60c1c21a0cf6b0bb751c2529d21fbabd1",
+    "params":  {
+                   "d":  0.20318442587889013,
+                   "b":  0,
+                   "clamp_max":  1000000000,
+                   "c":  1.9386844126222118,
+                   "clamp_min":  -1000000000,
+                   "a":  1.9823992269963022
+               },
+    "runtime_sha":  "219d4adb3d40e4613e8109e6274d71aaffa9469ebe3aefdfdfd851041948c666",
+    "genome_sha":  "fc340c4e616f7ca5171056bd5369f8b4c8bc291de6094b1d4896678d21a86dcb",
+    "run_dir":  "C:\\Users\\jacks\\OneDrive\\Desktop\\DDNA_EVOLVE\\state\\runs\\20260216_230727_iter030",
+    "best_before":  3.684759419894128,
+    "score":  3.9054542464163391,
+    "stamp":  "20260216_230727",
+    "family":  "cusp_like",
+    "iter":  30
+}
+{
+    "engine_sha":  "08eaea77219705e1a591883967e790b60c1c21a0cf6b0bb751c2529d21fbabd1",
+    "params":  {
+                   "d":  0,
+                   "b":  0,
+                   "clamp_max":  1000000000,
+                   "c":  2.1044182249365462,
+                   "clamp_min":  -1000000000,
+                   "a":  2.1505853735146045
+               },
+    "runtime_sha":  "219d4adb3d40e4613e8109e6274d71aaffa9469ebe3aefdfdfd851041948c666",
+    "genome_sha":  "e4257134bec3afd727db43ae1ed5f535bf7abc8f42d4881a4ffdf132d6b2bcdf",
+    "run_dir":  "C:\\Users\\jacks\\OneDrive\\Desktop\\DDNA_EVOLVE\\state\\runs\\20260216_230727_iter031",
+    "best_before":  3.9054542464163391,
+    "score":  4.25500359845115,
+    "stamp":  "20260216_230727",
+    "family":  "cusp_like",
+    "iter":  31
+}
+{
+    "engine_sha":  "08eaea77219705e1a591883967e790b60c1c21a0cf6b0bb751c2529d21fbabd1",
+    "params":  {
+                   "d":  0.29526643333736174,
+                   "b":  0,
+                   "clamp_max":  1000000000,
+                   "c":  2.2716139369977704,
+                   "clamp_min":  -1000000000,
+                   "a":  2.2204361481687225
+               },
+    "runtime_sha":  "219d4adb3d40e4613e8109e6274d71aaffa9469ebe3aefdfdfd851041948c666",
+    "genome_sha":  "147b99ea3c6de5c928c1396c0685122485f59d238bcc3edf8156fb989e48e214",
+    "run_dir":  "C:\\Users\\jacks\\OneDrive\\Desktop\\DDNA_EVOLVE\\state\\runs\\20260216_230727_iter032",
+    "best_before":  4.25500359845115,
+    "score":  4.4655340037144793,
+    "stamp":  "20260216_230727",
+    "family":  "cusp_like",
+    "iter":  32
+}
+{
+    "engine_sha":  "08eaea77219705e1a591883967e790b60c1c21a0cf6b0bb751c2529d21fbabd1",
+    "params":  {
+                   "d":  0.12006548769775102,
+                   "b":  0.19346205522001816,
+                   "clamp_max":  1000000000,
+                   "c":  2.2279388004578364,
+                   "clamp_min":  -1000000000,
+                   "a":  2.2222782260376395
+               },
+    "runtime_sha":  "219d4adb3d40e4613e8109e6274d71aaffa9469ebe3aefdfdfd851041948c666",
+    "genome_sha":  "b32bd831227df5cde1330745eb42f6c92090e6fa64dbee0f2d48b23fe22cbe92",
+    "run_dir":  "C:\\Users\\jacks\\OneDrive\\Desktop\\DDNA_EVOLVE\\state\\runs\\20260216_230727_iter033",
+    "best_before":  4.4655340037144793,
+    "score":  4.4008758152415872,
+    "stamp":  "20260216_230727",
+    "family":  "cusp_like",
+    "iter":  33
+}
+{
+    "engine_sha":  "08eaea77219705e1a591883967e790b60c1c21a0cf6b0bb751c2529d21fbabd1",
+    "params":  {
+                   "d":  0.38386121046909183,
+                   "b":  0.016384718155667489,
+                   "clamp_max":  1000000000,
+                   "c":  2.2661200854769534,
+                   "clamp_min":  -1000000000,
+                   "a":  1.971088258117013
+               },
+    "runtime_sha":  "219d4adb3d40e4613e8109e6274d71aaffa9469ebe3aefdfdfd851041948c666",
+    "genome_sha":  "825ba4861ff2b1ba36043682ec5c5d14fd87213a5247b5fbbdda501f8f0b1ad0",
+    "run_dir":  "C:\\Users\\jacks\\OneDrive\\Desktop\\DDNA_EVOLVE\\state\\runs\\20260216_230727_iter034",
+    "best_before":  4.4655340037144793,
+    "score":  4.1996625552087989,
+    "stamp":  "20260216_230727",
+    "family":  "cusp_like",
+    "iter":  34
+}
+{
+    "engine_sha":  "08eaea77219705e1a591883967e790b60c1c21a0cf6b0bb751c2529d21fbabd1",
+    "params":  {
+                   "d":  0.047656933240432714,
+                   "b":  0,
+                   "clamp_max":  1000000000,
+                   "c":  2.3043013704960709,
+                   "clamp_min":  -1000000000,
+                   "a":  2.3198982901963867
+               },
+    "runtime_sha":  "219d4adb3d40e4613e8109e6274d71aaffa9469ebe3aefdfdfd851041948c666",
+    "genome_sha":  "f3cddcf4692f276c035dc8539761024d89986bdefbe83100832c1beb74779fe4",
+    "run_dir":  "C:\\Users\\jacks\\OneDrive\\Desktop\\DDNA_EVOLVE\\state\\runs\\20260216_230727_iter035",
+    "best_before":  4.4655340037144793,
+    "score":  4.6198153808824838,
+    "stamp":  "20260216_230727",
+    "family":  "cusp_like",
+    "iter":  35
+}
+{
+    "engine_sha":  "08eaea77219705e1a591883967e790b60c1c21a0cf6b0bb751c2529d21fbabd1",
+    "params":  {
+                   "d":  0,
+                   "b":  0.15194533544217484,
+                   "clamp_max":  1000000000,
+                   "c":  2.1261179553932132,
+                   "clamp_min":  -1000000000,
+                   "a":  2.35135173543885
+               },
+    "runtime_sha":  "219d4adb3d40e4613e8109e6274d71aaffa9469ebe3aefdfdfd851041948c666",
+    "genome_sha":  "a5c68a4c2e819f41bd0a73a8f65fa5536b108957d3f13eff088612fce43148e9",
+    "run_dir":  "C:\\Users\\jacks\\OneDrive\\Desktop\\DDNA_EVOLVE\\state\\runs\\20260216_230727_iter036",
+    "best_before":  4.6198153808824838,
+    "score":  4.4470806237436289,
+    "stamp":  "20260216_230727",
+    "family":  "cusp_like",
+    "iter":  36
+}
+{
+    "engine_sha":  "08eaea77219705e1a591883967e790b60c1c21a0cf6b0bb751c2529d21fbabd1",
+    "params":  {
+                   "d":  0.059112675189558692,
+                   "b":  0,
+                   "clamp_max":  1000000000,
+                   "c":  2.5152471067920548,
+                   "clamp_min":  -1000000000,
+                   "a":  2.2833430386536495
+               },
+    "runtime_sha":  "219d4adb3d40e4613e8109e6274d71aaffa9469ebe3aefdfdfd851041948c666",
+    "genome_sha":  "efc5aae633209615e45284c529b0a5e70d0c95e407233ec3f3d8b0e653861e97",
+    "run_dir":  "C:\\Users\\jacks\\OneDrive\\Desktop\\DDNA_EVOLVE\\state\\runs\\20260216_230727_iter037",
+    "best_before":  4.6198153808824838,
+    "score":  4.7926568553419209,
+    "stamp":  "20260216_230727",
+    "family":  "cusp_like",
+    "iter":  37
+}
+{
+    "engine_sha":  "08eaea77219705e1a591883967e790b60c1c21a0cf6b0bb751c2529d21fbabd1",
+    "params":  {
+                   "d":  0.1977357977990693,
+                   "b":  0,
+                   "clamp_max":  1000000000,
+                   "c":  2.2853605033761637,
+                   "clamp_min":  -1000000000,
+                   "a":  2.2363653775008241
+               },
+    "runtime_sha":  "219d4adb3d40e4613e8109e6274d71aaffa9469ebe3aefdfdfd851041948c666",
+    "genome_sha":  "7a4181fe26167efe55b78e1db000c10f5fe2d5b1694b174623b243a0e5df4a3d",
+    "run_dir":  "C:\\Users\\jacks\\OneDrive\\Desktop\\DDNA_EVOLVE\\state\\runs\\20260216_230727_iter038",
+    "best_before":  4.7926568553419209,
+    "score":  4.5037918257690261,
+    "stamp":  "20260216_230727",
+    "family":  "cusp_like",
+    "iter":  38
+}
+{
+    "engine_sha":  "08eaea77219705e1a591883967e790b60c1c21a0cf6b0bb751c2529d21fbabd1",
+    "params":  {
+                   "d":  0,
+                   "b":  0,
+                   "clamp_max":  1000000000,
+                   "c":  2.3235417883952811,
+                   "clamp_min":  -1000000000,
+                   "a":  1.9851754095801974
+               },
+    "runtime_sha":  "219d4adb3d40e4613e8109e6274d71aaffa9469ebe3aefdfdfd851041948c666",
+    "genome_sha":  "efee4023b81bb5d02256490ef88490c819902b103356121d71bab2b8ab52b30b",
+    "run_dir":  "C:\\Users\\jacks\\OneDrive\\Desktop\\DDNA_EVOLVE\\state\\runs\\20260216_230727_iter039",
+    "best_before":  4.7926568553419209,
+    "score":  4.3087171979754784,
+    "stamp":  "20260216_230727",
+    "family":  "cusp_like",
+    "iter":  39
+}
+{
+    "engine_sha":  "08eaea77219705e1a591883967e790b60c1c21a0cf6b0bb751c2529d21fbabd1",
+    "params":  {
+                   "d":  0.098165246051813065,
+                   "b":  0.19742383300206803,
+                   "clamp_max":  1000000000,
+                   "c":  2.4471985731959336,
+                   "clamp_min":  -1000000000,
+                   "a":  2.3973015229670809
+               },
+    "runtime_sha":  "219d4adb3d40e4613e8109e6274d71aaffa9469ebe3aefdfdfd851041948c666",
+    "genome_sha":  "eddaaeabbafff9a2239c008804fd93f1a9138e0eb0e1288e1c464c41b82028e6",
+    "run_dir":  "C:\\Users\\jacks\\OneDrive\\Desktop\\DDNA_EVOLVE\\state\\runs\\20260216_230727_iter040",
+    "best_before":  4.7926568553419209,
+    "score":  2.3978972819903386,
+    "stamp":  "20260216_230727",
+    "family":  "bounded_hinge",
+    "iter":  40
+}
+{
+    "engine_sha":  "08eaea77219705e1a591883967e790b60c1c21a0cf6b0bb751c2529d21fbabd1",
+    "params":  {
+                   "d":  0.12059676261646518,
+                   "b":  0,
+                   "clamp_max":  1000000000,
+                   "c":  2.5018000911929645,
+                   "clamp_min":  -1000000000,
+                   "a":  2.4491580160097959
+               },
+    "runtime_sha":  "219d4adb3d40e4613e8109e6274d71aaffa9469ebe3aefdfdfd851041948c666",
+    "genome_sha":  "6b91d6bd9393a2070de2445eabd617390708984d867fe4402343b790d9b1004c",
+    "run_dir":  "C:\\Users\\jacks\\OneDrive\\Desktop\\DDNA_EVOLVE\\state\\runs\\20260216_230727_iter041",
+    "best_before":  4.7926568553419209,
+    "score":  4.9389476842592881,
+    "stamp":  "20260216_230727",
+    "family":  "cusp_like",
+    "iter":  41
+}
+{
+    "engine_sha":  "08eaea77219705e1a591883967e790b60c1c21a0cf6b0bb751c2529d21fbabd1",
+    "params":  {
+                   "d":  0.31161347106639925,
+                   "b":  0.139234394691528,
+                   "clamp_max":  1000000000,
+                   "c":  2.2774822269927162,
+                   "clamp_min":  -1000000000,
+                   "a":  2.5469642965807417
+               },
+    "runtime_sha":  "219d4adb3d40e4613e8109e6274d71aaffa9469ebe3aefdfdfd851041948c666",
+    "genome_sha":  "d26f23707d25cdee8c85f18287a55c2f08aee1177ce3081a17f43b56ee0ae904",
+    "run_dir":  "C:\\Users\\jacks\\OneDrive\\Desktop\\DDNA_EVOLVE\\state\\runs\\20260216_230727_iter042",
+    "best_before":  4.9389476842592881,
+    "score":  4.7685613632013553,
+    "stamp":  "20260216_230727",
+    "family":  "cusp_like",
+    "iter":  42
+}
+{
+    "engine_sha":  "08eaea77219705e1a591883967e790b60c1c21a0cf6b0bb751c2529d21fbabd1",
+    "params":  {
+                   "d":  0.11203753594869628,
+                   "b":  0.27126514165255483,
+                   "clamp_max":  1000000000,
+                   "c":  2.7946771367428251,
+                   "clamp_min":  -1000000000,
+                   "a":  2.6550067703495768
+               },
+    "runtime_sha":  "219d4adb3d40e4613e8109e6274d71aaffa9469ebe3aefdfdfd851041948c666",
+    "genome_sha":  "a4e6f43fad903b2df9e71dcb8e5015be078aaacae23c5e0f943be11495509524",
+    "run_dir":  "C:\\Users\\jacks\\OneDrive\\Desktop\\DDNA_EVOLVE\\state\\runs\\20260216_230727_iter043",
+    "best_before":  4.9389476842592881,
+    "score":  5.3829624066307629,
+    "stamp":  "20260216_230727",
+    "family":  "cusp_like",
+    "iter":  43
+}
+{
+    "engine_sha":  "08eaea77219705e1a591883967e790b60c1c21a0cf6b0bb751c2529d21fbabd1",
+    "params":  {
+                   "d":  0.23301093030395487,
+                   "b":  0.25516823765596763,
+                   "clamp_max":  1000000000,
+                   "c":  2.8766833336915276,
+                   "clamp_min":  -1000000000,
+                   "a":  2.7928468279041572
+               },
+    "runtime_sha":  "219d4adb3d40e4613e8109e6274d71aaffa9469ebe3aefdfdfd851041948c666",
+    "genome_sha":  "0a38b4c7f9d090520a0622eb407eef86b02093d89da29bdf48272bd2278583e5",
+    "run_dir":  "C:\\Users\\jacks\\OneDrive\\Desktop\\DDNA_EVOLVE\\state\\runs\\20260216_230727_iter044",
+    "best_before":  5.3829624066307629,
+    "score":  5.5919321590763058,
+    "stamp":  "20260216_230727",
+    "family":  "cusp_like",
+    "iter":  44
+}
+{
+    "engine_sha":  "08eaea77219705e1a591883967e790b60c1c21a0cf6b0bb751c2529d21fbabd1",
+    "params":  {
+                   "d":  0.483516945682241,
+                   "b":  0.55170928801023833,
+                   "clamp_max":  1000000000,
+                   "c":  2.747818682039072,
+                   "clamp_min":  -1000000000,
+                   "a":  2.8626781886735366
+               },
+    "runtime_sha":  "219d4adb3d40e4613e8109e6274d71aaffa9469ebe3aefdfdfd851041948c666",
+    "genome_sha":  "80fb4d0506b6a2cbd6111e9cc9fcbb5c000741def028e4ea9295cd39e8338d85",
+    "run_dir":  "C:\\Users\\jacks\\OneDrive\\Desktop\\DDNA_EVOLVE\\state\\runs\\20260216_230727_iter045",
+    "best_before":  5.5919321590763058,
+    "score":  5.4480186890992375,
+    "stamp":  "20260216_230727",
+    "family":  "cusp_like",
+    "iter":  45
+}
+{
+    "engine_sha":  "08eaea77219705e1a591883967e790b60c1c21a0cf6b0bb751c2529d21fbabd1",
+    "params":  {
+                   "d":  0.18690630164319005,
+                   "b":  0.51543273740235385,
+                   "clamp_max":  1000000000,
+                   "c":  2.6567219700928413,
+                   "clamp_min":  -1000000000,
+                   "a":  2.8020258326092859
+               },
+    "runtime_sha":  "219d4adb3d40e4613e8109e6274d71aaffa9469ebe3aefdfdfd851041948c666",
+    "genome_sha":  "df64109ed562c4cac9cea383c7cff49c6e63e67be2db06d36023aeeabc9daee2",
+    "run_dir":  "C:\\Users\\jacks\\OneDrive\\Desktop\\DDNA_EVOLVE\\state\\runs\\20260216_230727_iter046",
+    "best_before":  5.5919321590763058,
+    "score":  5.3359463258858586,
+    "stamp":  "20260216_230727",
+    "family":  "cusp_like",
+    "iter":  46
+}
+{
+    "engine_sha":  "08eaea77219705e1a591883967e790b60c1c21a0cf6b0bb751c2529d21fbabd1",
+    "params":  {
+                   "d":  0.14258218772829606,
+                   "b":  0,
+                   "clamp_max":  1000000000,
+                   "c":  2.9260769848367558,
+                   "clamp_min":  -1000000000,
+                   "a":  2.7266607951031352
+               },
+    "runtime_sha":  "219d4adb3d40e4613e8109e6274d71aaffa9469ebe3aefdfdfd851041948c666",
+    "genome_sha":  "b2d161a6977c3004b26240cd66674200a34f1b5e8ad74387b5e20eff175d28fb",
+    "run_dir":  "C:\\Users\\jacks\\OneDrive\\Desktop\\DDNA_EVOLVE\\state\\runs\\20260216_230727_iter047",
+    "best_before":  5.5919321590763058,
+    "score":  5.6361441598079427,
+    "stamp":  "20260216_230727",
+    "family":  "cusp_like",
+    "iter":  47
+}
+{
+    "engine_sha":  "08eaea77219705e1a591883967e790b60c1c21a0cf6b0bb751c2529d21fbabd1",
+    "params":  {
+                   "d":  0.18168606617566474,
+                   "b":  0.034454913406844652,
+                   "clamp_max":  1000000000,
+                   "c":  2.7645997873808259,
+                   "clamp_min":  -1000000000,
+                   "a":  2.5924660655169127
+               },
+    "runtime_sha":  "219d4adb3d40e4613e8109e6274d71aaffa9469ebe3aefdfdfd851041948c666",
+    "genome_sha":  "c0603689aadd4faccae011cc2a5408d6a9676390a3b324b14f010852410b24ce",
+    "run_dir":  "C:\\Users\\jacks\\OneDrive\\Desktop\\DDNA_EVOLVE\\state\\runs\\20260216_230727_iter048",
+    "best_before":  5.6361441598079427,
+    "score":  5.3302282606605473,
+    "stamp":  "20260216_230727",
+    "family":  "cusp_like",
+    "iter":  48
+}
+{
+    "engine_sha":  "08eaea77219705e1a591883967e790b60c1c21a0cf6b0bb751c2529d21fbabd1",
+    "params":  {
+                   "d":  0.31121868719869228,
+                   "b":  0,
+                   "clamp_max":  1000000000,
+                   "c":  3.1537289387796674,
+                   "clamp_min":  -1000000000,
+                   "a":  2.5244573687317118
+               },
+    "runtime_sha":  "219d4adb3d40e4613e8109e6274d71aaffa9469ebe3aefdfdfd851041948c666",
+    "genome_sha":  "4e068d99204edff150b5c517c4a2eb800be592234e02bf4f9a68ab39470845d4",
+    "run_dir":  "C:\\Users\\jacks\\OneDrive\\Desktop\\DDNA_EVOLVE\\state\\runs\\20260216_230727_iter049",
+    "best_before":  5.6361441598079427,
+    "score":  5.63940906046385,
+    "stamp":  "20260216_230727",
+    "family":  "cusp_like",
+    "iter":  49
+}
+{
+    "engine_sha":  "08eaea77219705e1a591883967e790b60c1c21a0cf6b0bb751c2529d21fbabd1",
+    "params":  {
+                   "d":  0.058783469516217435,
+                   "b":  0.016781105341753477,
+                   "clamp_max":  1000000000,
+                   "c":  3.4518980592730912,
+                   "clamp_min":  -1000000000,
+                   "a":  2.5841881908402726
+               },
+    "runtime_sha":  "219d4adb3d40e4613e8109e6274d71aaffa9469ebe3aefdfdfd851041948c666",
+    "genome_sha":  "2a574e8a9a25374be92109c4157838c183249e5e683fbf13321e8e695ed81ccf",
+    "run_dir":  "C:\\Users\\jacks\\OneDrive\\Desktop\\DDNA_EVOLVE\\state\\runs\\20260216_230727_iter050",
+    "best_before":  5.63940906046385,
+    "score":  6.02685168209339,
+    "stamp":  "20260216_230727",
+    "family":  "linear_product",
+    "iter":  50
+}

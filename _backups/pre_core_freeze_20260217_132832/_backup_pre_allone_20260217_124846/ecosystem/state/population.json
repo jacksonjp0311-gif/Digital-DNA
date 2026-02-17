@@ -1,0 +1,179 @@
+{
+  "version": "D4",
+  "pop_size": 4,
+  "watchdog_seconds": 60,
+  "restart_backoff_seconds": 1,
+  "notes": "Supervisor-owned population config. Edit pop_size to scale.",
+  "config": {
+    "pop_size": 4,
+    "generations": 50,
+    "steps": 200,
+    "watchdog_seconds": 60,
+    "genome_template": {
+      "best": null,
+      "history": []
+    }
+  },
+  "population": [
+    {
+      "id": 0,
+      "genome": {
+        "best": null,
+        "history": []
+      }
+    },
+    {
+      "id": 1,
+      "genome": {
+        "best": null,
+        "history": []
+      }
+    },
+    {
+      "id": 2,
+      "genome": {
+        "best": null,
+        "history": []
+      }
+    },
+    {
+      "id": 3,
+      "genome": {
+        "best": null,
+        "history": []
+      }
+    }
+  ],
+  "history": [
+    {
+      "gen": 1,
+      "selection": {
+        "best_score": 200.003,
+        "best_id": 3,
+        "all": [
+          [
+            200.003,
+            3
+          ],
+          [
+            200.002,
+            2
+          ],
+          [
+            200.001,
+            1
+          ],
+          [
+            200.0,
+            0
+          ]
+        ]
+      },
+      "ts": 1771350077.1523948
+    },
+    {
+      "gen": 2,
+      "selection": {
+        "best_score": 200.003,
+        "best_id": 3,
+        "all": [
+          [
+            200.003,
+            3
+          ],
+          [
+            200.002,
+            2
+          ],
+          [
+            200.001,
+            1
+          ],
+          [
+            200.0,
+            0
+          ]
+        ]
+      },
+      "ts": 1771350087.6411357
+    },
+    {
+      "gen": 3,
+      "selection": {
+        "best_score": 200.003,
+        "best_id": 3,
+        "all": [
+          [
+            200.003,
+            3
+          ],
+          [
+            200.002,
+            2
+          ],
+          [
+            200.001,
+            1
+          ],
+          [
+            200.0,
+            0
+          ]
+        ]
+      },
+      "ts": 1771350098.1299918
+    },
+    {
+      "gen": 4,
+      "selection": {
+        "best_score": 200.003,
+        "best_id": 3,
+        "all": [
+          [
+            200.003,
+            3
+          ],
+          [
+            200.002,
+            2
+          ],
+          [
+            200.001,
+            1
+          ],
+          [
+            200.0,
+            0
+          ]
+        ]
+      },
+      "ts": 1771350108.6229806
+    },
+    {
+      "gen": 5,
+      "selection": {
+        "best_score": 200.003,
+        "best_id": 3,
+        "all": [
+          [
+            200.003,
+            3
+          ],
+          [
+            200.002,
+            2
+          ],
+          [
+            200.001,
+            1
+          ],
+          [
+            200.0,
+            0
+          ]
+        ]
+      },
+      "ts": 1771350119.1088507
+    }
+  ]
+}

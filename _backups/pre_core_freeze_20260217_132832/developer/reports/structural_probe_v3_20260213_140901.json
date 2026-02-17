@@ -1,0 +1,23 @@
+﻿{
+    "stamp":  "20260213_140901",
+    "root":  "C:\\Users\\jacks\\OneDrive\\Desktop\\Digital-DNA",
+    "target":  "C:\\Users\\jacks\\OneDrive\\Desktop\\Digital-DNA\\engine\\genome\\extract.py",
+    "baseline":  {
+                     "drift_total":  0.041666666666666664,
+                     "drift_dependency":  0.041666666666666664,
+                     "drift_topology":  0.0
+                 },
+    "mutated":  {
+                    "delta_drift_total":  0,
+                    "ok":  true,
+                    "drift_topology":  0.0,
+                    "exit":  0,
+                    "drift_total":  0.041666666666666664,
+                    "drift_dependency":  0.041666666666666664
+                },
+    "restored":  {
+                     "drift_total":  0.041666666666666664,
+                     "drift_dependency":  0.041666666666666664,
+                     "drift_topology":  0.0
+                 }
+}

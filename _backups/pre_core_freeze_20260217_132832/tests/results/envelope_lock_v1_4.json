@@ -1,0 +1,20 @@
+﻿{
+    "version":  "envelope_lock_v1_4",
+    "retention":  0.53846153846153844,
+    "drift":  0,
+    "drift_raw":  0,
+    "drift_topology":  0,
+    "drift_dependency":  0,
+    "weights":  {
+                    "topology":  1,
+                    "dependency":  1
+                },
+    "stability":  0.53846153846153844,
+    "invariants":  {
+                       "drift_raw_correct":  true,
+                       "bounded":  true,
+                       "clamp_correct":  true,
+                       "stability_correct":  true
+                   },
+    "status":  "PASS"
+}

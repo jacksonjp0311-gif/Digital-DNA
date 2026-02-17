@@ -1,0 +1,212 @@
+DIGITAL DNA SYSTEM DUMP
+
+Total files: 134
+
+MODULE DISTRIBUTION
+.gitkeep             2
+README.md            8
+history              12
+last_episode.json    1
+last_run.json        1
+replay_k.json        1
+reports              3
+environments.json    1
+thresholds.json      1
+weights.json         1
+README___init__.py.md 1
+README_drift.md      1
+README_episodic.md   1
+README_genome.md     1
+README_ledger.md     1
+README_orchestrator.md 1
+README_stability.md  1
+_full_dump.py        1
+analyze_runs.py      1
+build_registry.py    1
+diff.py              1
+module_drift_estimator.py 1
+module_health.py     1
+module_registry.json 1
+mutation_map.py      1
+rebuild.py           1
+rebuild_baseline.py  1
+rebuild_baseline_v2_2.py 1
+snapshots            3
+structure_map.py     1
+tmp                  1
+write_module_readmes.py 1
+ARCHITECTURE_EVALUATION.md 1
+CODEX_UPGRADE_LOG.md 1
+RECURSIVE_FEEDBACK_SYSTEM.md 1
+codex                4
+feedback             17
+ledger               5
+__init__.py          1
+drift                8
+episodic             3
+genome               7
+orchestrator         4
+stability            4
+ddna_ledger.jsonl    1
+ledger_pre_mutation.jsonl 1
+environments         3
+genomes              2
+behavioral_test_v1.py 1
+episodic_test_v1.py  1
+hardening_test_v2.py 1
+results              3
+structural_envelope_test_v1.py 1
+codex_digital_dna_theory_memory_architecture_v1_6.tex 1
+digital_dna_software_theory_v1_3.tex 1
+ddna_loop.py         1
+
+LAST RUN SNAPSHOT
+retention: 1.0
+drift_total: 0.17073170731707318
+drift_topology: 0.0
+drift_dependency: 0.17073170731707318
+stability: 0.8292682926829268
+timestamp: 2026-02-13T18:16:30.457190+00:00
+context_hash: 161143249bfa06d853969292354f1b03c1386f722f450fe463525654acb8b2bf
+repo_hash: 8735ff6a1336f03847cb23706070be3d2a0032f6
+boundary_score: 0.17073170731707318
+boundary_event: False
+boundary_reason: none
+replay_K: 10
+Bcrit: 0.5
+
+FILE TREE
+.gitignore
+DDNA_FULL_STATE_DUMP.txt
+LICENSE
+README.md
+artifacts\.gitkeep
+artifacts\README.md
+artifacts\history\run_20260212_224801.json
+artifacts\history\run_20260212_225032.json
+artifacts\history\run_20260212_225131.json
+artifacts\history\run_20260212_230922.json
+artifacts\history\run_20260212_233414.json
+artifacts\history\run_20260213_123829.json
+artifacts\history\run_20260213_123830.json
+artifacts\history\run_20260213_123958.json
+artifacts\history\run_20260213_124006.json
+artifacts\history\run_20260213_124059.json
+artifacts\history\run_20260213_130656.json
+artifacts\history\run_20260213_131630.json
+artifacts\last_episode.json
+artifacts\last_run.json
+artifacts\replay_k.json
+artifacts\reports\README.md
+artifacts\reports\self_verify_v1_3.json
+artifacts\reports\self_verify_v1_3_1.json
+config\README.md
+config\environments.json
+config\thresholds.json
+config\weights.json
+ddna_cycle.ps1
+ddna_loop.ps1
+developer\README___init__.py.md
+developer\README_drift.md
+developer\README_episodic.md
+developer\README_genome.md
+developer\README_ledger.md
+developer\README_orchestrator.md
+developer\README_stability.md
+developer\_full_dump.py
+developer\analyze_runs.py
+developer\build_registry.py
+developer\diff.py
+developer\module_drift_estimator.py
+developer\module_health.py
+developer\module_registry.json
+developer\mutation_map.py
+developer\rebuild.py
+developer\rebuild_baseline.py
+developer\rebuild_baseline_v2_2.py
+developer\snapshots\ddna_fix_20260213_131346\engine\drift\topology.py
+developer\snapshots\ddna_fix_20260213_131346\engine\genome\extract.py
+developer\snapshots\ddna_fix_20260213_131346\state\environments\topology_baseline.json
+developer\structure_map.py
+developer\tmp\rebuild_topology_baseline.py
+developer\write_module_readmes.py
+docs\.gitkeep
+docs\ARCHITECTURE_EVALUATION.md
+docs\CODEX_UPGRADE_LOG.md
+docs\README.md
+docs\RECURSIVE_FEEDBACK_SYSTEM.md
+docs\codex\CONTRACTS.md
+docs\codex\EIMT_INTEGRATION.md
+docs\codex\PROMPT_SYSTEM.md
+docs\codex\RUNBOOK.md
+docs\feedback\bundles\bundle_2026-02-12_22-34-47.txt
+docs\feedback\codex_prompt_latest.md
+docs\feedback\iterations\2026-02-12_iteration_03.md
+docs\feedback\packet_latest.json
+docs\feedback\packets\packet_2026-02-12_22-15-20.json
+docs\feedback\packets\packet_2026-02-12_22-24-11.json
+docs\feedback\packets\packet_2026-02-12_22-34-47.json
+docs\feedback\packets\packet_20260212_230922.json
+docs\feedback\packets\packet_20260212_233414.json
+docs\feedback\packets\packet_20260213_123829.json
+docs\feedback\packets\packet_20260213_123830.json
+docs\feedback\packets\packet_20260213_123958.json
+docs\feedback\packets\packet_20260213_124006.json
+docs\feedback\packets\packet_20260213_124059.json
+docs\feedback\packets\packet_20260213_130656.json
+docs\feedback\packets\packet_20260213_131630.json
+docs\feedback\templates\iteration_template.md
+docs\ledger\docs_ledger.jsonl
+engine\README.md
+engine\__init__.py
+engine\drift\README.md
+engine\drift\__init__.py
+engine\drift\artifact.py
+engine\drift\dependency.py
+engine\drift\dependency_graph.py
+engine\drift\interface.py
+engine\drift\semantic.py
+engine\drift\topology.py
+engine\episodic\boundary.py
+engine\episodic\context.py
+engine\episodic\replay.py
+engine\genome\README.md
+engine\genome\__init__.py
+engine\genome\compare.py
+engine\genome\dummy_test.py
+engine\genome\extract.py
+engine\genome\fingerprint.py
+engine\genome\normalize.py
+engine\ledger\README.md
+engine\ledger\__init__.py
+engine\ledger\append.py
+engine\ledger\verify.py
+engine\orchestrator\README.md
+engine\orchestrator\__init__.py
+engine\orchestrator\run_ddna.py
+engine\orchestrator\validation.py
+engine\stability\README.md
+engine\stability\__init__.py
+engine\stability\compute_S.py
+engine\stability\retention.py
+ledger\README.md
+ledger\ddna_ledger.jsonl
+ledger\ledger_pre_mutation.jsonl
+state\README.md
+state\environments\README.md
+state\environments\dependency_baseline.json
+state\environments\topology_baseline.json
+state\genomes\README.md
+state\genomes\baseline.json
+tests\README.md
+tests\behavioral_test_v1.py
+tests\episodic_test_v1.py
+tests\hardening_test_v2.py
+tests\results\README.md
+tests\results\envelope_lock_v1_4.json
+tests\results\structural_envelope_proof_v1.json
+tests\structural_envelope_test_v1.py
+theory\README.md
+theory\codex_digital_dna_theory_memory_architecture_v1_6.tex
+theory\digital_dna_software_theory_v1_3.tex
+tools\ddna_loop.py

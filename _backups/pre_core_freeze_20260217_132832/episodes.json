@@ -1,0 +1,8 @@
+{
+  "episodes":[
+    {"Bcrit":1,"drift_weight":0.1,"retention_weight":1,"replay_K":2},
+    {"Bcrit":2.5,"drift_weight":0.3,"retention_weight":1.5,"replay_K":4},
+    {"Bcrit":0.8,"drift_weight":0.05,"retention_weight":2.2,"replay_K":1},
+    {"Bcrit":3,"drift_weight":0.45,"retention_weight":0.7,"replay_K":5}
+  ]
+}

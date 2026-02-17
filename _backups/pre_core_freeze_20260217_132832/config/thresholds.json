@@ -1,0 +1,6 @@
+﻿{
+    "drift_weight":  0.1,
+    "retention_weight":  1,
+    "Bcrit":  1,
+    "replay_K":  2
+}

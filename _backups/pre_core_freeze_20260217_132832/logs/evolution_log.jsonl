@@ -1,0 +1,162 @@
+{"sandbox":1.4272819740277081,"promoted":false,"iter":1,"best":1.47270867863732,"time":{"value":"\/Date(1771302902070)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:35:02 PM"},"main":1.47270867863732}
+{"sandbox":1.4629996660794033,"promoted":false,"iter":2,"best":1.47270867863732,"time":{"value":"\/Date(1771302906752)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:35:06 PM"},"main":1.47270867863732}
+{"sandbox":1.343369515995797,"promoted":false,"iter":3,"best":1.47270867863732,"time":{"value":"\/Date(1771302911534)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:35:11 PM"},"main":1.47270867863732}
+{"sandbox":1.2874414885138439,"promoted":false,"iter":4,"best":1.47270867863732,"time":{"value":"\/Date(1771302916345)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:35:16 PM"},"main":1.47270867863732}
+{"sandbox":1.4180863910587238,"promoted":false,"iter":5,"best":1.47270867863732,"time":{"value":"\/Date(1771302921391)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:35:21 PM"},"main":1.47270867863732}
+{"sandbox":1.3179949678757588,"promoted":false,"iter":6,"best":1.47270867863732,"time":{"value":"\/Date(1771302926583)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:35:26 PM"},"main":1.47270867863732}
+{"sandbox":1.647807271769393,"promoted":true,"iter":7,"best":1.647807271769393,"time":{"value":"\/Date(1771302932355)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:35:32 PM"},"main":1.47270867863732}
+{"sandbox":1.4122970187530011,"promoted":false,"iter":8,"best":1.647807271769393,"time":{"value":"\/Date(1771302937947)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:35:37 PM"},"main":1.647807271769393}
+{"sandbox":1.9053092480907217,"promoted":true,"iter":9,"best":1.9053092480907217,"time":{"value":"\/Date(1771302943485)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:35:43 PM"},"main":1.647807271769393}
+{"sandbox":1.7379152150861272,"promoted":false,"iter":10,"best":1.9053092480907217,"time":{"value":"\/Date(1771302948432)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:35:48 PM"},"main":1.9053092480907217}
+{"sandbox":1.9060731906310893,"promoted":true,"iter":11,"best":1.9060731906310893,"time":{"value":"\/Date(1771302953291)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:35:53 PM"},"main":1.9053092480907217}
+{"sandbox":1.9249493562640996,"promoted":true,"iter":12,"best":1.9249493562640996,"time":{"value":"\/Date(1771302958304)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:35:58 PM"},"main":1.9060731906310893}
+{"sandbox":1.8717782997469941,"promoted":false,"iter":13,"best":1.9249493562640996,"time":{"value":"\/Date(1771302963178)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:36:03 PM"},"main":1.9249493562640996}
+{"sandbox":2.2622571364478277,"promoted":true,"iter":14,"best":2.2622571364478277,"time":{"value":"\/Date(1771302967995)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:36:07 PM"},"main":1.9249493562640996}
+{"sandbox":2.2531984673974566,"promoted":false,"iter":15,"best":2.2622571364478277,"time":{"value":"\/Date(1771302972831)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:36:12 PM"},"main":2.2622571364478277}
+{"sandbox":2.298056514255157,"promoted":true,"iter":16,"best":2.298056514255157,"time":{"value":"\/Date(1771302977660)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:36:17 PM"},"main":2.2622571364478277}
+{"sandbox":2.4028443716935328,"promoted":true,"iter":17,"best":2.4028443716935328,"time":{"value":"\/Date(1771302982466)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:36:22 PM"},"main":2.298056514255157}
+{"sandbox":2.6402601790268805,"promoted":true,"iter":18,"best":2.6402601790268805,"time":{"value":"\/Date(1771302987424)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:36:27 PM"},"main":2.4028443716935328}
+{"sandbox":2.7536685342931282,"promoted":true,"iter":19,"best":2.7536685342931282,"time":{"value":"\/Date(1771302992249)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:36:32 PM"},"main":2.6402601790268805}
+{"sandbox":2.8380288695350115,"promoted":true,"iter":20,"best":2.8380288695350115,"time":{"value":"\/Date(1771302997118)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:36:37 PM"},"main":2.7536685342931282}
+{"sandbox":2.7632793679532206,"promoted":false,"iter":21,"best":2.8380288695350115,"time":{"value":"\/Date(1771303002069)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:36:42 PM"},"main":2.8380288695350115}
+{"sandbox":2.9547659806066298,"promoted":true,"iter":22,"best":2.9547659806066298,"time":{"value":"\/Date(1771303006920)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:36:46 PM"},"main":2.8380288695350115}
+{"sandbox":3.3804085973534805,"promoted":true,"iter":23,"best":3.3804085973534805,"time":{"value":"\/Date(1771303011859)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:36:51 PM"},"main":2.9547659806066298}
+{"sandbox":3.5120210332520858,"promoted":true,"iter":24,"best":3.5120210332520858,"time":{"value":"\/Date(1771303016896)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:36:56 PM"},"main":3.3804085973534805}
+{"sandbox":3.3181255750739891,"promoted":false,"iter":25,"best":3.5120210332520858,"time":{"value":"\/Date(1771303021769)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:37:01 PM"},"main":3.5120210332520858}
+{"sandbox":3.742190863339951,"promoted":true,"iter":26,"best":3.742190863339951,"time":{"value":"\/Date(1771303026709)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:37:06 PM"},"main":3.5120210332520858}
+{"sandbox":3.759514043324927,"promoted":true,"iter":27,"best":3.759514043324927,"time":{"value":"\/Date(1771303031596)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:37:11 PM"},"main":3.742190863339951}
+{"sandbox":3.7870030798059733,"promoted":true,"iter":28,"best":3.7870030798059733,"time":{"value":"\/Date(1771303036510)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:37:16 PM"},"main":3.759514043324927}
+{"sandbox":3.887992562199893,"promoted":true,"iter":29,"best":3.887992562199893,"time":{"value":"\/Date(1771303041853)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:37:21 PM"},"main":3.7870030798059733}
+{"sandbox":4.2739820859742963,"promoted":true,"iter":30,"best":4.2739820859742963,"time":{"value":"\/Date(1771303046986)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:37:26 PM"},"main":3.887992562199893}
+{"sandbox":4.8959782894186645,"promoted":true,"iter":31,"best":4.8959782894186645,"time":{"value":"\/Date(1771303051729)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:37:31 PM"},"main":4.2739820859742963}
+{"sandbox":4.9654550259789874,"promoted":true,"iter":32,"best":4.9654550259789874,"time":{"value":"\/Date(1771303056425)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:37:36 PM"},"main":4.8959782894186645}
+{"sandbox":4.1259494668006562,"promoted":false,"iter":33,"best":4.9654550259789874,"time":{"value":"\/Date(1771303061085)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:37:41 PM"},"main":4.9654550259789874}
+{"sandbox":4.4284147178409823,"promoted":false,"iter":34,"best":4.9654550259789874,"time":{"value":"\/Date(1771303065780)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:37:45 PM"},"main":4.9654550259789874}
+{"sandbox":4.6642083003617074,"promoted":false,"iter":35,"best":4.9654550259789874,"time":{"value":"\/Date(1771303070422)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:37:50 PM"},"main":4.9654550259789874}
+{"sandbox":4.8129018821988314,"promoted":false,"iter":36,"best":4.9654550259789874,"time":{"value":"\/Date(1771303075145)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:37:55 PM"},"main":4.9654550259789874}
+{"sandbox":4.8928002123214505,"promoted":false,"iter":37,"best":4.9654550259789874,"time":{"value":"\/Date(1771303080044)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:38:00 PM"},"main":4.9654550259789874}
+{"sandbox":4.2057010661479524,"promoted":false,"iter":38,"best":4.9654550259789874,"time":{"value":"\/Date(1771303084711)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:38:04 PM"},"main":4.9654550259789874}
+{"sandbox":5.4720540501966868,"promoted":true,"iter":39,"best":5.4720540501966868,"time":{"value":"\/Date(1771303089462)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:38:09 PM"},"main":4.9654550259789874}
+{"sandbox":4.7247102353451629,"promoted":false,"iter":40,"best":5.4720540501966868,"time":{"value":"\/Date(1771303094563)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:38:14 PM"},"main":5.4720540501966868}
+{"sandbox":5.3781681439574758,"promoted":false,"iter":41,"best":5.4720540501966868,"time":{"value":"\/Date(1771303099692)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:38:19 PM"},"main":5.4720540501966868}
+{"sandbox":5.6805124723268943,"promoted":true,"iter":42,"best":5.6805124723268943,"time":{"value":"\/Date(1771303104493)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:38:24 PM"},"main":5.4720540501966868}
+{"sandbox":5.7714218985821,"promoted":true,"iter":43,"best":5.7714218985821,"time":{"value":"\/Date(1771303109450)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:38:29 PM"},"main":5.6805124723268943}
+{"sandbox":5.56505775513096,"promoted":false,"iter":44,"best":5.7714218985821,"time":{"value":"\/Date(1771303114176)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:38:34 PM"},"main":5.7714218985821}
+{"sandbox":5.918459103821875,"promoted":true,"iter":1,"best":5.918459103821875,"time":"2026-02-16T23:38:43","main":5.7714218985821}
+{"sandbox":6.0379405800817949,"promoted":true,"iter":2,"best":6.0379405800817949,"time":"2026-02-16T23:38:45","main":5.918459103821875}
+{"sandbox":6.0981766877117014,"promoted":true,"iter":3,"best":6.0981766877117014,"time":"2026-02-16T23:38:47","main":6.0379405800817949}
+{"sandbox":6.2145767358762711,"promoted":true,"iter":4,"best":6.2145767358762711,"time":"2026-02-16T23:38:49","main":6.0981766877117014}
+{"sandbox":6.2361350041100927,"promoted":true,"iter":5,"best":6.2361350041100927,"time":"2026-02-16T23:38:50","main":6.2145767358762711}
+{"sandbox":6.1636208707910214,"promoted":false,"iter":6,"best":6.2361350041100927,"time":"2026-02-16T23:38:52","main":6.2361350041100927}
+{"sandbox":6.32979551169262,"promoted":true,"iter":7,"best":6.32979551169262,"time":"2026-02-16T23:38:54","main":6.2361350041100927}
+{"sandbox":6.3298437751987242,"promoted":true,"iter":8,"best":6.3298437751987242,"time":"2026-02-16T23:38:56","main":6.32979551169262}
+{"sandbox":6.392888312529017,"promoted":true,"iter":9,"best":6.392888312529017,"time":"2026-02-16T23:38:58","main":6.3298437751987242}
+{"sandbox":6.4090571612517415,"promoted":true,"iter":10,"best":6.4090571612517415,"time":"2026-02-16T23:39:00","main":6.392888312529017}
+{"sandbox":6.5510899011837429,"promoted":true,"iter":11,"best":6.5510899011837429,"time":"2026-02-16T23:39:02","main":6.4090571612517415}
+{"sandbox":6.6539546240468477,"promoted":true,"iter":12,"best":6.6539546240468477,"time":"2026-02-16T23:39:04","main":6.5510899011837429}
+{"sandbox":6.6541672866810044,"promoted":true,"iter":13,"best":6.6541672866810044,"time":"2026-02-16T23:39:06","main":6.6539546240468477}
+{"sandbox":7.0302680444722112,"promoted":true,"iter":14,"best":7.0302680444722112,"time":"2026-02-16T23:39:08","main":6.6541672866810044}
+{"sandbox":7.07544224632024,"promoted":true,"iter":15,"best":7.07544224632024,"time":"2026-02-16T23:39:10","main":7.0302680444722112}
+{"sandbox":7.28539864621533,"promoted":true,"iter":16,"best":7.28539864621533,"time":"2026-02-16T23:39:12","main":7.07544224632024}
+{"sandbox":7.2510408982662016,"promoted":false,"iter":17,"best":7.28539864621533,"time":"2026-02-16T23:39:14","main":7.28539864621533}
+{"sandbox":7.307371738778853,"promoted":true,"iter":18,"best":7.307371738778853,"time":"2026-02-16T23:39:16","main":7.28539864621533}
+{"sandbox":7.3726268404649158,"promoted":true,"iter":19,"best":7.3726268404649158,"time":"2026-02-16T23:39:18","main":7.307371738778853}
+{"sandbox":7.5363132108926489,"promoted":true,"iter":20,"best":7.5363132108926489,"time":"2026-02-16T23:39:20","main":7.3726268404649158}
+{"sandbox":7.58181816382433,"promoted":true,"iter":21,"best":7.58181816382433,"time":"2026-02-16T23:39:22","main":7.5363132108926489}
+{"sandbox":7.66697577731698,"promoted":true,"iter":22,"best":7.66697577731698,"time":"2026-02-16T23:39:24","main":7.58181816382433}
+{"sandbox":7.74586847718586,"promoted":true,"iter":23,"best":7.74586847718586,"time":"2026-02-16T23:39:26","main":7.66697577731698}
+{"sandbox":7.76213355658833,"promoted":true,"iter":24,"best":7.76213355658833,"time":"2026-02-16T23:39:28","main":7.74586847718586}
+{"sandbox":7.8329825925928924,"promoted":true,"iter":25,"best":7.8329825925928924,"time":"2026-02-16T23:39:30","main":7.76213355658833}
+{"sandbox":7.8329792224816321,"promoted":false,"iter":26,"best":7.8329825925928924,"time":"2026-02-16T23:39:32","main":7.8329825925928924}
+{"sandbox":8.1613418001429245,"promoted":true,"iter":27,"best":8.1613418001429245,"time":"2026-02-16T23:39:34","main":7.8329825925928924}
+{"sandbox":8.3772561013971263,"promoted":true,"iter":28,"best":8.3772561013971263,"time":"2026-02-16T23:39:36","main":8.1613418001429245}
+{"sandbox":8.57857483556261,"promoted":true,"iter":29,"best":8.57857483556261,"time":"2026-02-16T23:39:38","main":8.3772561013971263}
+{"sandbox":8.6451903795447915,"promoted":true,"iter":30,"best":8.6451903795447915,"time":"2026-02-16T23:39:40","main":8.57857483556261}
+{"sandbox":8.6287675793023748,"promoted":false,"iter":31,"best":8.6451903795447915,"time":"2026-02-16T23:39:42","main":8.6451903795447915}
+{"sandbox":9.1162484071681966,"promoted":true,"iter":32,"best":9.1162484071681966,"time":"2026-02-16T23:39:44","main":8.6451903795447915}
+{"sandbox":9.2579550817220024,"promoted":true,"iter":33,"best":9.2579550817220024,"time":"2026-02-16T23:39:46","main":9.1162484071681966}
+{"sandbox":9.4743699057021331,"promoted":true,"iter":34,"best":9.4743699057021331,"time":"2026-02-16T23:39:48","main":9.2579550817220024}
+{"sandbox":9.5185048077773278,"promoted":true,"iter":35,"best":9.5185048077773278,"time":"2026-02-16T23:39:50","main":9.4743699057021331}
+{"sandbox":9.5986197691832444,"promoted":true,"iter":36,"best":9.5986197691832444,"time":"2026-02-16T23:39:52","main":9.5185048077773278}
+{"sandbox":9.59879899502437,"promoted":true,"iter":37,"best":9.59879899502437,"time":"2026-02-16T23:39:53","main":9.5986197691832444}
+{"sandbox":9.59878808529483,"promoted":false,"iter":38,"best":9.59879899502437,"time":"2026-02-16T23:39:56","main":9.59879899502437}
+{"sandbox":9.6706777030102948,"promoted":true,"iter":39,"best":9.6706777030102948,"time":"2026-02-16T23:39:58","main":9.59879899502437}
+{"sandbox":9.85598595910174,"promoted":true,"iter":40,"best":9.85598595910174,"time":"2026-02-16T23:40:00","main":9.6706777030102948}
+{"sandbox":10.348925397308118,"promoted":true,"iter":41,"best":10.348925397308118,"time":"2026-02-16T23:40:02","main":9.85598595910174}
+{"sandbox":10.349628672144432,"promoted":true,"iter":42,"best":10.349628672144432,"time":"2026-02-16T23:40:04","main":10.348925397308118}
+{"sandbox":10.520295895464935,"promoted":true,"iter":43,"best":10.520295895464935,"time":"2026-02-16T23:40:05","main":10.349628672144432}
+{"sandbox":10.537714858164138,"step":0.018000000000000002,"promoted":true,"iter":1,"best":10.537714858164138,"main":10.520295895464935}
+{"sandbox":10.603890014347236,"step":0.016200000000000003,"promoted":true,"iter":2,"best":10.603890014347236,"main":10.518644921713822}
+{"sandbox":11.044502556521932,"step":0.014580000000000003,"promoted":true,"iter":3,"best":11.044502556521932,"main":10.58660679411417}
+{"sandbox":11.104221576912526,"step":0.013122000000000003,"promoted":true,"iter":4,"best":11.104221576912526,"main":11.044502556521932}
+{"sandbox":11.139888737249434,"step":0.011809800000000004,"promoted":true,"iter":5,"best":11.139888737249434,"main":11.104221576912526}
+{"sandbox":11.429521833006088,"step":0.010628820000000004,"promoted":true,"iter":6,"best":11.429521833006088,"main":11.108954084337093}
+{"sandbox":11.460733005218607,"step":0.0095659380000000047,"promoted":true,"iter":7,"best":11.460733005218607,"main":11.429521833006088}
+{"sandbox":11.444358973536108,"step":0.0095659380000000047,"promoted":false,"iter":8,"best":11.460733005218607,"main":11.444391701462548}
+{"sandbox":11.390238238017179,"step":0.0095659380000000047,"promoted":false,"iter":9,"best":11.460733005218607,"main":11.444391701462548}
+{"sandbox":11.374916634647613,"step":0.0095659380000000047,"promoted":false,"iter":10,"best":11.460733005218607,"main":11.444391701462548}
+{"sandbox":11.444328486058412,"step":0.0095659380000000047,"promoted":false,"iter":11,"best":11.460733005218607,"main":11.444391701462548}
+{"sandbox":11.518148450053577,"step":0.0086093442000000041,"promoted":true,"iter":12,"best":11.518148450053577,"main":11.444391701462548}
+{"sandbox":11.483961241524186,"step":0.0077484097800000042,"promoted":true,"iter":13,"best":11.483961241524186,"main":11.475921833726119}
+{"sandbox":11.455023471353847,"step":0.006973568802000004,"promoted":true,"iter":14,"best":11.455023471353847,"main":11.448154172185834}
+{"sandbox":11.506429518753741,"step":0.0062762119218000038,"promoted":true,"iter":15,"best":11.506429518753741,"main":11.455023471353847}
+{"sandbox":11.503860706995837,"step":0.0062762119218000038,"promoted":false,"iter":16,"best":11.506429518753741,"main":11.503876245160587}
+{"sandbox":11.549959703153913,"step":0.0056485907296200035,"promoted":true,"iter":17,"best":11.549959703153913,"main":11.503876245160587}
+{"sandbox":11.629505807011544,"step":0.0050837316566580033,"promoted":true,"iter":18,"best":11.629505807011544,"main":11.533701086426426}
+{"sandbox":11.631540098238938,"step":0.0045753584909922033,"promoted":true,"iter":19,"best":11.631540098238938,"main":11.629505807011544}
+{"sandbox":11.630486643383152,"step":0.0045753584909922033,"promoted":false,"iter":20,"best":11.631540098238938,"main":11.631332009408061}
+{"sandbox":11.679413821264994,"step":0.0041178226418929834,"promoted":true,"iter":21,"best":11.679413821264994,"main":11.631332009408061}
+{"sandbox":11.692878111660436,"step":0.003706040377703685,"promoted":true,"iter":22,"best":11.692878111660436,"main":11.67831662977648}
+{"sandbox":11.764472818430328,"step":0.0033354363399333165,"promoted":true,"iter":23,"best":11.764472818430328,"main":11.669013589331472}
+{"sandbox":11.765391706800305,"step":0.0030018927059399848,"promoted":true,"iter":24,"best":11.765391706800305,"main":11.764472818430328}
+{"sandbox":11.764551164317659,"step":0.0027017034353459864,"promoted":true,"iter":25,"best":11.764551164317659,"main":11.763950932537536}
+{"sandbox":11.775335004562406,"step":0.002431533091811388,"promoted":true,"iter":26,"best":11.775335004562406,"main":11.737717316615948}
+{"sandbox":11.789140863729274,"step":0.0021883797826302491,"promoted":true,"iter":27,"best":11.789140863729274,"main":11.773990134410841}
+{"sandbox":11.766696819253998,"step":0.002,"promoted":true,"iter":28,"best":11.766696819253998,"main":11.766454872504074}
+{"sandbox":11.746608459830279,"step":0.002,"promoted":true,"iter":29,"best":11.746608459830279,"main":11.746577362155278}
+{"sandbox":11.72195610292178,"step":0.002,"promoted":false,"iter":30,"best":11.746608459830279,"main":11.722853805173951}
+{"sandbox":11.744291159759042,"step":0.002,"promoted":true,"iter":31,"best":11.744291159759042,"main":11.722853805173951}
+{"sandbox":11.74123714303313,"step":0.002,"promoted":true,"iter":32,"best":11.74123714303313,"main":11.72281864492245}
+{"sandbox":11.754178066878419,"step":0.002,"promoted":true,"iter":33,"best":11.754178066878419,"main":11.741224370934932}
+{"sandbox":11.772624275537977,"step":0.002,"promoted":true,"iter":34,"best":11.772624275537977,"main":11.754151711164841}
+{"sandbox":11.778942583577056,"step":0.002,"promoted":true,"iter":35,"best":11.778942583577056,"main":11.761914293802425}
+{"sandbox":11.739571480415018,"step":0.002,"promoted":false,"iter":36,"best":11.778942583577056,"main":11.739601969352364}
+{"sandbox":11.748315702624005,"step":0.002,"promoted":true,"iter":37,"best":11.748315702624005,"main":11.739601969352364}
+{"sandbox":11.747780600330412,"step":0.002,"promoted":true,"iter":38,"best":11.747780600330412,"main":11.700295261342649}
+{"sandbox":11.747780600330412,"promoted":false,"iter":1,"best":11.747780600330412,"time":{"value":"\/Date(1771303668313)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:47:48 PM"},"main":11.747780600330412}
+{"sandbox":11.747780600330412,"promoted":false,"iter":2,"best":11.747780600330412,"time":{"value":"\/Date(1771303671570)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:47:51 PM"},"main":11.747780600330412}
+{"sandbox":11.747780600330412,"promoted":false,"iter":3,"best":11.747780600330412,"time":{"value":"\/Date(1771303674980)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:47:54 PM"},"main":11.747780600330412}
+{"sandbox":11.747780600330412,"promoted":false,"iter":4,"best":11.747780600330412,"time":{"value":"\/Date(1771303678407)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:47:58 PM"},"main":11.747780600330412}
+{"sandbox":11.747780600330412,"promoted":false,"iter":5,"best":11.747780600330412,"time":{"value":"\/Date(1771303681729)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:48:01 PM"},"main":11.747780600330412}
+{"sandbox":11.747780600330412,"promoted":false,"iter":6,"best":11.747780600330412,"time":{"value":"\/Date(1771303685164)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:48:05 PM"},"main":11.747780600330412}
+{"sandbox":11.747780600330412,"promoted":false,"iter":7,"best":11.747780600330412,"time":{"value":"\/Date(1771303688589)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:48:08 PM"},"main":11.747780600330412}
+{"sandbox":11.747780600330412,"promoted":false,"iter":8,"best":11.747780600330412,"time":{"value":"\/Date(1771303691952)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:48:11 PM"},"main":11.747780600330412}
+{"sandbox":11.747780600330412,"promoted":false,"iter":9,"best":11.747780600330412,"time":{"value":"\/Date(1771303695173)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:48:15 PM"},"main":11.747780600330412}
+{"sandbox":11.747780600330412,"promoted":false,"iter":10,"best":11.747780600330412,"time":{"value":"\/Date(1771303698680)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:48:18 PM"},"main":11.747780600330412}
+{"sandbox":11.747780600330412,"promoted":false,"iter":11,"best":11.747780600330412,"time":{"value":"\/Date(1771303701905)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:48:21 PM"},"main":11.747780600330412}
+{"sandbox":11.747780600330412,"promoted":false,"iter":12,"best":11.747780600330412,"time":{"value":"\/Date(1771303705336)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:48:25 PM"},"main":11.747780600330412}
+{"sandbox":11.747780600330412,"promoted":false,"iter":13,"best":11.747780600330412,"time":{"value":"\/Date(1771303708750)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:48:28 PM"},"main":11.747780600330412}
+{"sandbox":11.747780600330412,"promoted":false,"iter":14,"best":11.747780600330412,"time":{"value":"\/Date(1771303712330)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:48:32 PM"},"main":11.747780600330412}
+{"sandbox":11.747780600330412,"promoted":false,"iter":1,"best":11.747780600330412,"time":{"value":"\/Date(1771303977362)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:52:57 PM"},"main":11.747780600330412}
+{"sandbox":11.747780600330412,"promoted":false,"iter":2,"best":11.747780600330412,"time":{"value":"\/Date(1771303980507)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:53:00 PM"},"main":11.747780600330412}
+{"sandbox":11.747780600330412,"promoted":false,"iter":3,"best":11.747780600330412,"time":{"value":"\/Date(1771303983777)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:53:03 PM"},"main":11.747780600330412}
+{"sandbox":11.747780600330412,"promoted":false,"iter":4,"best":11.747780600330412,"time":{"value":"\/Date(1771303986873)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:53:06 PM"},"main":11.747780600330412}
+{"sandbox":11.747780600330412,"promoted":false,"iter":5,"best":11.747780600330412,"time":{"value":"\/Date(1771303990097)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:53:10 PM"},"main":11.747780600330412}
+{"sandbox":11.747780600330412,"promoted":false,"iter":6,"best":11.747780600330412,"time":{"value":"\/Date(1771303993648)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:53:13 PM"},"main":11.747780600330412}
+{"sandbox":11.747780600330412,"promoted":false,"iter":7,"best":11.747780600330412,"time":{"value":"\/Date(1771303997218)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:53:17 PM"},"main":11.747780600330412}
+{"sandbox":11.747780600330412,"promoted":false,"iter":8,"best":11.747780600330412,"time":{"value":"\/Date(1771304000423)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:53:20 PM"},"main":11.747780600330412}
+{"sandbox":11.747780600330412,"promoted":false,"iter":9,"best":11.747780600330412,"time":{"value":"\/Date(1771304003773)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:53:23 PM"},"main":11.747780600330412}
+{"sandbox":11.747780600330412,"promoted":false,"iter":10,"best":11.747780600330412,"time":{"value":"\/Date(1771304006959)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:53:26 PM"},"main":11.747780600330412}
+{"sandbox":11.747780600330412,"promoted":false,"iter":11,"best":11.747780600330412,"time":{"value":"\/Date(1771304010335)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:53:30 PM"},"main":11.747780600330412}
+{"sandbox":11.747780600330412,"promoted":false,"iter":12,"best":11.747780600330412,"time":{"value":"\/Date(1771304013500)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:53:33 PM"},"main":11.747780600330412}
+{"sandbox":11.747780600330412,"promoted":false,"iter":13,"best":11.747780600330412,"time":{"value":"\/Date(1771304016992)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:53:36 PM"},"main":11.747780600330412}
+{"sandbox":11.747780600330412,"promoted":false,"iter":14,"best":11.747780600330412,"time":{"value":"\/Date(1771304020191)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:53:40 PM"},"main":11.747780600330412}
+{"sandbox":11.747780600330412,"promoted":false,"iter":15,"best":11.747780600330412,"time":{"value":"\/Date(1771304023598)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:53:43 PM"},"main":11.747780600330412}
+{"sandbox":11.747780600330412,"promoted":false,"iter":16,"best":11.747780600330412,"time":{"value":"\/Date(1771304027219)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:53:47 PM"},"main":11.747780600330412}
+{"sandbox":11.747780600330412,"promoted":false,"iter":17,"best":11.747780600330412,"time":{"value":"\/Date(1771304030554)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:53:50 PM"},"main":11.747780600330412}
+{"sandbox":11.747780600330412,"promoted":false,"iter":18,"best":11.747780600330412,"time":{"value":"\/Date(1771304033834)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:53:53 PM"},"main":11.747780600330412}
+{"sandbox":11.747780600330412,"promoted":false,"iter":19,"best":11.747780600330412,"time":{"value":"\/Date(1771304037309)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:53:57 PM"},"main":11.747780600330412}
+{"sandbox":11.747780600330412,"promoted":false,"iter":20,"best":11.747780600330412,"time":{"value":"\/Date(1771304040623)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:54:00 PM"},"main":11.747780600330412}
+{"sandbox":11.747780600330412,"promoted":false,"iter":21,"best":11.747780600330412,"time":{"value":"\/Date(1771304043957)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:54:03 PM"},"main":11.747780600330412}
+{"sandbox":11.747780600330412,"promoted":false,"iter":22,"best":11.747780600330412,"time":{"value":"\/Date(1771304047275)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:54:07 PM"},"main":11.747780600330412}
+{"sandbox":11.747780600330412,"promoted":false,"iter":23,"best":11.747780600330412,"time":{"value":"\/Date(1771304050559)\/","DisplayHint":2,"DateTime":"Monday, February 16, 2026 11:54:10 PM"},"main":11.747780600330412}

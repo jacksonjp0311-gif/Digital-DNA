@@ -1,0 +1,26 @@
+[
+  {
+    "module": "drift",
+    "file_count": 7
+  },
+  {
+    "module": "episodic",
+    "file_count": 3
+  },
+  {
+    "module": "genome",
+    "file_count": 6
+  },
+  {
+    "module": "ledger",
+    "file_count": 3
+  },
+  {
+    "module": "orchestrator",
+    "file_count": 3
+  },
+  {
+    "module": "stability",
+    "file_count": 3
+  }
+]

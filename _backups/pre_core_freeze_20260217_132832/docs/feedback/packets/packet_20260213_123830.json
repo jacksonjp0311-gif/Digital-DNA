@@ -1,0 +1,47 @@
+{
+  "timestamp": "2026-02-13T17:38:30.491586+00:00",
+  "repo": "Digital-DNA",
+  "mode": "PY_LOOP",
+  "source_metrics": "artifacts/last_run.json",
+  "episode": {
+    "context_hash": "2016c1b630524cc8be536d8f8bee9997034117a5aaa5e24380c2f70f5486db9c",
+    "repo_hash": "d272e825e7163aafc77c861a510dd7acfc605ad0",
+    "boundary_score": 0.2,
+    "boundary_event": false,
+    "boundary_reason": "none",
+    "Bcrit": 0.5,
+    "replay_K": 10
+  },
+  "observations": {
+    "stability": -16.87878787878788,
+    "retention": 0.0,
+    "drift_total": 16.87878787878788,
+    "drift_topology": 16.5,
+    "drift_dependency": 0.3787878787878788
+  },
+  "replay": {
+    "K": 10,
+    "count": 7,
+    "mean_stability": -4.906926406926408,
+    "last_stability": -16.87878787878788,
+    "delta": 0.0,
+    "slope": -2.9491341991341993,
+    "min": -16.87878787878788,
+    "max": 1.0,
+    "path": "artifacts/replay_k.json"
+  },
+  "outputs": {
+    "last_run": "artifacts/last_run.json",
+    "replay_k": "artifacts/replay_k.json",
+    "history_dir": "artifacts/history/",
+    "packet_latest": "docs/feedback/packet_latest.json",
+    "docs_ledger": "docs/ledger/docs_ledger.jsonl"
+  },
+  "invariants_locked": [
+    "stability = retention - drift_total",
+    "artifacts/last_run.json overwritten each run",
+    "artifacts/replay_k.json overwritten each run",
+    "history snapshots append-only",
+    "docs_ledger append-only"
+  ]
+}

@@ -1,0 +1,17 @@
+[SELFTEST] True ok
+iter 1 main=8.0216 cand=8.0728 best_conf=8.0482 best_raw=8.0908 k=8 ck=4 mu=0.0366 crash_bias=0.0000
+
+[SELFMOD]
+[SELFMOD] cfg path: C:\Users\jacks\OneDrive\Desktop\Digital-DNA\selfmod\mutation_config.json
+[SELFMOD] config OK
+{"changed": true}
+
+iter 2 main=7.2173 cand=8.0426 best_conf=8.0482 best_raw=8.0908 k=8 ck=4 mu=0.0366 crash_bias=0.0000
+iter 3 main=8.0156 cand=8.0308 best_conf=8.0482 best_raw=8.0908 k=8 ck=4 mu=0.0366 crash_bias=0.0000
+iter 4 main=7.1085 cand=8.0537 best_conf=8.0482 best_raw=8.0908 k=8 ck=4 mu=0.0366 crash_bias=0.0000
+iter 5 main=8.0570 cand=8.0669 best_conf=8.0482 best_raw=8.0908 k=8 ck=4 mu=0.0366 crash_bias=0.0000
+iter 6 main=8.0325 cand=8.0436 best_conf=8.0482 best_raw=8.0908 k=8 ck=4 mu=0.0366 crash_bias=0.0000
+iter 7 main=8.0520 cand=8.0860 best_conf=8.0482 best_raw=8.0908 k=8 ck=4 mu=0.0366 crash_bias=0.0000
+iter 8 main=8.0571 cand=8.0848 best_conf=8.0482 best_raw=8.0908 k=8 ck=4 mu=0.0366 crash_bias=0.0000
+iter 9 main=7.7662 cand=8.0686 best_conf=8.0482 best_raw=8.0908 k=8 ck=4 mu=0.0366 crash_bias=0.0000
+iter 10 main=7.2230 cand=8.0582 best_conf=8.0482 best_raw=8.0908 k=8 ck=4 mu=0.0366 crash_bias=0.0000

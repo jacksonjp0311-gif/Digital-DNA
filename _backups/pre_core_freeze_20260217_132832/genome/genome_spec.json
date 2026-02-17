@@ -1,0 +1,13 @@
+﻿{
+    "params":  {
+                   "d":  0.010280192825017539,
+                   "b":  0.051017637872434816,
+                   "clamp_max":  743047.05919446726,
+                   "c":  0.38964135722728122,
+                   "clamp_min":  -807383.37961005233,
+                   "a":  14386.101704520148
+               },
+    "family":  "linear_product",
+    "version":  "ddna_genome_v1",
+    "notes":  "Genome controls scoring law family + parameters (real evolution)."
+}

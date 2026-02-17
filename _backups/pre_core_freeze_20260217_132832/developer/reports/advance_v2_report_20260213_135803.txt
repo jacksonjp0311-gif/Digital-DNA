@@ -1,0 +1,137 @@
+﻿DDNA ADVANCE v2 REPORT  (20260213_135803)
+ROOT=C:\Users\jacks\OneDrive\Desktop\Digital-DNA
+
+BASELINE PATH: C:\Users\jacks\OneDrive\Desktop\Digital-DNA\state\environments\topology_baseline.json
+Exists: True
+
+TOPOLOGY PRE:
+DDNA RUN COMPLETE
+{
+  "retention": 1.0,
+  "drift_total": 0.041666666666666664,
+  "drift_topology": 0.0,
+  "drift_dependency": 0.041666666666666664,
+  "stability": 0.9583333333333334,
+  "timestamp": "2026-02-13T18:58:20.544334+00:00",
+  "context_hash": "bded6e58b5ff28bfe26b4be224c4e097f97510220aacc34f4a2672020cd95c64",
+  "repo_hash": "8735ff6a1336f03847cb23706070be3d2a0032f6",
+  "boundary_score": 0.041666666666666664,
+  "boundary_event": false,
+  "boundary_reason": "none",
+  "replay_K": 10,
+  "Bcrit": 0.5,
+  "replay_path": "artifacts/replay_k.json"
+}
+
+
+TOPOLOGY POST (file added):
+DDNA RUN COMPLETE
+{
+  "retention": 0.96875,
+  "drift_total": 0.07291666666666666,
+  "drift_topology": 0.03125,
+  "drift_dependency": 0.041666666666666664,
+  "stability": 0.8958333333333334,
+  "timestamp": "2026-02-13T18:58:20.849502+00:00",
+  "context_hash": "bded6e58b5ff28bfe26b4be224c4e097f97510220aacc34f4a2672020cd95c64",
+  "repo_hash": "8735ff6a1336f03847cb23706070be3d2a0032f6",
+  "boundary_score": 0.07291666666666666,
+  "boundary_event": false,
+  "boundary_reason": "none",
+  "replay_K": 10,
+  "Bcrit": 0.5,
+  "replay_path": "artifacts/replay_k.json"
+}
+
+
+TOPOLOGY RESTORE (file removed):
+DDNA RUN COMPLETE
+{
+  "retention": 1.0,
+  "drift_total": 0.041666666666666664,
+  "drift_topology": 0.0,
+  "drift_dependency": 0.041666666666666664,
+  "stability": 0.9583333333333334,
+  "timestamp": "2026-02-13T18:58:21.092798+00:00",
+  "context_hash": "bded6e58b5ff28bfe26b4be224c4e097f97510220aacc34f4a2672020cd95c64",
+  "repo_hash": "8735ff6a1336f03847cb23706070be3d2a0032f6",
+  "boundary_score": 0.041666666666666664,
+  "boundary_event": false,
+  "boundary_reason": "none",
+  "replay_K": 10,
+  "Bcrit": 0.5,
+  "replay_path": "artifacts/replay_k.json"
+}
+
+
+DEPENDENCY PRE:
+DDNA RUN COMPLETE
+{
+  "retention": 1.0,
+  "drift_total": 0.041666666666666664,
+  "drift_topology": 0.0,
+  "drift_dependency": 0.041666666666666664,
+  "stability": 0.9583333333333334,
+  "timestamp": "2026-02-13T18:58:21.513694+00:00",
+  "context_hash": "bded6e58b5ff28bfe26b4be224c4e097f97510220aacc34f4a2672020cd95c64",
+  "repo_hash": "8735ff6a1336f03847cb23706070be3d2a0032f6",
+  "boundary_score": 0.041666666666666664,
+  "boundary_event": false,
+  "boundary_reason": "none",
+  "replay_K": 10,
+  "Bcrit": 0.5,
+  "replay_path": "artifacts/replay_k.json"
+}
+
+
+DEPENDENCY POST (import added):
+DDNA RUN COMPLETE
+{
+  "retention": 0.96875,
+  "drift_total": 0.07291666666666666,
+  "drift_topology": 0.03125,
+  "drift_dependency": 0.041666666666666664,
+  "stability": 0.8958333333333334,
+  "timestamp": "2026-02-13T18:58:21.748935+00:00",
+  "context_hash": "bded6e58b5ff28bfe26b4be224c4e097f97510220aacc34f4a2672020cd95c64",
+  "repo_hash": "8735ff6a1336f03847cb23706070be3d2a0032f6",
+  "boundary_score": 0.07291666666666666,
+  "boundary_event": false,
+  "boundary_reason": "none",
+  "replay_K": 10,
+  "Bcrit": 0.5,
+  "replay_path": "artifacts/replay_k.json"
+}
+
+
+DEPENDENCY RESTORE (probe removed):
+DDNA RUN COMPLETE
+{
+  "retention": 1.0,
+  "drift_total": 0.041666666666666664,
+  "drift_topology": 0.0,
+  "drift_dependency": 0.041666666666666664,
+  "stability": 0.9583333333333334,
+  "timestamp": "2026-02-13T18:58:21.983170+00:00",
+  "context_hash": "bded6e58b5ff28bfe26b4be224c4e097f97510220aacc34f4a2672020cd95c64",
+  "repo_hash": "8735ff6a1336f03847cb23706070be3d2a0032f6",
+  "boundary_score": 0.041666666666666664,
+  "boundary_event": false,
+  "boundary_reason": "none",
+  "replay_K": 10,
+  "Bcrit": 0.5,
+  "replay_path": "artifacts/replay_k.json"
+}
+
+
+
+WEIGHTED:
+WEIGHTED MODULE DRIFT
+drift            w=0.280 stability=0.952
+episodic         w=0.120 stability=0.980
+genome           w=0.240 stability=0.959
+ledger           w=0.120 stability=0.980
+orchestrator     w=0.120 stability=0.980
+stability        w=0.120 stability=0.980
+
+
