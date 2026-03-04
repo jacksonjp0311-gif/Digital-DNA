@@ -1,13 +1,13 @@
 {
   "retention": 1.0,
-  "drift": 1.0,
-  "drift_raw": 5.066091954022988,
-  "drift_topology": 0.8577586206896551,
-  "drift_dependency": 4.208333333333333,
+  "drift": 0.0,
+  "drift_raw": 0.0,
+  "drift_topology": 0.0,
+  "drift_dependency": 0.0,
   "weights": {
     "topology": 1.0,
     "dependency": 1.0
   },
-  "stability": 0.0,
-  "timestamp": "2026-02-17T15:17:01.957835+00:00"
+  "stability": 1.0,
+  "timestamp": "2026-03-04T15:56:00.626574+00:00"
 }
