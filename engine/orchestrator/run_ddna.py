@@ -58,7 +58,7 @@ def _load_weights() -> dict[str, float]:
     return {"topology": wt, "dependency": wd}
 
 
-def main() -> None:
+def run_scan(*, write_artifact: bool = True) -> dict[str, Any]:
     genome = extract_genome(ROOT)
     genome_files = list(genome.get("files", []))
     load_or_init_genome_baseline(genome_files)
@@ -92,7 +92,14 @@ def main() -> None:
     }
 
     validate_record(record)
-    _write_json(ARTIFACT_PATH, record)
+    if write_artifact:
+        _write_json(ARTIFACT_PATH, record)
+    return record
+
+
+def main() -> None:
+    record = run_scan(write_artifact=True)
+    stability = float(record["stability"])
 
     print(f"stability: {stability:.6f}")
 

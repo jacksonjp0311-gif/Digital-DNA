@@ -1,0 +1,42 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "digital-dna"
+version = "0.1.0"
+description = "Deterministic structural genome scanner and drift gate for specification-driven repositories."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "James Paul Jackson" }]
+keywords = ["structural-integrity", "repository-analysis", "drift", "agent-governance", "ci"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Software Development :: Quality Assurance",
+]
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0"]
+
+[project.urls]
+Homepage = "https://github.com/jacksonjp0311-gif/Digital-DNA"
+Repository = "https://github.com/jacksonjp0311-gif/Digital-DNA"
+Issues = "https://github.com/jacksonjp0311-gif/Digital-DNA/issues"
+
+[project.scripts]
+ddna = "engine.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["engine"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

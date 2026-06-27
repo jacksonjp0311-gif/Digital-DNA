@@ -1,0 +1,32 @@
+name: Digital-DNA Gate
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  ddna:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install
+        run: python -m pip install -e .[dev]
+
+      - name: Tests
+        run: python -m pytest
+
+      - name: Scan
+        run: ddna scan --format json
+
+      - name: Gate
+        run: ddna gate --min-stability 0.0 --format json
+
+      - name: Render HTML report
+        run: ddna report --format html --output artifacts/ddna-report.html

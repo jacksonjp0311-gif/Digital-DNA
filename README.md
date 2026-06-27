@@ -1,100 +1,196 @@
-# Digital DNA (DDNA)
+# Digital-DNA
 
-Digital DNA is a deterministic structural coherence engine that measures and enforces invariant stability across a software system.
+**Deterministic structural genome verification for repositories changed by humans, agents, or recursive tooling.**
 
----
+Digital-DNA verifies whether a repository still preserves its intended structural identity after edits. It extracts a repository genome, compares topology and dependency drift against baselines, computes retention, and emits a stability score that can be used as a local or CI gate.
+
+```text
+repository -> structural genome -> drift scan -> stability score -> ledger/report
+```
+
+## Why It Exists
+
+Agent-modified repositories need more than tests. Tests answer whether selected behavior still works. Digital-DNA asks a different question:
+
+> Did this repository retain the structure that makes it the same system?
+
+That makes DDNA useful for:
+
+- agent-code review pipelines,
+- recursive evolution loops,
+- specification-driven repositories,
+- structural drift detection,
+- CI gates that protect repository shape.
 
 ## Core Model
 
-DDNA computes structural stability through weighted drift channels:
+DDNA computes stability through retention minus bounded drift:
 
-`drift_raw = (w_topology * drift_topology) + (w_dependency * drift_dependency)`
-`drift = clamp(drift_raw, 0, 1)`
-`stability = retention - drift`
+```text
+drift_raw = (w_topology * drift_topology) + (w_dependency * drift_dependency)
+drift = clamp(drift_raw, 0, 1)
+stability = retention - drift
+```
 
-All invariants are mathematically enforced and test-verified.
+The invariant is enforced by runtime validation and tests.
 
----
+## Install
+
+```powershell
+git clone https://github.com/jacksonjp0311-gif/Digital-DNA.git
+cd Digital-DNA
+python -m pip install -e .[dev]
+```
+
+## Quick Start
+
+Run a scan:
+
+```powershell
+ddna scan
+```
+
+Return JSON:
+
+```powershell
+ddna scan --format json
+```
+
+Run a CI-style gate:
+
+```powershell
+ddna gate --min-stability 0.85
+```
+
+Render a report from the latest run:
+
+```powershell
+ddna report --format html --output artifacts/ddna-report.html
+```
+
+Rebuild baselines intentionally:
+
+```powershell
+ddna baseline --yes
+```
+
+## CLI
+
+| Command | Purpose |
+| --- | --- |
+| `ddna scan` | Runs genome extraction, drift scoring, retention scoring, and writes `artifacts/last_run.json` by default. |
+| `ddna scan --no-write` | Runs the same scan without updating the latest artifact. |
+| `ddna gate --min-stability 0.85` | Returns non-zero when stability falls below the threshold. |
+| `ddna baseline --yes` | Rebuilds genome, topology, and dependency baselines. |
+| `ddna report` | Renders JSON, Markdown, or HTML from a scan record. |
+
+The legacy entrypoint remains supported:
+
+```powershell
+python -m engine.orchestrator.run_ddna
+```
+
+## Repository Contract
+
+Digital-DNA treats the repository as a structural organism with a measurable genome.
+
+| Surface | Role |
+| --- | --- |
+| `engine/genome/` | Extracts normalized structural file genome. |
+| `engine/drift/` | Computes topology and dependency drift. |
+| `engine/stability/` | Computes retention and stability law. |
+| `engine/orchestrator/` | Runs the canonical scan pipeline. |
+| `engine/cli.py` | Provides the public `ddna` command. |
+| `state/genomes/` | Stores genome baseline. |
+| `state/environments/` | Stores topology and dependency baselines. |
+| `artifacts/` | Stores latest run and rendered reports. |
+| `tests/` | Locks runtime and invariant behavior. |
 
 ## Folder Mini-README System
 
-Every top-level project folder includes its own local `README.md` (mini README), so each scope can be understood in-place without scanning the entire repository first.
+Top-level scopes include local `README.md` files. Treat them as local contracts before editing a folder.
 
-### How to use mini READMEs (Human workflow)
-1. Start in the folder you need to modify (`engine/`, `docs/`, `tools/`, etc.).
-2. Read that folder’s `README.md` first for scope, sequence-of-events, and cross-links.
-3. Follow links/filenames listed in the mini directory to jump directly to relevant files.
+Human workflow:
 
-### How to use mini READMEs (AI workflow)
-1. Treat each folder `README.md` as the local contract before editing files in that scope.
-2. Use mini-directory and sequence sections to preserve deterministic execution order and truth-surface invariants.
-3. Use interlinking notes to avoid out-of-scope state, bypassing orchestrator contracts, or introducing shadow pipelines.
+1. Open the folder you intend to modify.
+2. Read that folder's `README.md`.
+3. Follow the mini-directory and sequencing notes.
 
-### Top-level mini README coverage
-- `artifacts/`
-- `docs/`
-- `engine/`
-- `ledger/`
-- `tools/` (script-equivalent utilities)
-- plus runtime/support scopes: `config/`, `state/`, `tests/`, `theory/`, `interface/`, `logs/`, `memory/`, `genome/`, `rcct_kernel/`, `developer/`, `ddna_evo/`, `DDNA_EVOLVE/`, `_mutations/`, `_patch_backups/`.
+Agent workflow:
 
----
+1. Use the local `README.md` as the scope contract.
+2. Preserve deterministic execution order and truth-surface invariants.
+3. Avoid creating shadow pipelines that bypass the orchestrator.
 
-## Architecture
+## Baseline Policy
 
-engine/
-- genome/        → Structural extraction & normalization
-- drift/         → Topology + dependency drift computation
-- stability/     → Retention and stability law
-- orchestrator/  → Execution entry point
-- ledger/        → Artifact recording
+Baselines are allowed to initialize automatically in exploratory mode. CI or locked runs can require pre-existing baselines:
 
-config/
-- weights.json   → Active drift channel weights (UTF-8 no BOM)
+```powershell
+$env:DDNA_BASELINE_LOCK = "1"
+ddna scan
+```
 
-state/
-- environments/  → Baseline structural snapshots
+With `DDNA_BASELINE_LOCK=1`, missing baselines fail instead of silently initializing.
 
-artifacts/
-- last_run.json  → Deterministic execution output
+## Reports
 
-tests/
-- behavioral_test_v1.py
-- structural_envelope_test_v1.py
-- results/
+Scan records include:
 
----
+- `retention`
+- `drift`
+- `drift_raw`
+- `drift_topology`
+- `drift_dependency`
+- `weights`
+- `stability`
+- `timestamp`
+
+Render a shareable HTML report:
+
+```powershell
+ddna report --format html --output artifacts/ddna-report.html
+```
+
+## Development
+
+```powershell
+python -m pip install -e .[dev]
+python -m pytest
+ddna scan --format json
+ddna gate --min-stability 0.0 --format json
+ddna report --format markdown
+```
+
+## Release Gate
+
+Before publishing a release:
+
+```powershell
+python -m pip install -e .[dev]
+python -m pytest
+ddna scan --format json
+ddna gate --min-stability 0.0 --format json
+ddna report --format html --output artifacts/ddna-report.html
+python -m tools.ddna_loop --iterations 1
+```
 
 ## Theory
 
-DDNA includes canonical theory documents under `theory/` that formalize the structural replication model, drift-bounded stability, and ledger-anchored continuity:
+Canonical theory documents live under `theory/`:
 
-- `theory/digital_dna_software_theory_v1_3.tex` (DDNA v1.3 · Locked Evolution)
-- `theory/codex_digital_dna_theory_memory_architecture_v1_6.tex` (DDNA v1.6 · Locked)
-- `theory/README.md` for the mini directory and interlinking overview
+- `theory/digital_dna_software_theory_v1_3.tex`
+- `theory/codex_digital_dna_theory_memory_architecture_v1_6.tex`
+- `theory/README.md`
 
----
+The reusable engineering theory is:
 
-## Execution
+- preserve structural genome,
+- measure topology and dependency drift,
+- compute retention,
+- keep stability auditable,
+- gate changes when structure falls below tolerance.
 
-Run engine:
+## Non-Claim Lock
 
-    python -m engine.orchestrator.run_ddna
-
-Run tests:
-
-    python tests/behavioral_test_v1.py
-    python tests/structural_envelope_test_v1.py
-    python tests/hardening_test_v2.py
-
-Optional strict baseline policy (CI-friendly):
-
-    DDNA_BASELINE_LOCK=1 python -m engine.orchestrator.run_ddna
-
-Run canonical loop (single entrypoint):
-
-    python -m tools.ddna_loop --iterations 1
-
-Continuous loop:
-
-    python -m tools.ddna_loop --forever --sleep-seconds 1
+Digital-DNA does not prove semantic correctness, runtime safety, agent alignment, production readiness, or biological equivalence. It measures repository structural continuity under explicitly defined baselines and drift channels.
