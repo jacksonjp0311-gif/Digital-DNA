@@ -33,3 +33,6 @@ jobs:
 
       - name: Explain gate
         run: ddna explain --format markdown
+
+      - name: Bio-signature
+        run: ddna signature --format json

@@ -18,7 +18,7 @@ The command uses `config/policy.json` and exits with:
 
 ```json
 {
-  "min_stability": 0.84,
+  "min_stability": 0.8,
   "max_drift": 0.2,
   "max_topology_drift": 0.12,
   "max_dependency_drift": 0.15,

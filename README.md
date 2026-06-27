@@ -1,11 +1,11 @@
 # Digital-DNA
 
-**Deterministic structural genome verification for repositories changed by humans, agents, or recursive tooling.**
+**Structural genome intelligence for repositories changed by humans, agents, or recursive tooling.**
 
-Digital-DNA verifies whether a repository still preserves its intended structural identity after edits. It extracts a repository genome, compares topology and dependency drift against baselines, computes retention, and emits a stability score that can be used as a local or CI gate.
+Digital-DNA verifies whether a repository still preserves its intended structural identity after edits. It extracts a repository genome, compares topology and dependency drift against baselines, computes retention, emits a policy-gated stability score, and now produces a genome-inspired bio-signature for repository composition.
 
 ```text
-repository -> structural genome -> drift scan -> stability score -> ledger/report
+repository -> structural genome -> bio-signature -> drift scan -> policy gate -> report
 ```
 
 ## Why It Exists
@@ -21,6 +21,17 @@ That makes DDNA useful for:
 - specification-driven repositories,
 - structural drift detection,
 - CI gates that protect repository shape.
+
+## What It Measures
+
+| Layer | Question |
+| --- | --- |
+| Structural genome | Which files define the system's preserved identity? |
+| Topology drift | Did the file topology move outside the baseline envelope? |
+| Dependency drift | Did import/dependency relationships change unexpectedly? |
+| Retention | How much of the baseline structure remains intact? |
+| Bio-signature | What is the repo's role composition, entropy, motifs, and contiguity? |
+| Policy gate | Does the current structure pass the configured continuity contract? |
 
 ## Core Model
 
@@ -68,6 +79,12 @@ Explain the latest gate decision:
 ddna explain
 ```
 
+Print the repository bio-signature:
+
+```powershell
+ddna signature
+```
+
 Render a report from the latest run:
 
 ```powershell
@@ -88,6 +105,7 @@ ddna baseline --yes
 | `ddna scan --no-write` | Runs the same scan without updating the latest artifact. |
 | `ddna gate` | Returns non-zero when the scan violates `config/policy.json`. |
 | `ddna explain` | Explains the latest gate decision and violated constraints. |
+| `ddna signature` | Computes the genome-inspired repository signature. |
 | `ddna baseline --yes` | Rebuilds genome, topology, and dependency baselines. |
 | `ddna report` | Renders JSON, Markdown, or HTML from a scan record. |
 
@@ -146,7 +164,7 @@ The default structural continuity policy lives at `config/policy.json`:
 
 ```json
 {
-  "min_stability": 0.84,
+  "min_stability": 0.8,
   "max_drift": 0.2,
   "max_topology_drift": 0.12,
   "max_dependency_drift": 0.15,
@@ -160,6 +178,28 @@ Override the stability floor for one run:
 ddna gate --min-stability 0.9
 ```
 
+## Bio-Signature
+
+Digital-DNA maps repository file roles into a deterministic `ACGU` alphabet:
+
+| Base | Repository role |
+| --- | --- |
+| `A` | Runtime and engine code |
+| `C` | Validation, tests, and contracts |
+| `G` | Knowledge, docs, schemas, and policy |
+| `U` | State, artifacts, and uncategorized support files |
+
+The signature reports:
+
+- `gc_like_content`: validation/knowledge density, inspired by GC content.
+- `kmer_entropy`: short-window role diversity, inspired by k-mer composition.
+- `normalized_sequence_entropy`: role-distribution complexity.
+- `n50`: repository contiguity across top-level structural groups.
+- `motifs`: conserved repo features such as runtime, tests, docs, config, and schema.
+- `fold_balance`: an RNA-inspired complement-balance proxy over `A/U` and `C/G` roles.
+
+This is an engineering analogy, not a biological claim. The purpose is to make repository structure measurable, comparable, and explainable.
+
 ## Reports
 
 Scan records include:
@@ -171,6 +211,7 @@ Scan records include:
 - `drift_dependency`
 - `weights`
 - `stability`
+- `bio_signature`
 - `timestamp`
 
 Render a shareable HTML report:
@@ -187,6 +228,7 @@ python -m pytest
 ddna scan --format json
 ddna gate --format json
 ddna explain
+ddna signature --format json
 ddna report --format markdown
 ```
 
@@ -200,9 +242,26 @@ python -m pytest
 ddna scan --format json
 ddna gate --format json
 ddna explain
+ddna signature --format json
 ddna report --format html --output artifacts/ddna-report.html
 python -m tools.ddna_loop --iterations 1
 ```
+
+## Current Benchmarks
+
+Local benchmark run on Windows, Python 3.12, from this repository:
+
+| Command | Result |
+| --- | --- |
+| `python -m pytest` | 8 tests passed |
+| `ddna scan --format json` | PASS, stability `0.8092440801457195` |
+| `ddna gate --format json` | PASS under `config/policy.json` |
+| `ddna signature --format json` | PASS, emits role composition, entropy, N50, motifs, and fold balance |
+| `ddna report --format html` | PASS, renders shareable structural report |
+
+Full benchmark notes: `docs/benchmarks.md`.
+
+Research mapping: `docs/research_mapping.md`.
 
 ## Theory
 

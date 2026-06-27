@@ -11,6 +11,7 @@
     "drift_dependency",
     "weights",
     "stability",
+    "bio_signature",
     "timestamp"
   ],
   "properties": {
@@ -29,6 +30,40 @@
       "additionalProperties": false
     },
     "stability": { "type": "number" },
+    "bio_signature": {
+      "type": "object",
+      "required": [
+        "alphabet",
+        "sequence_length",
+        "role_counts",
+        "gc_like_content",
+        "k",
+        "distinct_kmers",
+        "kmer_entropy",
+        "sequence_entropy",
+        "normalized_sequence_entropy",
+        "contig_count",
+        "n50",
+        "motifs",
+        "fold_balance"
+      ],
+      "properties": {
+        "alphabet": { "type": "string" },
+        "sequence_length": { "type": "integer", "minimum": 0 },
+        "role_counts": { "type": "object" },
+        "gc_like_content": { "type": "number", "minimum": 0, "maximum": 1 },
+        "k": { "type": "integer", "minimum": 1 },
+        "distinct_kmers": { "type": "integer", "minimum": 0 },
+        "kmer_entropy": { "type": "number", "minimum": 0 },
+        "sequence_entropy": { "type": "number", "minimum": 0 },
+        "normalized_sequence_entropy": { "type": "number", "minimum": 0, "maximum": 1 },
+        "contig_count": { "type": "integer", "minimum": 0 },
+        "n50": { "type": "integer", "minimum": 0 },
+        "motifs": { "type": "object" },
+        "fold_balance": { "type": "number", "minimum": 0, "maximum": 1 }
+      },
+      "additionalProperties": true
+    },
     "timestamp": { "type": "string" },
     "gate": {
       "type": "object",

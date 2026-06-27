@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from engine.cli import main
+from engine.bio_signature import compute_bio_signature
 from engine.orchestrator.run_ddna import run_scan
 from jsonschema import validate
 
@@ -12,6 +13,7 @@ def test_run_scan_can_return_record_without_writing():
     record = run_scan(write_artifact=False)
 
     assert "stability" in record
+    assert "bio_signature" in record
     assert abs(float(record["stability"]) - (float(record["retention"]) - float(record["drift"]))) < 1e-9
 
 
@@ -59,3 +61,25 @@ def test_record_schema_accepts_gate_record():
     schema = json.loads(Path("schema/ddna_record.schema.json").read_text(encoding="utf-8"))
 
     validate(attach_gate(record, gate), schema)
+
+
+def test_bio_signature_computes_repo_sequence_metrics():
+    signature = compute_bio_signature(
+        [
+            "engine/cli.py",
+            "tests/test_cli_runtime.py",
+            "docs/ci_gate.md",
+            "config/policy.json",
+            "state/genomes/baseline.json",
+        ]
+    )
+
+    assert signature["alphabet"] == "ACGU"
+    assert signature["sequence_length"] == 5
+    assert signature["n50"] >= 1
+    assert 0.0 <= signature["gc_like_content"] <= 1.0
+    assert 0.0 <= signature["fold_balance"] <= 1.0
+
+
+def test_signature_cli_runs():
+    assert main(["signature", "--format", "json"]) == 0

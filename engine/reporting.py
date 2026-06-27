@@ -39,6 +39,21 @@ def render_markdown(record: dict[str, Any]) -> str:
         if violations:
             lines.extend(["", "Violations:"])
             lines.extend(f"- {item}" for item in violations)
+    if "bio_signature" in record:
+        signature = record["bio_signature"]
+        lines.extend(
+            [
+                "",
+                "## Bio-Signature",
+                "",
+                f"- alphabet: `{signature.get('alphabet', '')}`",
+                f"- sequence_length: `{signature.get('sequence_length', 0)}`",
+                f"- gc_like_content: `{float(signature.get('gc_like_content', 0.0)):.6f}`",
+                f"- normalized_sequence_entropy: `{float(signature.get('normalized_sequence_entropy', 0.0)):.6f}`",
+                f"- n50: `{int(signature.get('n50', 0))}`",
+                f"- fold_balance: `{float(signature.get('fold_balance', 0.0)):.6f}`",
+            ]
+        )
     lines.extend(["", f"Timestamp: `{record.get('timestamp', '')}`"])
     return "\n".join(lines) + "\n"
 

@@ -13,6 +13,7 @@ if str(ROOT) not in sys.path:
 
 from engine.drift.dependency_graph import compute_dependency_drift, extract_dependency_graph
 from engine.drift.topology import compute_topology_drift, extract_topology
+from engine.bio_signature import collect_signature_files, compute_bio_signature
 from engine.genome.extract import extract_genome
 from engine.orchestrator.validation import validate_record, validate_weights
 from engine.stability.retention import compute_retention
@@ -88,6 +89,7 @@ def run_scan(*, write_artifact: bool = True) -> dict[str, Any]:
         "drift_dependency": drift_dependency,
         "weights": weights,
         "stability": stability,
+        "bio_signature": compute_bio_signature(collect_signature_files(ROOT)),
         "timestamp": datetime.now(timezone.utc).isoformat(),
     }
 

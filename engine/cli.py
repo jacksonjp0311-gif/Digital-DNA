@@ -7,6 +7,7 @@ from pathlib import Path
 
 from engine.drift.dependency_graph import extract_dependency_graph, save_baseline as save_dependency_baseline
 from engine.drift.topology import extract_topology, save_baseline as save_topology_baseline
+from engine.bio_signature import collect_signature_files, compute_bio_signature
 from engine.genome.extract import extract_genome
 from engine.orchestrator.run_ddna import ARTIFACT_PATH, BASELINE_PATH, ROOT, _write_json, run_scan
 from engine.policy import attach_gate, evaluate_gate, explain_record, load_policy
@@ -44,6 +45,9 @@ def build_parser() -> argparse.ArgumentParser:
     explain.add_argument("--input", type=Path, default=ARTIFACT_PATH)
     explain.add_argument("--policy", type=Path, default=POLICY_PATH)
     explain.add_argument("--format", choices=("json", "markdown"), default="markdown")
+
+    signature = sub.add_parser("signature", help="Print the genome-inspired repository bio-signature.")
+    signature.add_argument("--format", choices=("json", "markdown"), default="markdown")
 
     return parser
 
@@ -92,6 +96,14 @@ def main(argv: list[str] | None = None) -> int:
                 print(explain_record(record, gate_result), end="")
             return 0 if gate_result.passed else 2
 
+        if args.command == "signature":
+            signature = compute_bio_signature(collect_signature_files(ROOT))
+            if args.format == "json":
+                print(json.dumps(signature, indent=2, sort_keys=True))
+            else:
+                print(_render_signature_markdown(signature), end="")
+            return 0
+
         return 1
     except Exception as exc:  # noqa: BLE001 - CLI should emit clean operator errors.
         print(f"ddna: {exc}", file=sys.stderr)
@@ -110,6 +122,27 @@ def _emit_record(record: dict[str, object], fmt: str, output: Path | None) -> No
         output.write_text(text, encoding="utf-8")
     else:
         print(text, end="")
+
+
+def _render_signature_markdown(signature: dict[str, object]) -> str:
+    lines = [
+        "# Digital-DNA Bio-Signature",
+        "",
+        f"**Alphabet:** `{signature['alphabet']}`",
+        f"**Sequence length:** `{signature['sequence_length']}`",
+        f"**GC-like content:** `{float(signature['gc_like_content']):.6f}`",
+        f"**Normalized entropy:** `{float(signature['normalized_sequence_entropy']):.6f}`",
+        f"**N50:** `{int(signature['n50'])}`",
+        f"**Fold balance:** `{float(signature['fold_balance']):.6f}`",
+        "",
+        "## Motifs",
+        "",
+        "| Motif | Count |",
+        "| --- | ---: |",
+    ]
+    for key, value in sorted(dict(signature["motifs"]).items()):
+        lines.append(f"| `{key}` | {int(value)} |")
+    return "\n".join(lines) + "\n"
 
 
 if __name__ == "__main__":

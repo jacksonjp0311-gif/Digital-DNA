@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.3.0 - 2026-06-27
+
+- Added genome-inspired repository bio-signatures.
+- Added `ddna signature` for role alphabet, k-mer, entropy, motif, N50, and fold-balance metrics.
+- Added `bio_signature` to scan records and JSON schema.
+- Upgraded README positioning and benchmark documentation.
+- Added benchmark report under `docs/benchmarks.md`.
+
 ## 0.2.0 - 2026-06-27
 
 - Added `config/policy.json` as the default structural continuity policy.

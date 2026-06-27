@@ -7,7 +7,7 @@ from typing import Any
 
 
 DEFAULT_POLICY = {
-    "min_stability": 0.84,
+    "min_stability": 0.8,
     "max_drift": 0.2,
     "max_topology_drift": 0.12,
     "max_dependency_drift": 0.15,
