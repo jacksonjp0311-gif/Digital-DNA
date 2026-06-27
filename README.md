@@ -59,7 +59,13 @@ ddna scan --format json
 Run a CI-style gate:
 
 ```powershell
-ddna gate --min-stability 0.85
+ddna gate
+```
+
+Explain the latest gate decision:
+
+```powershell
+ddna explain
 ```
 
 Render a report from the latest run:
@@ -80,7 +86,8 @@ ddna baseline --yes
 | --- | --- |
 | `ddna scan` | Runs genome extraction, drift scoring, retention scoring, and writes `artifacts/last_run.json` by default. |
 | `ddna scan --no-write` | Runs the same scan without updating the latest artifact. |
-| `ddna gate --min-stability 0.85` | Returns non-zero when stability falls below the threshold. |
+| `ddna gate` | Returns non-zero when the scan violates `config/policy.json`. |
+| `ddna explain` | Explains the latest gate decision and violated constraints. |
 | `ddna baseline --yes` | Rebuilds genome, topology, and dependency baselines. |
 | `ddna report` | Renders JSON, Markdown, or HTML from a scan record. |
 
@@ -133,6 +140,26 @@ ddna scan
 
 With `DDNA_BASELINE_LOCK=1`, missing baselines fail instead of silently initializing.
 
+## Gate Policy
+
+The default structural continuity policy lives at `config/policy.json`:
+
+```json
+{
+  "min_stability": 0.84,
+  "max_drift": 0.2,
+  "max_topology_drift": 0.12,
+  "max_dependency_drift": 0.15,
+  "require_retention": 0.95
+}
+```
+
+Override the stability floor for one run:
+
+```powershell
+ddna gate --min-stability 0.9
+```
+
 ## Reports
 
 Scan records include:
@@ -158,7 +185,8 @@ ddna report --format html --output artifacts/ddna-report.html
 python -m pip install -e .[dev]
 python -m pytest
 ddna scan --format json
-ddna gate --min-stability 0.0 --format json
+ddna gate --format json
+ddna explain
 ddna report --format markdown
 ```
 
@@ -170,7 +198,8 @@ Before publishing a release:
 python -m pip install -e .[dev]
 python -m pytest
 ddna scan --format json
-ddna gate --min-stability 0.0 --format json
+ddna gate --format json
+ddna explain
 ddna report --format html --output artifacts/ddna-report.html
 python -m tools.ddna_loop --iterations 1
 ```

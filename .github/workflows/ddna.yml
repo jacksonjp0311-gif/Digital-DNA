@@ -26,7 +26,10 @@ jobs:
         run: ddna scan --format json
 
       - name: Gate
-        run: ddna gate --min-stability 0.0 --format json
+        run: ddna gate --format json
 
       - name: Render HTML report
         run: ddna report --format html --output artifacts/ddna-report.html
+
+      - name: Explain gate
+        run: ddna explain --format markdown

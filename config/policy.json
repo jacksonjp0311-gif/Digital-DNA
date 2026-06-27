@@ -1,0 +1,7 @@
+{
+  "min_stability": 0.84,
+  "max_drift": 0.2,
+  "max_topology_drift": 0.12,
+  "max_dependency_drift": 0.15,
+  "require_retention": 0.95
+}

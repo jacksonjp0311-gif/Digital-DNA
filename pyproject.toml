@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "digital-dna"
-version = "0.1.0"
+version = "0.2.0"
 description = "Deterministic structural genome scanner and drift gate for specification-driven repositories."
 readme = "README.md"
 requires-python = ">=3.10"
@@ -24,7 +24,7 @@ classifiers = [
 dependencies = []
 
 [project.optional-dependencies]
-dev = ["pytest>=8.0"]
+dev = ["jsonschema>=4.22", "pytest>=8.0"]
 
 [project.urls]
 Homepage = "https://github.com/jacksonjp0311-gif/Digital-DNA"

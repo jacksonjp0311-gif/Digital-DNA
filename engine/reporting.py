@@ -30,16 +30,16 @@ def render_markdown(record: dict[str, Any]) -> str:
     weights = record.get("weights", {})
     for key in sorted(weights):
         lines.append(f"| {key} | {float(weights[key]):.6f} |")
-    lines.extend(
-        [
-            "",
-            "## Invariant",
-            "",
-            "`stability = retention - clamp(weighted_drift, 0, 1)`",
-            "",
-            f"Timestamp: `{record.get('timestamp', '')}`",
-        ]
-    )
+    lines.extend(["", "## Invariant", "", "`stability = retention - clamp(weighted_drift, 0, 1)`"])
+    if "gate" in record:
+        gate = record["gate"]
+        status = "passed" if gate.get("passed") else "failed"
+        lines.extend(["", "## Gate", "", f"**Status:** `{status}`"])
+        violations = gate.get("violations", [])
+        if violations:
+            lines.extend(["", "Violations:"])
+            lines.extend(f"- {item}" for item in violations)
+    lines.extend(["", f"Timestamp: `{record.get('timestamp', '')}`"])
     return "\n".join(lines) + "\n"
 
 

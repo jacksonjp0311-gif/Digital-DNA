@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/jacksonjp0311-gif/Digital-DNA/schema/ddna_record.schema.json",
+  "title": "Digital-DNA Scan Record",
+  "type": "object",
+  "required": [
+    "retention",
+    "drift",
+    "drift_raw",
+    "drift_topology",
+    "drift_dependency",
+    "weights",
+    "stability",
+    "timestamp"
+  ],
+  "properties": {
+    "retention": { "type": "number", "minimum": 0 },
+    "drift": { "type": "number", "minimum": 0, "maximum": 1 },
+    "drift_raw": { "type": "number", "minimum": 0 },
+    "drift_topology": { "type": "number", "minimum": 0, "maximum": 1 },
+    "drift_dependency": { "type": "number", "minimum": 0, "maximum": 1 },
+    "weights": {
+      "type": "object",
+      "required": ["topology", "dependency"],
+      "properties": {
+        "topology": { "type": "number", "minimum": 0 },
+        "dependency": { "type": "number", "minimum": 0 }
+      },
+      "additionalProperties": false
+    },
+    "stability": { "type": "number" },
+    "timestamp": { "type": "string" },
+    "gate": {
+      "type": "object",
+      "required": ["passed", "violations", "policy"],
+      "properties": {
+        "passed": { "type": "boolean" },
+        "violations": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "policy": {
+          "type": "object",
+          "required": [
+            "min_stability",
+            "max_drift",
+            "max_topology_drift",
+            "max_dependency_drift",
+            "require_retention"
+          ],
+          "properties": {
+            "min_stability": { "type": "number", "minimum": 0 },
+            "max_drift": { "type": "number", "minimum": 0 },
+            "max_topology_drift": { "type": "number", "minimum": 0 },
+            "max_dependency_drift": { "type": "number", "minimum": 0 },
+            "require_retention": { "type": "number", "minimum": 0 }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": true
+}
